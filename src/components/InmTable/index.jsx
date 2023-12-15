@@ -33,9 +33,9 @@ const index = () => {
                     <td className='border px-2 text-center'>{inmueble.id}</td>
                     <td className='border px-2 text-center'>{inmueble.name}</td>
                     <td className='border px-2 text-center'>$ {inmueble.price}</td>
-                    <td className='border px-2'>{inmueble.state ? <Image src="/assets/green-circle.png" width={20} height={20} className="mx-auto"/> : <Image src="/assets/red-circle.png" width={20} height={20} className="mx-auto" /> }</td>
-                    <td className='border px-2 text-center'><Image src="/assets/edit.png" width={20} height={20} className="mx-auto"/></td>
-                    <td className='border px-2 text-center'><Image src="/assets/delete.png" width={20} height={20} className="mx-auto"/></td>
+                    <td className='border px-2'>{inmueble.state ? <Image src="/assets/green-circle.png" alt="green.png" width={20} height={20} className="mx-auto"/> : <Image src="/assets/red-circle.png" alt="red.png" width={20} height={20} className="mx-auto" /> }</td>
+                    <td className='border px-2 text-center'><Image src="/assets/edit.png" alt="edit.png" width={20} height={20} className="mx-auto"/></td>
+                    <td className='border px-2 text-center'><Image src="/assets/delete.png" alt="delete.png" width={20} height={20} className="mx-auto"/></td>
                 </tr>)}           
             </tbody>          
         </table>

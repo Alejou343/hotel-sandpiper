@@ -15,7 +15,7 @@ const index = () => {
 
   return (
     <div className="table-responsive bg-white max-w-5xl">
-        <h1 className="text-center my-4 text-3xl font-bold text-green-500">Mis Propiedades</h1>
+        <h1 className="text-center my-4 text-3xl font-bold text-green-500">Mis Leads</h1>
         <table className="table table-hover border-2">
             <thead className='border'>
                 <tr>        
@@ -35,7 +35,7 @@ const index = () => {
                     <td className='border px-2 text-center'>{lead.client}</td>
                     <td className='border px-2 text-center'>{lead.phone}</td>
                     <td className='border px-2 text-center'>{lead.startDate}</td>
-                    <td className='border px-2 text-center'><Image src="/assets/open.png" width={20} height={20} className="mx-auto" /></td>
+                    <td className='border px-2 text-center'><Image src="/assets/open.png" alt="view.png" width={20} height={20} className="mx-auto" /></td>
                 </tr>)}           
             </tbody>          
         </table>
