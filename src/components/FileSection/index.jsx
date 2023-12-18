@@ -1,14 +1,13 @@
 import React from 'react'
 
-const index = ({type, id, placeholder, label, onChange}) => {
+const index = ({ id, label, onChange }) => {
   return (
     <div className="mb-2 flex justify-between">
       <label htmlFor={id} className="form-label text-sm">{label}</label>
       <input 
-        type={type} 
-        className="w-1/2 h-8 px-3 rounded-lg border text-sm"
-        id={id} 
-        placeholder={placeholder}
+        type="file" 
+        className="w-1/2 h-8 px-3 rounded-lg my-2 text-sm"
+        id={id}
         onChange={onChange}
         required
       />
