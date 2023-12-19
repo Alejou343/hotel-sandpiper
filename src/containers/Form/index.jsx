@@ -10,7 +10,8 @@ const index = () => {
 
     return (
         <div className='form'>
-            <h1 className='text-3xl text-green-500 my-8 font-bold text-center'> Añadir Propiedad </h1>
+            <h1 className='text-3xl text-green-500 my-4 font-bold text-center'> Añadir Propiedad </h1>
+            <p className="text-center my-4"> Selecciona el tipo de propiedad para añadir: </p>
             <div className="buttons flex justify-between">
                 <Button 
                     children="Residencial" 

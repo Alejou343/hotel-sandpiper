@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Imagen a Imgur</title>
+</head>
+<body>
+    <h1>Subir Imagen a Imgur</h1>
+    <!-- Agrega un formulario para cargar la imagen -->
+    <form id="imageUploadForm" enctype="multipart/form-data">
+        <input type="file" id="imageInput" accept="image/*">
+        <button type="button" onclick="uploadImage()">Subir Imagen</button>
+    </form>
+    <div id="result"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function uploadImage() {
+            const clientId = '68d6960971558dd';
+            const apiUrl = 'https://api.imgur.com/3/image';
+            const imageInput = document.getElementById('imageInput');
+            const imageFile = imageInput.files[0];
+            if (imageFile) {
+                const imageFormData = new FormData();
+                imageFormData.append('image', imageFile);
+                axios.post(apiUrl, imageFormData, {
+                    headers: {
+                        Authorization: `Client-ID ${clientId}`,
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                .then(response => {
+                    const imageUrl = response.data.data.link;
+                    displayResult(`Imagen subida exitosamente. URL: ${imageUrl}`);
+                })
+                .catch(error => {
+                    displayResult(`Error al subir la imagen: ${error.response.data.error}`);
+                });
+            } else {
+                displayResult('Selecciona una imagen antes de subirla.');
+            }
+        }
+        function displayResult(message) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = message;
+        }
+    </script>
+</body>
+</html>

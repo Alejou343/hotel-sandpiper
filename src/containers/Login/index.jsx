@@ -1,8 +1,7 @@
 "use client"
 import React from 'react';
-import Loader from '@/components/Loader';
 import Button from '@/components/Button';
-import FormSection from '@/components/FormSection';
+import LoginSection from '@/components/LoginSection'
 import PasswordSection from '@/components/PasswordSection';
 import { useRouter } from 'next/navigation';
 
@@ -35,7 +34,7 @@ const index = () => {
 
   return (
     <form className="flex flex-col gap-4" onSubmit={onLoginSubmit}>
-        <FormSection  
+        <LoginSection  
             label="Correo electrónico"
             type="text"
             id="email"
@@ -54,7 +53,7 @@ const index = () => {
             children="Ingresar" 
             onClick={() => console.log("Datos a enviar --> ", formData)} 
             type="submit" 
-            className="bg-blue-500"
+            className="bg-blue-400"
         />
     </form>
   )
