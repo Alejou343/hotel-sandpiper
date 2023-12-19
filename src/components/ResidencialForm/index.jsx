@@ -3,6 +3,7 @@ import FormSection from '@/components/FormSection'
 import FormSelect from '@/components/FormSelect'
 import FileSection from '@/components/FileSection'
 import Button from '@/components/Button'
+import Imgur from '@/components/Imgur'
 
 const index = () => {
 
@@ -166,13 +167,7 @@ const index = () => {
                 onChange={handleInputChange}
                 value={formData.Arealote}
             />
-            <FileSection 
-                type="file"
-                id="Imagen"
-                label="Sube una imagen del inmueble"
-                onChange={handleInputChange}
-                value={formData.Imagen}
-            />
+            <Imgur />
             <Button type="submit" className="hover:bg-slate-300 my-3 bg-blue-400 flex justify-center"> Publicar </Button>
         </form>
     )

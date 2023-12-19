@@ -4,6 +4,7 @@ import FormSelect from '@/components/FormSelect'
 import Button from '@/components/Button'
 import FileSection from '@/components/FileSection'
 import Imgur from '@/components/Imgur'
+import axios from 'axios'
 
 const index = () => {
 
@@ -29,6 +30,36 @@ const index = () => {
         [id]: value,
         });
     };
+
+    const [alert, setAlert] = React.useState(null)
+
+    const uploadImage = () => { 
+        const clientId = '68d6960971558dd';
+        const apiUrl = 'https://api.imgur.com/3/image';
+        const imageInput = document.getElementById('Imagen');
+        const imageFile = imageInput.files[0];
+        if (imageFile) {
+            const imageFormData = new FormData();
+            imageFormData.append('image', imageFile);
+            axios.post(apiUrl, imageFormData, {
+                headers: {
+                    Authorization: `Client-ID ${clientId}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then(response => {
+                const imageUrl = response.data.data.link;
+                setFormData({...formData, ["Imagen"]: imageUrl})
+                setAlert(`Imagen subida exitosamente.`);
+            })
+            .catch(error => {
+                console.error('Error --> ', error)
+                setAlert(`Error al subir la imagen`);
+            });
+        } else {
+            setAlert('Selecciona una imagen antes de subirla.');
+        }
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -45,7 +76,7 @@ const index = () => {
     };
     
     return (
-        <div onSubmit={handleSubmit} className='my-4'>
+        <form onSubmit={handleSubmit} className='my-4'>
             <FormSelect 
                 id="Tiporesidencia"
                 label="Selecciona el tipo de inmueble"
@@ -129,16 +160,13 @@ const index = () => {
                 onChange={handleInputChange}
                 value={formData.Arealote}
             />
-            {/* <FileSection 
-                type="file"
-                id="Imagen"
-                label="Sube una imagen del inmueble"
-                onChange={handleInputChange}
-                value={formData.Imagen}
-            />   */}
-            <Imgur />
+            <div className="flex">
+                <label className="text-sm"> Sube una imagen del inmueble </label>
+                <input type="file" id="Imagen" accept="image/*" onChange={uploadImage} />
+            </div>
+            {alert && <p className="text-red-500 text-center text-xs my-4">{alert}</p>}
             <Button type="submit" className="hover:bg-slate-300 bg-blue-400 my-3 flex justify-center"> Publicar </Button>
-        </div>
+        </form>
     )
 }
 

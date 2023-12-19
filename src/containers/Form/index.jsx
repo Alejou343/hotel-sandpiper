@@ -3,7 +3,6 @@ import React from 'react'
 import ComercialForm from '@/components/ComercialForm'
 import ResidencialForm from '@/components/ResidencialForm'
 import Button from '@/components/Button'
-import Imgur from '@/components/Imgur'
 
 const index = () => {
 
@@ -27,7 +26,7 @@ const index = () => {
                     onClick={() => setType("Comercial")} 
                 />
             </div>
-            {type == "Comercial" && <Imgur />}
+            {type == "Comercial" && <ComercialForm />}
             {type == "Residencial" && <ResidencialForm />}
         </div>
     )
