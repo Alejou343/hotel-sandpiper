@@ -23,6 +23,7 @@
             if (imageFile) {
                 const imageFormData = new FormData();
                 imageFormData.append('image', imageFile);
+                console.log(imageFormData)
                 axios.post(apiUrl, imageFormData, {
                     headers: {
                         Authorization: `Client-ID ${clientId}`,

@@ -7,7 +7,7 @@ const index = ({ id, label, onChange }) => {
       <input 
         type="file" 
         className="w-1/2 h-8 px-3 rounded-lg my-2 text-sm"
-        id={id}
+        id="imageInput"
         onChange={onChange}
         required
       />

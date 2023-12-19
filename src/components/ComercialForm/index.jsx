@@ -3,6 +3,7 @@ import FormSection from '@/components/FormSection'
 import FormSelect from '@/components/FormSelect'
 import Button from '@/components/Button'
 import FileSection from '@/components/FileSection'
+import Imgur from '@/components/Imgur'
 
 const index = () => {
 
@@ -44,7 +45,7 @@ const index = () => {
     };
     
     return (
-        <form onSubmit={handleSubmit} className='my-4'>
+        <div onSubmit={handleSubmit} className='my-4'>
             <FormSelect 
                 id="Tiporesidencia"
                 label="Selecciona el tipo de inmueble"
@@ -128,15 +129,16 @@ const index = () => {
                 onChange={handleInputChange}
                 value={formData.Arealote}
             />
-            <FileSection 
+            {/* <FileSection 
                 type="file"
                 id="Imagen"
                 label="Sube una imagen del inmueble"
                 onChange={handleInputChange}
                 value={formData.Imagen}
-            />  
+            />   */}
+            <Imgur />
             <Button type="submit" className="hover:bg-slate-300 bg-blue-400 my-3 flex justify-center"> Publicar </Button>
-        </form>
+        </div>
     )
 }
 
