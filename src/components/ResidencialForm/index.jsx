@@ -1,68 +1,25 @@
 import React from 'react'
-import FormSection from '@/components/FormSection'
-import FormSelect from '@/components/FormSelect'
-import FileSection from '@/components/FileSection'
 import Button from '@/components/Button'
-import Imgur from '@/components/Imgur'
+import FormSelect from '@/components/FormSelect'
+import FormSection from '@/components/FormSection'
+import useResidencial from '@/hooks/useResidencial'
 
 const index = () => {
 
-    const [formData, setFormData] = React.useState({
-        Tiporesidencia: "",
-        Tiposervicio: "",
-        Estado: "",
-        Nombre: "",
-        Areaconstruida: "",
-        Habitaciones: "",
-        Baños: "",
-        Parqueaderos: "",
-        Ciudad: "",
-        Barrio: "",
-        Unidadcerrada: "",
-        Anoconstruccion: "",
-        Enlace: "",
-        Precio: "",
-        Arealote: "",
-        Imagen: ""
-    });
-    
-    const handleInputChange = (e) => {
-        const { id, value } = e.target;
-        setFormData({
-        ...formData,
-        [id]: value,
-        });
-    };
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        
-        const formDataNumerico = {
-            ...formData,
-            Areaconstruida: parseInt(formData.Areaconstruida),
-            Habitaciones: parseInt(formData.Habitaciones),
-            Baños: parseInt(formData.Baños),
-            Parqueaderos: parseInt(formData.Parqueaderos),
-            Anoconstruccion: parseInt(formData.Anoconstruccion),
-            Precio: parseInt(formData.Precio),
-            Arealote: parseInt(formData.Arealote),
-        };
+    const { alert, formData, uploadImage, handleInputChange, handleSubmit } = useResidencial()
 
-        console.log('Datos a enviar:', formDataNumerico)
-    };
-    
     return (
         <form onSubmit={handleSubmit} className="my-4">
             <FormSelect 
                 id="Tiporesidencia"
-                label="Selecciona el tipo de inmueble"
+                label="Selecciona tipo de inmueble"
                 value={formData.Tiporesidencia}
                 list={["Casa","Apartamento", "Finca"]} 
                 onChange={handleInputChange}
             />
             <FormSelect 
                 id="Tiposervicio"
-                label="Selecciona el tipo de servicio"
+                label="Selecciona tipo de servicio"
                 value={formData.Tiposervicio}
                 list={["Comprar", "Arrendar"]} 
                 onChange={handleInputChange}
@@ -78,7 +35,7 @@ const index = () => {
                 type="text"
                 id="Nombre"
                 placeholder="Ej: Bonita casa en Laureles"
-                label="Escribe el nombre de la propiedad"
+                label="Nombre de la propiedad"
                 onChange={handleInputChange}
                 value={formData.Nombre}
             />
@@ -86,7 +43,7 @@ const index = () => {
                 type="text"
                 id="Areaconstruida"
                 placeholder="Ej: 40"
-                label="Escribe el área construída en m²"
+                label="Area construída m²"
                 onChange={handleInputChange}
                 value={formData.Areaconstruida}
             />
@@ -94,7 +51,7 @@ const index = () => {
                 type="text"
                 id="Habitaciones"
                 placeholder="Ej: 4"
-                label="Escribe el número de habitaciones"
+                label="Número de habitaciones"
                 onChange={handleInputChange}
                 value={formData.Habitaciones}
             />
@@ -102,7 +59,7 @@ const index = () => {
                 type="text"
                 id="Baños"
                 placeholder="Ej: 2"
-                label="Escribe el número de baños"
+                label="Número de baños"
                 onChange={handleInputChange}
                 value={formData.Baños}
             />
@@ -110,7 +67,7 @@ const index = () => {
                 type="text"
                 id="Parqueaderos"
                 placeholder="Ej: 1"
-                label="Escribe el número de parqueaderos"
+                label="Número de parqueaderos"
                 onChange={handleInputChange}
                 value={formData.Parqueaderos}
             />
@@ -128,18 +85,18 @@ const index = () => {
                 list={["Belén", "Laureles", "Poblado", "Centro"]} 
                 onChange={handleInputChange}
             />}
-            <FormSelect 
+            {formData.Tiporesidencia !== "Finca" && <FormSelect 
                 id="Unidadcerrada"
-                label="El inmueble está en undad cerrada"
+                label="¿Unidad cerrada?"
                 value={formData.Unidadcerrada}
                 list={["Si", "No"]} 
                 onChange={handleInputChange}
-            />
+            />}
             <FormSection 
                 type="text"
                 id="Anoconstruccion"
                 placeholder="Ej: 2018"
-                label="Escribe el año de construcción"
+                label="Año de construcción"
                 onChange={handleInputChange}
                 value={formData.Anoconstruccion}
             />
@@ -155,19 +112,23 @@ const index = () => {
                 type="text"
                 id="Precio"
                 placeholder="Ej: 400000000"
-                label="Escribe el precio del inmueble (COP)"
+                label={`${formData.Tiposervicio === "Arrendar" ? "Canon de arrendamiento (COP)" : "Precio del inmueble (COP)" }`}
                 onChange={handleInputChange}
                 value={formData.Precio}
             />
-            <FormSection 
+            {formData.Tiporesidencia == "Finca" && <FormSection 
                 type="text"
                 id="Arealote"
                 placeholder="Ej: 85"
-                label="Escribe el area del lote"
+                label="Area del lote m²"
                 onChange={handleInputChange}
                 value={formData.Arealote}
-            />
-            <Imgur />
+            />}
+            <div className="flex flex-col my-3 justify-center items-center gap-3">
+                <label className="text-sm"> Sube una imagen del inmueble </label>
+                <input type="file" id="Imagen" accept="image/*" onChange={uploadImage} />
+            </div>
+            {alert && <p className={`${alert == "Imagen subida exitosamente." ? "text-green-500" : "text-red-500"} text-center text-xs my-4`}>{alert}</p>}
             <Button type="submit" className="hover:bg-slate-300 my-3 bg-blue-400 flex justify-center"> Publicar </Button>
         </form>
     )
