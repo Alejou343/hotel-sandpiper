@@ -4,11 +4,13 @@ import Button from '@/components/Button';
 import LoginSection from '@/components/LoginSection'
 import PasswordSection from '@/components/PasswordSection';
 import { useRouter } from 'next/navigation';
+import Loader from '@/components/Loader';
 
 
 const index = () => {
 
     const router = useRouter()
+    const [loaderActive, setLoaderActive] = React.useState(false)
 
     const [formData, setFormData] = React.useState({
         email: '',
@@ -27,13 +29,16 @@ const index = () => {
     const onLoginSubmit = (e) => {
         e.preventDefault()
         localStorage.setItem('User', JSON.stringify(formData))
+        setLoaderActive(true)
         setTimeout(() => {
+            setLoaderActive(false)
             router.push('/main')
         }, 2000);
     }
 
   return (
     <form className="flex flex-col gap-4" onSubmit={onLoginSubmit}>
+        <Loader active={loaderActive} />
         <LoginSection  
             label="Correo electrónico"
             type="text"
@@ -54,7 +59,8 @@ const index = () => {
             onClick={() => console.log("Datos a enviar --> ", formData)} 
             type="submit" 
             className="bg-blue-400"
-        />
+        >
+        </Button>
     </form>
   )
 }

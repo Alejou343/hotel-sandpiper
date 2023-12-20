@@ -4,8 +4,9 @@ import ComercialForm from '@/components/ComercialForm'
 import ResidencialForm from '@/components/ResidencialForm'
 import Button from '@/components/Button'
 
-const index = () => {
 
+const index = () => {
+    
     const [type, setType] = React.useState("")
 
     return (

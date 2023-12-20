@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Loader from '@/components/Loader'
 
 const index = () => {
 
@@ -13,8 +14,18 @@ const index = () => {
         {id: 9906, name: "Consultorio en zona exclusiva de Envigado", client: "Alejandro Velasquez", phone: 3011477516, startDate: "2023-12-15" },
     ]
 
+    const [loaderActive, setLoaderActive] = React.useState(true)
+
+    React.useEffect(() => {
+        setLoaderActive(true)
+    setTimeout(() => {
+        setLoaderActive(false)
+    }, 2000);
+    }, [])
+
   return (
     <div className="table-responsive bg-white max-w-5xl">
+        <Loader active={loaderActive} />
         <h1 className="text-center my-4 text-3xl font-bold text-green-500">Mis Leads</h1>
         <table className="table table-hover border-2">
             <thead className='border'>

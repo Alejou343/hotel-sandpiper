@@ -1,7 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
+import Loader from '@/components/Loader'
 
 const index = () => {
+
+    const [loaderActive, setLoaderActive] = React.useState(true)
+
+    React.useEffect(() => {
+        setLoaderActive(true)
+    setTimeout(() => {
+        setLoaderActive(false)
+    }, 2000);
+    }, [])
 
     // Esto debe llegar desde la DB
     const inmuebles = [
@@ -15,6 +25,7 @@ const index = () => {
 
   return (
     <div className="table-responsive bg-white max-w-5xl">
+        <Loader active={loaderActive} />
         <h1 className="text-center my-4 text-3xl font-bold text-green-500">Mis Propiedades</h1>
         <table className="table table-hover border-2">
             <thead className='border'>
