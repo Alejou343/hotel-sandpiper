@@ -4,7 +4,7 @@ import useComercial from '@/hooks/useComercial'
 import FormSelect from '@/components/FormSelect'
 import FormSection from '@/components/FormSection'
 
-const index = () => {
+const Index = () => {
 
     const { alert, formData, handleInputChange, uploadImage, handleSubmit } = useComercial()
 
@@ -107,4 +107,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Loader from '@/components/Loader';
 
 
-const index = () => {
+const Index = () => {
 
     const router = useRouter()
     const [loaderActive, setLoaderActive] = React.useState(false)
@@ -55,14 +55,14 @@ const index = () => {
             value={formData.password}
         />
         <Button 
-            children="Ingresar" 
             onClick={() => console.log("Datos a enviar --> ", formData)} 
             type="submit" 
             className="bg-blue-400"
         >
+            Ingresar
         </Button>
     </form>
   )
 }
 
-export default index
+export default Index

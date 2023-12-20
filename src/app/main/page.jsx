@@ -1,10 +1,10 @@
 import React from 'react'
 import Main from '@/containers/Main'
 
-const page = () => {
+const Page = () => {
   return (
     <Main />
   )
 }
 
-export default page
+export default Page

@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Loader from '@/components/Loader'
 
-const index = () => {
+const Index = () => {
 
     const [loaderActive, setLoaderActive] = React.useState(true)
 
@@ -54,4 +54,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

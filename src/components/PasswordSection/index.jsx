@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-const index = ({id, placeholder, label, onChange}) => {
+const Index = ({id, placeholder, label, onChange}) => {
 
     const [state, setState] = React.useState(false)
 
@@ -31,4 +31,4 @@ const index = ({id, placeholder, label, onChange}) => {
     )
 }
 
-export default index
+export default Index

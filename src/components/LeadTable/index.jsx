@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Loader from '@/components/Loader'
 
-const index = () => {
+const Index = () => {
 
     // Esto debe llegar desde la DB
     const leads = [
@@ -54,4 +54,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

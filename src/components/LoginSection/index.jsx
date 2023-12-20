@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-const index = ({id, placeholder, label, onChange}) => {
+const Index = ({id, placeholder, label, onChange}) => {
 
     return (
         <div className="mb-2">
@@ -21,4 +21,4 @@ const index = ({id, placeholder, label, onChange}) => {
     )
 }
 
-export default index
+export default Index

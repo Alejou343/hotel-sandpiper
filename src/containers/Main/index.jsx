@@ -6,7 +6,7 @@ import LeadTable from '@/components/LeadTable'
 import { useItem } from '@/context/ItemContext'
 import Form from '@/containers/Form'
 
-const index = () => {
+const Index = () => {
 
   const { item } = useItem()
 
@@ -40,4 +40,4 @@ const index = () => {
   }
 }
 
-export default index
+export default Index

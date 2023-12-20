@@ -1,6 +1,6 @@
 import React from 'react'
 
-const index = ({ list, onChange, id, value, label }) => {
+const Index = ({ list, onChange, id, value, label }) => {
 
     return (
         <div className="select-form flex justify-between">
@@ -13,4 +13,4 @@ const index = ({ list, onChange, id, value, label }) => {
     )
 }
 
-export default index
+export default Index

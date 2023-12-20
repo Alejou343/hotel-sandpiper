@@ -5,7 +5,7 @@ import ResidencialForm from '@/components/ResidencialForm'
 import Button from '@/components/Button'
 
 
-const index = () => {
+const Index = () => {
     
     const [type, setType] = React.useState("")
 
@@ -15,17 +15,19 @@ const index = () => {
             <p className="text-center my-4"> Selecciona el tipo de propiedad para añadir: </p>
             <div className="buttons flex justify-between">
                 <Button 
-                    children="Residencial" 
                     type="button" 
                     className={`${type == "Residencial" ? "bg-blue-400" : "bg-blue-200"}`} 
                     onClick={() => setType("Residencial")} 
-                />
+                >
+                    Residencial
+                </Button>
                 <Button 
-                    children="Comercial" 
                     type="button" 
                     className={`${type == "Comercial" ? "bg-blue-400" : "bg-blue-200"}`} 
                     onClick={() => setType("Comercial")} 
-                />
+                >
+                    Comercial
+                </Button>
             </div>
             {type == "Comercial" && <ComercialForm />}
             {type == "Residencial" && <ResidencialForm />}
@@ -33,4 +35,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index

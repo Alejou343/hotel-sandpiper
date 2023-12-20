@@ -1,6 +1,6 @@
 import React from 'react'
 
-const index = ({ id, label, onChange }) => {
+const Index = ({ id, label, onChange }) => {
   return (
     <div className="mb-2 flex justify-between">
       <label htmlFor={id} className="form-label text-sm">{label}</label>
@@ -15,4 +15,4 @@ const index = ({ id, label, onChange }) => {
   )
 }
 
-export default index
+export default Index

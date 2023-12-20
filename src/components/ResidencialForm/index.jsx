@@ -4,7 +4,7 @@ import FormSelect from '@/components/FormSelect'
 import FormSection from '@/components/FormSection'
 import useResidencial from '@/hooks/useResidencial'
 
-const index = () => {
+const Index = () => {
 
     const { alert, formData, uploadImage, handleInputChange, handleSubmit } = useResidencial()
 
@@ -134,4 +134,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index
