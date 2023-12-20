@@ -24,7 +24,7 @@ const useComercial = () => {
     React.useEffect(() => {
         const actualId = localStorage.getItem('User')
         setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
-    }, [formData])
+    }, [])
     
     const handleInputChange = (e) => {
         const { id, value } = e.target;
