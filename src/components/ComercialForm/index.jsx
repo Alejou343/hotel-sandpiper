@@ -7,7 +7,7 @@ import FormSection from '@/components/FormSection'
 const index = () => {
 
     const { alert, formData, handleInputChange, uploadImage, handleSubmit } = useComercial()
-    
+
     return (
         <form onSubmit={handleSubmit} className='my-4'>
             <FormSelect 

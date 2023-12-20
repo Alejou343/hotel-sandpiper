@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import axios from 'axios';
 
@@ -5,28 +6,34 @@ const useResidencial = () => {
 
     const [alert, setAlert] = React.useState(null)
     const [formData, setFormData] = React.useState({
+        Idinmobiliaria: 0,
         Tiporesidencia: "",
         Tiposervicio: "",
         Estado: "",
         Nombre: "",
-        Areaconstruida: "",
-        Habitaciones: "",
-        Baños: "",
-        Parqueaderos: "",
+        Areaconstruida: 0,
+        Habitaciones: 0,
+        Baños: 0,
+        Parqueaderos: 0,
         Ciudad: "",
         Barrio: "",
         Unidadcerrada: "",
-        Anoconstruccion: "",
+        Anoconstruccion: 0,
         Enlace: "",
-        Precio: "",
-        Arealote: "",
+        Precio: 0,
+        Arealote: 0,
         Imagen: ""
     });
 
+    React.useEffect(() => {
+        const actualId = localStorage.getItem('User')
+        setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
+    }, [])
+
 
     const uploadImage = () => { 
-        const clientId = '68d6960971558dd';
-        const apiUrl = 'https://api.imgur.com/3/image';
+        const clientId = process.env.IMGUR_ID;
+        const apiUrl = process.env.IMGUR_LINK;
         const imageInput = document.getElementById('Imagen');
         const imageFile = imageInput.files[0];
         if (imageFile) {

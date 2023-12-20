@@ -6,6 +6,7 @@ const useComercial = () => {
 
     const [alert, setAlert] = React.useState(null)
     const [formData, setFormData] = React.useState({
+        Idinmobiliaria: 0,
         Tiporesidencia: "",
         Tiposervicio: "",
         Estado: "",
@@ -19,6 +20,11 @@ const useComercial = () => {
         Arealote: 0,
         Imagen: ""
     });
+
+    React.useEffect(() => {
+        const actualId = localStorage.getItem('User')
+        setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
+    }, [])
     
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -29,10 +35,11 @@ const useComercial = () => {
     };
 
     const uploadImage = () => { 
-        const clientId = '68d6960971558dd';
-        const apiUrl = 'https://api.imgur.com/3/image';
+        const clientId = process.env.IMGUR_ID;
+        const apiUrl = process.env.IMGUR_LINK;
         const imageInput = document.getElementById('Imagen');
         const imageFile = imageInput.files[0];
+
         if (imageFile) {
             const imageFormData = new FormData();
             imageFormData.append('image', imageFile);
@@ -72,8 +79,8 @@ const useComercial = () => {
 
     return {
         alert,
-        setAlert,
         formData,
+        setAlert,
         setFormData,
         handleInputChange,
         uploadImage,

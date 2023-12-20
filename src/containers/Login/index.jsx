@@ -28,7 +28,7 @@ const index = () => {
 
     const onLoginSubmit = (e) => {
         e.preventDefault()
-        localStorage.setItem('User', JSON.stringify(formData))
+        localStorage.setItem('User', JSON.stringify({...formData, Idinmobiliaria: "1024001"}))
         setLoaderActive(true)
         setTimeout(() => {
             setLoaderActive(false)
