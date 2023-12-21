@@ -1,6 +1,7 @@
 "use client"
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie'
 
 const useResidencial = () => {
 
@@ -26,7 +27,7 @@ const useResidencial = () => {
     });
 
     React.useEffect(() => {
-        const actualId = localStorage.getItem('User')
+        const actualId = Cookies.get('User')
         setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
     }, [])
 

@@ -2,6 +2,7 @@
 import React from 'react'
 import Button from '@/components/Button'
 import { useItem } from '@/context/ItemContext'
+import Cookies from 'js-cookie'
 
 const Index = () => {
 
@@ -9,8 +10,11 @@ const Index = () => {
     const { item, setItem } = useItem() 
 
     React.useEffect(() => {
-        const userLogged = localStorage.getItem('User')
-        setUser(JSON.parse(userLogged).email)
+        const userLogged = Cookies.get('User')
+
+        if (userLogged) {
+          setUser(JSON.parse(userLogged).email)
+        }
     }, [])
 
   return (

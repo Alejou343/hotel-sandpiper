@@ -5,6 +5,7 @@ import LoginSection from '@/components/LoginSection'
 import PasswordSection from '@/components/PasswordSection';
 import { useRouter } from 'next/navigation';
 import Loader from '@/components/Loader';
+import Cookies from 'js-cookie'
 
 
 const Index = () => {
@@ -28,7 +29,7 @@ const Index = () => {
 
     const onLoginSubmit = (e) => {
         e.preventDefault()
-        localStorage.setItem('User', JSON.stringify({...formData, Idinmobiliaria: "1024001"}))
+        Cookies.set('User', JSON.stringify({...formData, Idinmobiliaria: "1024001"}))
         setLoaderActive(true)
         setTimeout(() => {
             setLoaderActive(false)
