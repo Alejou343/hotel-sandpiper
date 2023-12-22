@@ -11,9 +11,9 @@ const Index = () => {
     return (
         <form onSubmit={handleSubmit} className='my-4'>
             <FormSelect 
-                id="Tiporesidencia"
+                id="Tipocomercial"
                 label="Selecciona tipo de inmueble"
-                value={formData.Tiporesidencia}
+                value={formData.Tipocomercial}
                 list={["Lote", "Consultorio", "Bodega", "Oficina", "Local"]} 
                 onChange={handleInputChange}
             />
@@ -53,7 +53,7 @@ const Index = () => {
                 list={["Belén", "Laureles", "Poblado", "Centro"]} 
                 onChange={handleInputChange}
             />}
-            {formData.Tiporesidencia !== "Lote" && <FormSection 
+            {formData.Tipocomercial !== "Lote" && <FormSection 
                 type="text"
                 id="Areaconstruida"
                 placeholder="Ej: 40"
@@ -61,7 +61,7 @@ const Index = () => {
                 onChange={handleInputChange}
                 value={formData.Areaconstruida}
             />}
-            {formData.Tiporesidencia !== "Lote" && <FormSection 
+            {formData.Tipocomercial !== "Lote" && <FormSection 
                 type="text"
                 id="Anoconstruccion"
                 placeholder="Ej: 2018"
@@ -85,7 +85,7 @@ const Index = () => {
                 onChange={handleInputChange}
                 value={formData.Precio}
             />
-            {formData.Tiporesidencia == "Lote" && <FormSection 
+            {formData.Tipocomercial == "Lote" && <FormSection 
                 type="text"
                 id="Arealote"
                 placeholder="Ej: 85"

@@ -1,27 +1,30 @@
 import React from 'react'
 import Image from 'next/image'
 import Loader from '@/components/Loader'
+import axios from 'axios'
 
 const Index = () => {
 
-    const [loaderActive, setLoaderActive] = React.useState(true)
+    const [loaderActive, setLoaderActive] = React.useState(false)
+    const [inmuebles, setInmuebles] = React.useState([])
 
     React.useEffect(() => {
         setLoaderActive(true)
-    setTimeout(() => {
-        setLoaderActive(false)
-    }, 2000);
+        
+        Promise.all([
+            axios.get(`https://inmobidemo.onrender.com/api/residenciasFilter`),
+            axios.get(`https://inmobidemo.onrender.com/api/comercialFilter`)
+        ])
+        .then((result) => {
+            const arr = [result[0]?.data, result[1]?.data]
+            setInmuebles(arr.flat())
+            setLoaderActive(false)
+        })
+        .catch((error) => { 
+            console.error(error) 
+            setLoaderActive(false)
+        })
     }, [])
-
-    // Esto debe llegar desde la DB
-    const inmuebles = [
-        {id: 1001, name: "Bonita casa en Belen", price: "450'000.000", state: true},
-        {id: 1002, name: "Espectacular finca en Marinilla", price: "912'000.000", state: true},
-        {id: 1003, name: "Apartamento para estrenar en el Poblado", price: "620'000.000", state: true},
-        {id: 1004, name: "Lote cerca al aeropuerto", price: "285'000.000", state: true},
-        {id: 1005, name: "Bodega gigante para eventos", price: "1.700'000.000", state: false},
-        {id: 1006, name: "Consultorio en zona exclusiva de Envigado", price: "185'000.000", state: false},
-    ]
 
   return (
     <div className="table-responsive bg-white max-w-5xl">
@@ -39,14 +42,18 @@ const Index = () => {
                 </tr>
             </thead>
             <tbody>
-                {inmuebles.map(inmueble => 
-                <tr key={inmueble.id} className="cursor-pointer hover:bg-slate-300">
-                    <td className='border px-2 text-center'>{inmueble.id}</td>
-                    <td className='border px-2 text-center'>{inmueble.name}</td>
-                    <td className='border px-2 text-center'>$ {inmueble.price}</td>
-                    <td className='border px-2'>{inmueble.state ? <Image src="/assets/green-circle.png" alt="green.png" width={20} height={20} className="mx-auto"/> : <Image src="/assets/red-circle.png" alt="red.png" width={20} height={20} className="mx-auto" /> }</td>
-                    <td className='border px-2 text-center'><Image src="/assets/edit.png" alt="edit.png" width={20} height={20} className="mx-auto"/></td>
-                    <td className='border px-2 text-center'><Image src="/assets/delete.png" alt="delete.png" width={20} height={20} className="mx-auto"/></td>
+                {inmuebles.map((inmueble, id) => 
+                <tr key={id} className="cursor-pointer hover:bg-slate-300">
+                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${inmueble.ID_Inmobiliaria}`)}>{String(inmueble.ID_Inmobiliaria) + String(inmueble?.ID_Residencial || String(inmueble?.ID_Comercial))}</td>
+                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${inmueble.ID_Inmobiliaria}`)}>{inmueble.NombreR || inmueble.NombreC}</td>
+                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${inmueble.ID_Inmobiliaria}`)}>$ {inmueble.PrecioR || inmueble.PrecioC}</td>
+                    <td className='border px-2'>{inmueble.EstadoR == "Disponible" || inmueble.EstadoC == "Disponible" ? <Image src="/assets/green-circle.png" alt="green.png" width={20} height={20} className="mx-auto" /> : <Image src="/assets/red-circle.png" alt="red.png" width={20} height={20} className="mx-auto" /> }</td>
+                    <td className='border px-2 text-center' onClick={() => console.log(`Editando el inmueble ${inmueble.ID_Inmobiliaria}`)}>
+                        <Image src="/assets/edit.png" alt="edit.png" width={20} height={20} className="mx-auto" />
+                    </td> 
+                    <td className='border px-2 text-center' onClick={() => console.log(`Eliminando el inmueble ${id}`)}>
+                        <Image src="/assets/delete.png" alt="delete.png" width={20} height={20} className="mx-auto" />
+                    </td>
                 </tr>)}           
             </tbody>          
         </table>

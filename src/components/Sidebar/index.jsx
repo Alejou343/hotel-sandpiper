@@ -1,11 +1,14 @@
 "use client"
 import React from 'react'
 import Button from '@/components/Button'
+import Image from 'next/image'
 import { useItem } from '@/context/ItemContext'
+import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
 const Index = () => {
 
+    const router = useRouter()
     const [user, setUser] = React.useState()
     const { item, setItem } = useItem() 
 
@@ -16,6 +19,13 @@ const Index = () => {
           setUser(JSON.parse(userLogged).email)
         }
     }, [])
+
+    const handleLogout = () => {
+      Cookies.remove('User')
+      setTimeout(() => {
+        router.push('/')
+      }, 2000);
+    }
 
   return (
     <aside className="bg-green-400 w-1/6 h-screen relative py-12">
@@ -38,11 +48,14 @@ const Index = () => {
             onClick={() => setItem(3)} 
             type="button" 
             className={`text-xs ${item == 3 ? 'bg-blue-400' : 'bg-blue-200'}`} 
-            >
-              Añadir Propiedad 
-            </Button>
+          >
+            Añadir Propiedad 
+          </Button>
         </div>
-        <p className='absolute bottom-8 w-full text-white text-center'>{user}</p>
+        <div className="absolute bottom-8 w-5/6 flex justify-between left-4">
+          <p className='text-white'>{user}</p>
+          <Image src="/assets/logout.png" alt="logout.png" width={20} height={20} onClick={handleLogout} className='cursor-pointer' />
+        </div>
     </aside>
   )
 }

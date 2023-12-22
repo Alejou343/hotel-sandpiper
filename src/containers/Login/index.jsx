@@ -29,7 +29,7 @@ const Index = () => {
 
     const onLoginSubmit = (e) => {
         e.preventDefault()
-        Cookies.set('User', JSON.stringify({...formData, Idinmobiliaria: "1024001"}))
+        Cookies.set('User', JSON.stringify({...formData, Idinmobiliaria: 3}))
         setLoaderActive(true)
         setTimeout(() => {
             setLoaderActive(false)

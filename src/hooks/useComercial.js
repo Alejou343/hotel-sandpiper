@@ -9,7 +9,7 @@ const useComercial = () => {
     const [alert, setAlert] = React.useState(null)
     const [formData, setFormData] = React.useState({
         Idinmobiliaria: 0,
-        Tiporesidencia: "",
+        Tipocomercial: "",
         Tiposervicio: "",
         Estado: "",
         Nombre: "",
@@ -75,6 +75,10 @@ const useComercial = () => {
             Precio: parseInt(formData.Precio),
             Arealote: parseInt(formData.Arealote),
         }
+
+        axios.post(`https://inmobidemo.onrender.com/api/addComercial`, formDataNumerico)
+        .then((result) => console.log(result.data))
+        .catch((error) => console.error(error))
 
         console.log('Datos a enviar:', formDataNumerico)
     };

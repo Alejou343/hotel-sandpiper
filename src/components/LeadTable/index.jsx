@@ -46,7 +46,9 @@ const Index = () => {
                     <td className='border px-2 text-center'>{lead.client}</td>
                     <td className='border px-2 text-center'>{lead.phone}</td>
                     <td className='border px-2 text-center'>{lead.startDate}</td>
-                    <td className='border px-2 text-center'><Image src="/assets/open.png" alt="view.png" width={20} height={20} className="mx-auto" /></td>
+                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${lead.id}`)}>
+                        <Image src="/assets/open.png" alt="view.png" width={20} height={20} className="mx-auto" />
+                    </td>
                 </tr>)}           
             </tbody>          
         </table>

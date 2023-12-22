@@ -82,6 +82,10 @@ const useResidencial = () => {
             Arealote: parseInt(formData.Arealote),
         };
         console.log('Datos a enviar:', formDataNumerico)
+
+        axios.post(`https://inmobidemo.onrender.com/api/addResidencia`, formDataNumerico)
+        .then((result) => console.log(result.data))
+        .catch((error) => console.error(error))
     };
 
     return {
