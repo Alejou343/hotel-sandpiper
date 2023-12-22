@@ -76,7 +76,7 @@ const useComercial = () => {
             Arealote: parseInt(formData.Arealote),
         }
 
-        axios.post(`https://inmobidemo.onrender.com/api/addComercial`, formDataNumerico)
+        axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico)
         .then((result) => console.log(result.data))
         .catch((error) => console.error(error))
 

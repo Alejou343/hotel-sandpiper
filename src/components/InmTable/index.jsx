@@ -2,18 +2,20 @@ import React from 'react'
 import Image from 'next/image'
 import Loader from '@/components/Loader'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 const Index = () => {
 
     const [loaderActive, setLoaderActive] = React.useState(false)
     const [inmuebles, setInmuebles] = React.useState([])
+    const router = useRouter()
 
     React.useEffect(() => {
         setLoaderActive(true)
         
         Promise.all([
-            axios.get(`https://inmobidemo.onrender.com/api/residenciasFilter`),
-            axios.get(`https://inmobidemo.onrender.com/api/comercialFilter`)
+            axios.get(`${process.env.BACK_LINK}/api/residenciasFilter`),
+            axios.get(`${process.env.BACK_LINK}/api/comercialFilter`)
         ])
         .then((result) => {
             const arr = [result[0]?.data, result[1]?.data]
@@ -44,9 +46,9 @@ const Index = () => {
             <tbody>
                 {inmuebles.map((inmueble, id) => 
                 <tr key={id} className="cursor-pointer hover:bg-slate-300">
-                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${inmueble.ID_Inmobiliaria}`)}>{String(inmueble.ID_Inmobiliaria) + String(inmueble?.ID_Residencial || String(inmueble?.ID_Comercial))}</td>
-                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${inmueble.ID_Inmobiliaria}`)}>{inmueble.NombreR || inmueble.NombreC}</td>
-                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${inmueble.ID_Inmobiliaria}`)}>$ {inmueble.PrecioR || inmueble.PrecioC}</td>
+                    <td className='border px-2 text-center' onClick={() => router.push('/propertie')}>{String(inmueble.ID_Inmobiliaria) + String(inmueble?.ID_Residencial || String(inmueble?.ID_Comercial))}</td>
+                    <td className='border px-2 text-center' onClick={() => router.push('/propertie')}>{inmueble.NombreR || inmueble.NombreC}</td>
+                    <td className='border px-2 text-center' onClick={() => router.push('/propertie')}>$ {inmueble.PrecioR || inmueble.PrecioC}</td>
                     <td className='border px-2'>{inmueble.EstadoR == "Disponible" || inmueble.EstadoC == "Disponible" ? <Image src="/assets/green-circle.png" alt="green.png" width={20} height={20} className="mx-auto" /> : <Image src="/assets/red-circle.png" alt="red.png" width={20} height={20} className="mx-auto" /> }</td>
                     <td className='border px-2 text-center' onClick={() => console.log(`Editando el inmueble ${inmueble.ID_Inmobiliaria}`)}>
                         <Image src="/assets/edit.png" alt="edit.png" width={20} height={20} className="mx-auto" />

@@ -83,7 +83,7 @@ const useResidencial = () => {
         };
         console.log('Datos a enviar:', formDataNumerico)
 
-        axios.post(`https://inmobidemo.onrender.com/api/addResidencia`, formDataNumerico)
+        axios.post(`${process.env.BACK_LINK}/api/addResidencia`, formDataNumerico)
         .then((result) => console.log(result.data))
         .catch((error) => console.error(error))
     };
