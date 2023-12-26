@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Loader from '@/components/Loader'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 const Index = () => {
 
@@ -11,9 +12,9 @@ const Index = () => {
     const router = useRouter()
 
     React.useEffect(() => {
+        const correo = JSON.parse(Cookies.get("User"))
         setLoaderActive(true)
-        
-        axios.get(`${process.env.BACK_LINK}/api/residenciasFilter`)
+        axios.get(`${process.env.BACK_LINK}/api/UserResidencia/${correo.email}`)
         .then((result) => {
             setInmuebles(result.data)
             setLoaderActive(false)
