@@ -27,25 +27,30 @@ const Index = () => {
       }, 2000);
     }
 
+    const handleChange = (id) => {
+      router.push('/main')
+      setItem(id)
+    }
+
   return (
     <aside className="bg-green-400 w-1/6 h-screen relative py-12">
         <div className="buttons gap-8 flex flex-col">
           <Button 
-            onClick={() => setItem(1)} 
+            onClick={() => handleChange(1)} 
             type="button" 
             className={`text-xs ${item == 1 ? 'bg-blue-400' : 'bg-blue-200'}`} 
           >
             Mis Propiedades 
           </Button>
           <Button 
-            onClick={() => setItem(2)} 
+            onClick={() => handleChange(2)} 
             type="button" 
             className={`text-xs ${item == 2 ? 'bg-blue-400' : 'bg-blue-200'}`} 
             >
             Mis Leads 
             </Button>
           <Button 
-            onClick={() => setItem(3)} 
+            onClick={() => handleChange(3)} 
             type="button" 
             className={`text-xs ${item == 3 ? 'bg-blue-400' : 'bg-blue-200'}`} 
           >
