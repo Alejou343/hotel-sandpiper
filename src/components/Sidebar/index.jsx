@@ -40,19 +40,26 @@ const Index = () => {
             type="button" 
             className={`text-xs ${item == 1 ? 'bg-blue-400' : 'bg-blue-200'}`} 
           >
-            Mis Propiedades 
+            Mis Propiedades residenciales
           </Button>
           <Button 
             onClick={() => handleChange(2)} 
             type="button" 
             className={`text-xs ${item == 2 ? 'bg-blue-400' : 'bg-blue-200'}`} 
             >
-            Mis Leads 
+            Mis Propiedades comerciales 
             </Button>
           <Button 
             onClick={() => handleChange(3)} 
             type="button" 
             className={`text-xs ${item == 3 ? 'bg-blue-400' : 'bg-blue-200'}`} 
+          >
+            Mis Leads
+          </Button>
+          <Button 
+            onClick={() => handleChange(4)} 
+            type="button" 
+            className={`text-xs ${item == 4 ? 'bg-blue-400' : 'bg-blue-200'}`} 
           >
             Añadir Propiedad 
           </Button>

@@ -5,7 +5,7 @@ const ItemContext = React.createContext();
 
 const ItemProvider = ({children}) => {
 
-    const [item, setItem] = React.useState(3)
+    const [item, setItem] = React.useState(1)
 
   return (
     <ItemContext.Provider value={{item, setItem}}>

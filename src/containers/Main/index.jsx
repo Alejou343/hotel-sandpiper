@@ -1,10 +1,11 @@
 "use client"
 import React from 'react'
+import Form from '@/containers/Form'
 import Sidebar from '@/components/Sidebar'
-import InmTable from '@/components/InmTable'
 import LeadTable from '@/components/LeadTable'
 import { useItem } from '@/context/ItemContext'
-import Form from '@/containers/Form'
+import TableComercial from '@/components/TableComercial'
+import TableResidencial from '@/components/TableResidencial'
 
 const Index = () => {
 
@@ -14,8 +15,8 @@ const Index = () => {
     return (
       <div className='flex'>
           <Sidebar />
-          <div className="mx-auto my-20">
-              <InmTable /> 
+          <div className="mx-auto my-4">
+              <TableResidencial /> 
           </div>
       </div>
     )
@@ -23,7 +24,16 @@ const Index = () => {
     return (
       <div className='flex'>
           <Sidebar />
-          <div className="mx-auto my-20">
+          <div className="mx-auto my-4">
+              <TableComercial /> 
+          </div>
+      </div>
+    )
+  } else if (item == 3) {
+    return (
+      <div className='flex'>
+          <Sidebar />
+          <div className="mx-auto my-4">
               <LeadTable /> 
           </div>
       </div>
@@ -32,7 +42,7 @@ const Index = () => {
     return (
       <div className='flex'>
           <Sidebar />
-          <div className="mx-auto my-20">
+          <div className="mx-auto my-4">
               <Form /> 
           </div>
       </div>
