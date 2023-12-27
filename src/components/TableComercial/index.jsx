@@ -49,7 +49,7 @@ const Index = () => {
                     <td className='border px-2 text-center cursor-pointer' onClick={() => router.push(`/propertie/comercial/${inmueble.ID_Comercial}`)}>{inmueble.NombreC}</td>
                     <td className='border px-2 text-center'>$ {inmueble.PrecioC}</td>
                     <td className='border px-2'>{inmueble.EstadoC == "Disponible" ? <Image src="/assets/green-circle.png" alt="green.png" width={20} height={20} className="mx-auto" /> : <Image src="/assets/red-circle.png" alt="red.png" width={20} height={20} className="mx-auto" /> }</td>
-                    <td className='border px-2 text-center cursor-pointer' onClick={() => console.log(`Editando el inmueble ${inmueble.ID_Comercial}`)}>
+                    <td className='border px-2 text-center cursor-pointer' onClick={() => router.push(`/propertie/comercial/edit/${inmueble.ID_Comercial}`)}>
                         <Image src="/assets/edit.png" alt="edit.png" width={20} height={20} className="mx-auto" />
                     </td> 
                     <td className='border px-2 text-center cursor-pointer' onClick={() => console.log(`Eliminando el inmueble ${inmueble.ID_Comercial}`)}>

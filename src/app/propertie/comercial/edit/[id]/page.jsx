@@ -32,6 +32,13 @@ const Index = () => {
                 list={["Disponible", "No disponible"]} 
                 onChange={handleInputChange}
             />
+            <FormSelect 
+                id="Ciudad"
+                label="Selecciona el municipio"
+                value={formData.Ciudad}
+                list={["Medellín", "La Estrella", "Sabaneta", "Envigado", "Itagüí", "Bello", "Caldas", "Otros"]} 
+                onChange={handleInputChange}
+            />
             <FormSection 
                 type="text"
                 id="Nombre"
@@ -39,13 +46,6 @@ const Index = () => {
                 label="Nombre de la propiedad"
                 onChange={handleInputChange}
                 value={formData.Nombre}
-            />
-            <FormSelect 
-                id="Ciudad"
-                label="Selecciona el municipio"
-                value={formData.Ciudad}
-                list={["Medellín", "La Estrella", "Sabaneta", "Envigado", "Itagüí", "Bello", "Caldas", "Otros"]} 
-                onChange={handleInputChange}
             />
             {formData.Ciudad == "Medellín" && <FormSelect 
                 id="Barrio"

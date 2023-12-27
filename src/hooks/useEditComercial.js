@@ -27,15 +27,28 @@ const useEditComercial = () => {
         const actualId = Cookies.get('User')
         setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
-        // axios.get(`${process.env.BACK_LINK}/api/comercialById/${params.id}`)
-        // .then((result) => {
-        //     setValues(result.data[0])
-        //     setLoaderActive(false)
-        // })
-        //     .catch((error) => { 
-        //     console.error(error) 
-        //     setLoaderActive(false)
-        // })
+        axios.get(`${process.env.BACK_LINK}/api/comercialById/4`)
+        .then((result) => {
+            setFormData({
+                Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
+                Tipocomercial: result?.data[0]?.TipoC,
+                Tiposervicio: result?.data[0]?.Tipo_ServicioC,
+                Ciudad: result?.data[0]?.CiudadC,
+                Estado: result?.data[0]?.EstadoC,
+                Nombre: result?.data[0]?.NombreC,
+                Barrio: result?.data[0]?.BarrioC,
+                Areaconstruida: result?.data[0]?.AreaC,
+                Anoconstruccion: result?.data[0]?.Ano_ConstruccionC,
+                Enlace: result?.data[0]?.EnlaceC,
+                Precio: result?.data[0]?.PrecioC,
+                Arealote: result?.data[0]?.Area_LoteC,
+                Imagen: result?.data[0]?.ImagenC
+            })
+            console.log(result.data[0])
+        })
+            .catch((error) => { 
+            console.error(error) 
+        })
     }, [])
     
     const handleInputChange = (e) => {
