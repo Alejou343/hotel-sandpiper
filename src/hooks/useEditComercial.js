@@ -3,10 +3,10 @@ import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-
 const useEditComercial = () => {
 
     const [alert, setAlert] = React.useState(null)
+    const [comercialId, setComercialId] = React.useState(null)
     const [formData, setFormData] = React.useState({
         Idinmobiliaria: 0,
         Tipocomercial: "",
@@ -25,9 +25,11 @@ const useEditComercial = () => {
 
     React.useEffect(() => {
         const actualId = Cookies.get('User')
+        const comercialId = Cookies.get('ComercialID')
+        setComercialId(comercialId)
         setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
-        axios.get(`${process.env.BACK_LINK}/api/comercialById/4`)
+        axios.get(`${process.env.BACK_LINK}/api/comercialById/${comercialId}`)
         .then((result) => {
             setFormData({
                 Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
@@ -99,7 +101,7 @@ const useEditComercial = () => {
             Arealote: parseInt(formData.Arealote),
         }
 
-        axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico)
+        axios.put(`${process.env.BACK_LINK}/api/updateComercial/${comercialId}`, formDataNumerico)
         .then((result) => console.log(result.data))
         .catch((error) => console.error(error))
 
