@@ -8,7 +8,7 @@ const useEditComercial = () => {
     const [alert, setAlert] = React.useState(null)
     const [comercialId, setComercialId] = React.useState(null)
     const [formData, setFormData] = React.useState({
-        Idinmobiliaria: 0,
+        // Idinmobiliaria: 0,
         Tipocomercial: "",
         Tiposervicio: "",
         Estado: "",
@@ -24,15 +24,15 @@ const useEditComercial = () => {
     });
 
     React.useEffect(() => {
-        const actualId = Cookies.get('User')
+        // const actualId = Cookies.get('User')
         const comercialId = Cookies.get('ComercialID')
         setComercialId(comercialId)
-        setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
+        // setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
         axios.get(`${process.env.BACK_LINK}/api/comercialById/${comercialId}`)
         .then((result) => {
             setFormData({
-                Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
+                // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
                 Tipocomercial: result?.data[0]?.TipoC,
                 Tiposervicio: result?.data[0]?.Tipo_ServicioC,
                 Ciudad: result?.data[0]?.CiudadC,

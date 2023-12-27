@@ -6,8 +6,9 @@ import Cookies from 'js-cookie'
 const useEditResidencial = () => {
 
     const [alert, setAlert] = React.useState(null)
+    const [residencialId, setResidencialId] = React.useState(null)
     const [formData, setFormData] = React.useState({
-        Idinmobiliaria: 0,
+        // Idinmobiliaria: 0,
         Tiporesidencia: "",
         Tiposervicio: "",
         Estado: "",
@@ -27,10 +28,38 @@ const useEditResidencial = () => {
     });
 
     React.useEffect(() => {
-        const actualId = Cookies.get('User')
-        setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
-    }, [])
+        // const actualId = Cookies.get('User')
+        const residencialId = Cookies.get('ResidencialID')
+        setResidencialId(residencialId)
+        // setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
+        axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`)
+        .then((result) => {
+            setFormData({
+                // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
+                Tiporesidencia: result?.data[0]?.TipoR,
+                Tiposervicio: result?.data[0]?.Tipo_ServicioR,
+                Ciudad: result?.data[0]?.CiudadR,
+                Estado: result?.data[0]?.EstadoR,
+                Nombre: result?.data[0]?.NombreR,
+                Barrio: result?.data[0]?.BarrioR,
+                Areaconstruida: result?.data[0]?.Area_ConstruidaR,
+                Anoconstruccion: result?.data[0]?.Ano_ConstruccionR,
+                Habitaciones: result?.data[0]?.HabitacionR,
+                Baños: result?.data[0]?.BanosR,
+                Parqueaderos: result?.data[0]?.ParqueaderosR,
+                Enlace: result?.data[0]?.EnlaceR,
+                Precio: result?.data[0]?.PrecioR,
+                Arealote: result?.data[0]?.Area_Lote,
+                Imagen: result?.data[0]?.ImagenR,
+                Unidadcerrada: result?.data[0]?.Unidad_CerradaR
+            })
+            console.log(result.data[0])
+        })
+            .catch((error) => { 
+            console.error(error) 
+        })
+    }, [])
 
     const uploadImage = () => { 
         const clientId = process.env.IMGUR_ID;
@@ -81,11 +110,12 @@ const useEditResidencial = () => {
             Precio: parseInt(formData.Precio),
             Arealote: parseInt(formData.Arealote),
         };
-        console.log('Datos a enviar:', formDataNumerico)
-
-        axios.post(`${process.env.BACK_LINK}/api/addResidencia`, formDataNumerico)
+        
+        axios.put(`${process.env.BACK_LINK}/api/updateResidencial/${residencialId}`, formDataNumerico)
         .then((result) => console.log(result.data))
         .catch((error) => console.error(error))
+
+        console.log('Datos a enviar:', formDataNumerico)
     };
 
     return {
