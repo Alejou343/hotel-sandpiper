@@ -2,13 +2,16 @@
 import React from 'react'
 import axios from 'axios'
 import Image from 'next/image'
+import Cookies from 'js-cookie'
 import Loader from '@/components/Loader'
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
+import ModalGeneral from '@/containers/ModalGeneral'
+import ModalContent from '@/components/ModalContent'
 
 const Index = () => {
 
     const [loaderActive, setLoaderActive] = React.useState(false)
+    const [openModal, setOpenModal] = React.useState(false)
     const [inmuebles, setInmuebles] = React.useState([])
     const router = useRouter()
 
@@ -32,9 +35,17 @@ const Index = () => {
         router.push(url)
     }
 
+    const handleDelete = (id) => {
+        Cookies.set('ComercialID', id)
+        setOpenModal(true)
+    }
+
   return (
     <div className="table-responsive bg-white max-w-5xl">
         <Loader active={loaderActive} />
+        <ModalGeneral state={openModal} setState={setOpenModal}>
+            <ModalContent setState={setOpenModal} />
+        </ModalGeneral>
         <h1 className="text-center mb-4 text-3xl font-bold text-green-500">Mis Propiedades Comerciales</h1>
         <table className="table table-hover border-2 overflow-auto h-4/6">
             <thead className='border'>
@@ -57,7 +68,7 @@ const Index = () => {
                     <td className='border px-2 text-center cursor-pointer' onClick={() => handleNavigate(`/propertie/comercial/edit/${inmueble.ID_Comercial}`, inmueble.ID_Comercial)}>
                         <Image src="/assets/edit.png" alt="edit.png" width={20} height={20} className="mx-auto" />
                     </td> 
-                    <td className='border px-2 text-center cursor-pointer' onClick={() => console.log(`Eliminando el inmueble ${inmueble.ID_Comercial}`)}>
+                    <td className='border px-2 text-center cursor-pointer' onClick={() => handleDelete(inmueble.ID_Comercial)}>
                         <Image src="/assets/delete.png" alt="delete.png" width={20} height={20} className="mx-auto" />
                     </td>
                 </tr>)}           
