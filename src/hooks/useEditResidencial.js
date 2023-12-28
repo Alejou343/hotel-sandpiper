@@ -1,10 +1,12 @@
 "use client"
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
 
 const useEditResidencial = () => {
 
+    const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [residencialId, setResidencialId] = React.useState(null)
     const [formData, setFormData] = React.useState({
@@ -112,7 +114,7 @@ const useEditResidencial = () => {
         };
         
         axios.put(`${process.env.BACK_LINK}/api/updateResidencial/${residencialId}`, formDataNumerico)
-        .then((result) => console.log(result.data))
+        .then(() => router.push('/main'))
         .catch((error) => console.error(error))
 
         console.log('Datos a enviar:', formDataNumerico)

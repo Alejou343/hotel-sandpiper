@@ -1,4 +1,5 @@
 "use client"
+import axios from 'axios';
 import React from 'react';
 import Button from '@/components/Button';
 import LoginSection from '@/components/LoginSection'
@@ -14,8 +15,8 @@ const Index = () => {
     const [loaderActive, setLoaderActive] = React.useState(false)
 
     const [formData, setFormData] = React.useState({
-        email: '',
-        password: '',
+        Correo: '',
+        Contraseña: '',
     }); 
 
 
@@ -31,10 +32,17 @@ const Index = () => {
         e.preventDefault()
         Cookies.set('User', JSON.stringify({...formData, Idinmobiliaria: 3}))
         setLoaderActive(true)
-        setTimeout(() => {
-            setLoaderActive(false)
-            router.push('/main')
-        }, 2000);
+        // setTimeout(() => {
+        //     setLoaderActive(false)
+        //     router.push('/main')
+        // }, 2000);
+        axios.post(`${process.env.BACK_LINK}/api/loginUser`, formData)
+        // .then((response) => console.log(response.data))
+        .then((response) => Cookies.set('Token', response.data?.accesToken))
+        .then(() => setLoaderActive(false))
+        .then(() => router.push('/main'))
+        .catch(() => setLoaderActive(false))
+        .catch((error) => console.error(error))
     }
 
   return (
@@ -43,17 +51,17 @@ const Index = () => {
         <LoginSection  
             label="Correo electrónico"
             type="text"
-            id="email"
+            id="Correo"
             placeholder="Correo electrónico"
             onChange={handleInputChange}
-            value={formData.username}
+            value={formData.Correo}
         />
         <PasswordSection  
-            id="password"
+            id="Contraseña"
             label="Contraseña"
             placeholder="**********"
             onChange={handleInputChange}
-            value={formData.password}
+            value={formData.Contraseña}
         />
         <Button 
             onClick={() => console.log("Datos a enviar --> ", formData)} 

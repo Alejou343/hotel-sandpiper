@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import Cookies from 'js-cookie'
-import Loader from '../Loader'
+import Loader from '@/components/Loader'
 
 const Index = ({ setState }) => {
 

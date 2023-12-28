@@ -2,9 +2,12 @@
 import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
+
 
 const useEditComercial = () => {
 
+    const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [comercialId, setComercialId] = React.useState(null)
     const [formData, setFormData] = React.useState({
@@ -102,7 +105,7 @@ const useEditComercial = () => {
         }
 
         axios.put(`${process.env.BACK_LINK}/api/updateComercial/${comercialId}`, formDataNumerico)
-        .then((result) => console.log(result.data))
+        .then(() => router.push('/main'))
         .catch((error) => console.error(error))
 
         console.log('Datos a enviar:', formDataNumerico)
