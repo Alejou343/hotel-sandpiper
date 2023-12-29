@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import Cookies from 'js-cookie'
-import Loader from '../Loader'
+import Loader from '@/components/Loader'
 
 const Index = ({ setState }) => {
 
@@ -12,8 +12,13 @@ const Index = ({ setState }) => {
     React.useEffect(() => {
         setLoaderActive(true)
         const id = Cookies.get('ComercialID')
+        const token = Cookies.get('SessionInfo')
         setId(id)
-        axios.get(`${process.env.BACK_LINK}/api/comercialById/${id}`)
+        axios.get(`${process.env.BACK_LINK}/api/comercialById/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => {
             setName(result.data[0]?.NombreC)
             setLoaderActive(false)
@@ -26,7 +31,12 @@ const Index = ({ setState }) => {
 
     const handleDelete = (id) => {
         setLoaderActive(true)
-        axios.delete(`${process.env.BACK_LINK}/api/deleteComercial/${id}`)
+        const token = Cookies.get('SessionInfo')
+        axios.delete(`${process.env.BACK_LINK}/api/deleteComercial/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => {
             console.log(result.data)
             setState(false)

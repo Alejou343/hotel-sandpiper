@@ -81,9 +81,14 @@ const useResidencial = () => {
             Precio: parseInt(formData.Precio),
             Arealote: parseInt(formData.Arealote),
         };
-        console.log('Datos a enviar:', formDataNumerico)
 
-        axios.post(`${process.env.BACK_LINK}/api/addResidencia`, formDataNumerico)
+        const token = Cookies.get('SessionInfo')
+
+        axios.post(`${process.env.BACK_LINK}/api/addResidencia`, formDataNumerico, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => console.log(result.data))
         .catch((error) => console.error(error))
     };

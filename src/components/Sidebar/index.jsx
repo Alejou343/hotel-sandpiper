@@ -16,7 +16,7 @@ const Index = () => {
         const userLogged = Cookies.get('User')
 
         if (userLogged) {
-          setUser(JSON.parse(userLogged).email)
+          setUser(JSON.parse(userLogged).Correo)
         }
     }, [])
 
