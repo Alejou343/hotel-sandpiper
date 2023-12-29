@@ -29,10 +29,15 @@ const useEditComercial = () => {
     React.useEffect(() => {
         // const actualId = Cookies.get('User')
         const comercialId = Cookies.get('ComercialID')
+        const token = Cookies.get('SessionInfo')
         setComercialId(comercialId)
         // setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
-        axios.get(`${process.env.BACK_LINK}/api/comercialById/${comercialId}`)
+        axios.get(`${process.env.BACK_LINK}/api/comercialById/${comercialId}`, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => {
             setFormData({
                 // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
@@ -104,7 +109,13 @@ const useEditComercial = () => {
             Arealote: parseInt(formData.Arealote),
         }
 
-        axios.put(`${process.env.BACK_LINK}/api/updateComercial/${comercialId}`, formDataNumerico)
+        const token = Cookies.get('SessionInfo')
+
+        axios.put(`${process.env.BACK_LINK}/api/updateComercial/${comercialId}`, formDataNumerico, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then(() => router.push('/main'))
         .catch((error) => console.error(error))
 

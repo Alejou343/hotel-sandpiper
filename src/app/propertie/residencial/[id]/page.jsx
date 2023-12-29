@@ -1,9 +1,10 @@
 "use client"
+import axios from 'axios'
 import React from 'react'
+import Loader from '@/components/Loader'
 import Sidebar from '@/components/Sidebar'
 import ResidencialInfo from '@/containers/ResidencialInfo'
-import axios from 'axios'
-import Loader from '@/components/Loader'
+import Cookies from 'js-cookie'
 
 const Page = ({ params }) => {
 
@@ -12,7 +13,12 @@ const Page = ({ params }) => {
 
   React.useEffect(() => {
     setLoaderActive(true)
-    axios.get(`${process.env.BACK_LINK}/api/residenciaById/${params.id}`)
+    const token = Cookies.get('SessionInfo')
+    axios.get(`${process.env.BACK_LINK}/api/residenciaById/${params.id}`, {
+        headers: {
+            "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+        }
+    })
     .then((result) => {
       setValues(result.data[0])
       setLoaderActive(false)

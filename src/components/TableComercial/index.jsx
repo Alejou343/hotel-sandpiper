@@ -16,13 +16,12 @@ const Index = () => {
     const router = useRouter()
 
     React.useEffect(() => {
-        const correo = JSON.parse(Cookies.get("User"))
-        const token = Cookies.get('Token')
-        console.log(token)
+        const userLogged = JSON.parse(Cookies.get("User"))
+        const token = Cookies.get('SessionInfo')
         setLoaderActive(true)
-        axios.get(`${process.env.BACK_LINK}/api/UserComercial/${correo.Correo}`, {
+        axios.get(`${process.env.BACK_LINK}/api/UserComercial/${userLogged.Correo}`, {
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
             }
         })
         .then((result) => {

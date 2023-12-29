@@ -1,0 +1,24 @@
+{
+"accesToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJzYW50aW5pbmlAZ21haWwuY29tIiwiY29udHJhc2XDsWEiOiJzYW50aW5pMSIsImlhdCI6MTcwMzg2NTc4N30.lS-RZuv1wK0T9kGPnbdh1V2V9qZcOgpuQ1IdN_yhles",
+"answer": [
+    {
+    "ID_Inmobiliaria": 501,
+    "Nombre_Inmobiliaria": "Inmobiliaria Santinini",
+    "Correo_Inmobiliaria": "santinini@gmail.com",
+    "Ubicacion_Inmobiliaria": null,
+    "Estado": 1,
+    "Fecharegistro": "2023-12-28T14:24:23.000Z",
+    "Numeroidentificacion": null,
+    "Representante": "Prueba Muñoz",
+    "Tipoidentificacion": null,
+    "Municipio": null,
+    "Departamento": "Antioquia",
+    "Telefonorepresen": "32414241",
+    "Celular": "311313292",
+    "Correofacturacion": "fact@gmail.com",
+    "Personaencargada": "dsadsa",
+    "Cargo": "Comercial",
+    "Telefonocargo": "48 321 23"
+    }
+]
+}

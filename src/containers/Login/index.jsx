@@ -28,21 +28,24 @@ const Index = () => {
         });
     };
 
+    const eventLogin = (response) => {
+        Cookies.set('SessionInfo', JSON.stringify(response.data))
+        setLoaderActive(false)
+        router.push('/main')
+    }
+
+    const eventLoginFailed = (error) => {
+        setLoaderActive(false)
+        console.error(error)
+    }
+
     const onLoginSubmit = (e) => {
         e.preventDefault()
         Cookies.set('User', JSON.stringify({...formData, Idinmobiliaria: 3}))
         setLoaderActive(true)
-        // setTimeout(() => {
-        //     setLoaderActive(false)
-        //     router.push('/main')
-        // }, 2000);
         axios.post(`${process.env.BACK_LINK}/api/loginUser`, formData)
-        // .then((response) => console.log(response.data))
-        .then((response) => Cookies.set('Token', response.data?.accesToken))
-        .then(() => setLoaderActive(false))
-        .then(() => router.push('/main'))
-        .catch(() => setLoaderActive(false))
-        .catch((error) => console.error(error))
+        .then((response) => eventLogin(response))
+        .catch((error) => eventLoginFailed(error))
     }
 
   return (

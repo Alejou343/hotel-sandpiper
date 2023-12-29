@@ -12,8 +12,13 @@ const Index = ({ setState }) => {
     React.useEffect(() => {
         setLoaderActive(true)
         const id = Cookies.get('ResidencialID')
+        const token = Cookies.get('SessionInfo')
         setId(id)
-        axios.get(`${process.env.BACK_LINK}/api/residenciaById/${id}`)
+        axios.get(`${process.env.BACK_LINK}/api/residenciaById/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => {
             setName(result.data[0]?.NombreR)
             setLoaderActive(false)
@@ -26,7 +31,12 @@ const Index = ({ setState }) => {
 
     const handleDelete = (id) => {
         setLoaderActive(true)
-        axios.delete(`${process.env.BACK_LINK}/api/deleteResidencial/${id}`)
+        const token = Cookies.get('SessionInfo')
+        axios.delete(`${process.env.BACK_LINK}/api/deleteResidencial/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => {
             console.log(result.data)
             setState(false)

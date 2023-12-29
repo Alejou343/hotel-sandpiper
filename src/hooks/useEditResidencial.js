@@ -32,10 +32,15 @@ const useEditResidencial = () => {
     React.useEffect(() => {
         // const actualId = Cookies.get('User')
         const residencialId = Cookies.get('ResidencialID')
+        const token = Cookies.get('SessionInfo')
         setResidencialId(residencialId)
         // setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
-        axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`)
+        axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => {
             setFormData({
                 // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
@@ -112,8 +117,14 @@ const useEditResidencial = () => {
             Precio: parseInt(formData.Precio),
             Arealote: parseInt(formData.Arealote),
         };
+
+        const token = Cookies.get('SessionInfo')
         
-        axios.put(`${process.env.BACK_LINK}/api/updateResidencial/${residencialId}`, formDataNumerico)
+        axios.put(`${process.env.BACK_LINK}/api/updateResidencial/${residencialId}`, formDataNumerico, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then(() => router.push('/main'))
         .catch((error) => console.error(error))
 

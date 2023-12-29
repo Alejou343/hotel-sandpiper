@@ -15,15 +15,14 @@ const Index = () => {
     const router = useRouter()
 
     React.useEffect(() => {
-        const correo = JSON.parse(Cookies.get("User"))
-        const token = Cookies.get("Token")
+        const userLogged = JSON.parse(Cookies.get("User"))
+        const token = Cookies.get('SessionInfo')
         setLoaderActive(true)
-        axios.get(`${process.env.BACK_LINK}/api/UserResidencia/${correo.email}`, {
-                headers: {
-                    "Authorization": `Beare ${token}`
-                }
+        axios.get(`${process.env.BACK_LINK}/api/UserResidencia/${userLogged.Correo}`, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
             }
-        )
+        })
         .then((result) => {
             setInmuebles(result.data)
             setLoaderActive(false)

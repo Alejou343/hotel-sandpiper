@@ -76,7 +76,13 @@ const useComercial = () => {
             Arealote: parseInt(formData.Arealote),
         }
 
-        axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico)
+        const token = Cookies.get('SessionInfo')
+
+        axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico, {
+            headers: {
+                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            }
+        })
         .then((result) => console.log(result.data))
         .catch((error) => console.error(error))
 
