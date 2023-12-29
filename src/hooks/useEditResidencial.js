@@ -30,15 +30,15 @@ const useEditResidencial = () => {
     });
 
     React.useEffect(() => {
-        // const actualId = Cookies.get('User')
+        // const actualId = Cookies.get('User')                 // --> Esto debería llegar desde el objeto SessionInfo
         const residencialId = Cookies.get('ResidencialID')
-        const token = Cookies.get('SessionInfo')
+        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         setResidencialId(residencialId)
         // setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
         axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`, {
             headers: {
-                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+                "Authorization": `Bearer ${sessionInfo.accesToken}`
             }
         })
         .then((result) => {
@@ -118,11 +118,11 @@ const useEditResidencial = () => {
             Arealote: parseInt(formData.Arealote),
         };
 
-        const token = Cookies.get('SessionInfo')
+        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         
         axios.put(`${process.env.BACK_LINK}/api/updateResidencial/${residencialId}`, formDataNumerico, {
             headers: {
-                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+                "Authorization": `Bearer ${sessionInfo.accesToken}`
             }
         })
         .then(() => router.push('/main'))

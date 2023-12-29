@@ -13,10 +13,10 @@ const Page = ({ params }) => {
 
   React.useEffect(() => {
     setLoaderActive(true)
-    const token = Cookies.get('SessionInfo')
+    const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
     axios.get(`${process.env.BACK_LINK}/api/comercialById/${params.id}`, {
         headers: {
-            "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+            "Authorization": `Bearer ${sessionInfo.accesToken}`
         }
     })
     .then((result) => {
