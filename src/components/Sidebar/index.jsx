@@ -13,10 +13,10 @@ const Index = () => {
     const { item, setItem } = useItem() 
 
     React.useEffect(() => {
-        const userLogged = Cookies.get('User')      // --> Esto debería llegar desde el objeto SessionInfo
+        const userLogged = JSON.parse(Cookies.get('SessionInfo'))      // --> Esto debería llegar desde el objeto SessionInfo
 
         if (userLogged) {
-          setUser(JSON.parse(userLogged).Correo)
+          setUser(userLogged?.answer[0])
         }
     }, [])
 
@@ -65,7 +65,7 @@ const Index = () => {
           </Button>
         </div>
         <div className="absolute bottom-8 w-5/6 flex justify-between left-4">
-          <p className='text-white'>{user}</p>
+          <p className='text-white'>{user?.Correo_Inmobiliaria}</p>
           <Image src="/assets/logout.png" alt="logout.png" width={20} height={20} onClick={handleLogout} className='cursor-pointer' />
         </div>
     </aside>

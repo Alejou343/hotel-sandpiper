@@ -35,7 +35,7 @@ const useEditComercial = () => {
 
         axios.get(`${process.env.BACK_LINK}/api/comercialById/${comercialId}`, {
             headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
+                "Authorization": `Bearer ${sessionInfo?.accesToken}`
             }
         })
         .then((result) => {
@@ -54,7 +54,6 @@ const useEditComercial = () => {
                 Arealote: result?.data[0]?.Area_LoteC,
                 Imagen: result?.data[0]?.ImagenC
             })
-            console.log(result.data[0])
         })
             .catch((error) => { 
             console.error(error) 
@@ -118,8 +117,6 @@ const useEditComercial = () => {
         })
         .then(() => router.push('/main'))
         .catch((error) => console.error(error))
-
-        console.log('Datos a enviar:', formDataNumerico)
     };
 
     return {

@@ -38,7 +38,7 @@ const useEditResidencial = () => {
 
         axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`, {
             headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
+                "Authorization": `Bearer ${sessionInfo?.accesToken}`
             }
         })
         .then((result) => {
@@ -61,7 +61,6 @@ const useEditResidencial = () => {
                 Imagen: result?.data[0]?.ImagenR,
                 Unidadcerrada: result?.data[0]?.Unidad_CerradaR
             })
-            console.log(result.data[0])
         })
             .catch((error) => { 
             console.error(error) 
@@ -127,8 +126,6 @@ const useEditResidencial = () => {
         })
         .then(() => router.push('/main'))
         .catch((error) => console.error(error))
-
-        console.log('Datos a enviar:', formDataNumerico)
     };
 
     return {

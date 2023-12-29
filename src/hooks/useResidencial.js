@@ -1,10 +1,12 @@
 "use client"
 import React from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 const useResidencial = () => {
 
+    const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [formData, setFormData] = React.useState({
         Idinmobiliaria: 0,
@@ -27,8 +29,8 @@ const useResidencial = () => {
     });
 
     React.useEffect(() => {
-        const actualId = Cookies.get('User')                // --> Esto debería llegar desde el objeto SessionInfo
-        setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
+        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))                // --> Esto debería llegar desde el objeto SessionInfo
+        setFormData({...formData, ["Idinmobiliaria"]: Number(sessionInfo?.answer[0]?.ID_Inmobiliaria)})
     }, [])
 
 
@@ -89,7 +91,7 @@ const useResidencial = () => {
                 "Authorization": `Bearer ${sessionInfo.accesToken}`
             }
         })
-        .then((result) => console.log(result.data))
+        .then((result) => router.push('/main'))
         .catch((error) => console.error(error))
     };
 

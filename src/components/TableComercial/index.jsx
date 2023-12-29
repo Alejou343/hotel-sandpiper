@@ -16,10 +16,10 @@ const Index = () => {
     const router = useRouter()
 
     React.useEffect(() => {
-        const userLogged = JSON.parse(Cookies.get('User'))          // --> Esto debería llegar desde el objeto SessionInfo
+        // const userLogged = JSON.parse(Cookies.get('User'))          // --> Esto debería llegar desde el objeto SessionInfo
         const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         setLoaderActive(true)
-        axios.get(`${process.env.BACK_LINK}/api/UserComercial/${userLogged.Correo}`, {
+        axios.get(`${process.env.BACK_LINK}/api/UserComercial/${sessionInfo?.answer[0]?.Correo_Inmobiliaria}`, {
             headers: {
                 "Authorization": `Bearer ${sessionInfo.accesToken}`
             }
