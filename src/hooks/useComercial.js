@@ -24,7 +24,7 @@ const useComercial = () => {
     });
 
     React.useEffect(() => {
-        const actualId = Cookies.get('User')
+        const actualId = Cookies.get('User')           // --> Esto debería llegar desde el objeto SessionInfo
         setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
     }, [])
     
@@ -76,11 +76,11 @@ const useComercial = () => {
             Arealote: parseInt(formData.Arealote),
         }
 
-        const token = Cookies.get('SessionInfo')
+        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
 
         axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico, {
             headers: {
-                "Authorization": `Bearer ${JSON.parse(token).accesToken}`
+                "Authorization": `Bearer ${sessionInfo.accesToken}`
             }
         })
         .then((result) => console.log(result.data))

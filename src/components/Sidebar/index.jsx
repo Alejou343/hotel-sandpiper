@@ -13,7 +13,7 @@ const Index = () => {
     const { item, setItem } = useItem() 
 
     React.useEffect(() => {
-        const userLogged = Cookies.get('User')
+        const userLogged = Cookies.get('User')      // --> Esto debería llegar desde el objeto SessionInfo
 
         if (userLogged) {
           setUser(JSON.parse(userLogged).Correo)
