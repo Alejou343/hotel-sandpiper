@@ -25,7 +25,7 @@ const useComercial = () => {
     });
 
     React.useEffect(() => {
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))           // --> Esto debería llegar desde el objeto SessionInfo
+        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         setFormData({...formData, ["Idinmobiliaria"]: Number(sessionInfo?.answer[0]?.ID_Inmobiliaria)})
     }, [])
     

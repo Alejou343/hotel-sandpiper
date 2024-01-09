@@ -1,5 +1,5 @@
 import React from "react";
-import { ClipLoader } from "react-spinners";// Importa los estilos de Bootstrap
+import { ClipLoader } from "react-spinners";
 
 const Loader = (active) => {
   return (

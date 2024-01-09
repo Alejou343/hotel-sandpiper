@@ -13,7 +13,7 @@ const Index = () => {
     const { item, setItem } = useItem() 
 
     React.useEffect(() => {
-        const userLogged = JSON.parse(Cookies.get('SessionInfo'))      // --> Esto debería llegar desde el objeto SessionInfo
+        const userLogged = JSON.parse(Cookies.get('SessionInfo'))
 
         if (userLogged) {
           setUser(userLogged?.answer[0])

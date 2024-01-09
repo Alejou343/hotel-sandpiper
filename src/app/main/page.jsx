@@ -10,7 +10,7 @@ const Page = () => {
   const router = useRouter()
 
   React.useEffect(() => {
-    const userLogged = Cookies.get('SessionInfo')      // --> Esto debería consumir el objeto de SessionInfo (Check)
+    const userLogged = Cookies.get('SessionInfo')
     if (!userLogged) {
       router.push('/')
     }
