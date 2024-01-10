@@ -30,11 +30,9 @@ const useEditResidencial = () => {
     });
 
     React.useEffect(() => {
-        // const actualId = Cookies.get('User')                 // --> Esto debería llegar desde el objeto SessionInfo
         const residencialId = Cookies.get('ResidencialID')
         const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         setResidencialId(residencialId)
-        // setFormData({...formData, ["Idinmobiliaria"]: Number(JSON.parse(actualId).Idinmobiliaria)})
 
         axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`, {
             headers: {

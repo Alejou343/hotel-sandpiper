@@ -41,7 +41,6 @@ const Index = () => {
 
     const onLoginSubmit = (e) => {
         e.preventDefault()
-        Cookies.set('User', JSON.stringify({...formData, Idinmobiliaria: 3}))
         setLoaderActive(true)
         axios.post(`${process.env.BACK_LINK}/api/loginUser`, formData)
         .then((response) => eventLogin(response))

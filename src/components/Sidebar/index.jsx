@@ -21,7 +21,7 @@ const Index = () => {
     }, [])
 
     const handleLogout = () => {
-      Cookies.remove('User')
+      Cookies.remove('SessionInfo')
       setTimeout(() => {
         router.push('/')
       }, 2000);
