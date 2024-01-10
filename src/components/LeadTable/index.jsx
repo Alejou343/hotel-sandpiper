@@ -13,6 +13,15 @@ const Index = () => {
     }, 2000);
     }, [])
 
+    const leads = [
+        {id: 9901, name: "Bonita casa en Belen", client: "Alejandro Alvarez", phone: 3506217627, startDate: "2023-11-01" },
+        {id: 9902, name: "Espectacular finca en Marinilla", client: "Santiago Rivera", phone: 3113172984, startDate: "2023-11-16" },
+        {id: 9903, name: "Apartamento para estrenar en el Poblado", client: "Simon Clavijo", phone: 3045239673, startDate: "2023-11-27" },
+        {id: 9904, name: "Lote cerca al aeropuerto", client: "Walter Vanegas", phone: 3043361388, startDate: "2023-12-05" },
+        {id: 9905, name: "Bodega gigante para eventos", client: "Lina Otalvaro", phone: 3215086949, startDate: "2023-12-13" },
+        {id: 9906, name: "Consultorio en zona exclusiva de Envigado", client: "Alejandro Velasquez", phone: 3011477516, startDate: "2023-12-15" },
+    ]
+
   return (
     <div className="table-responsive bg-white max-w-5xl">
         <Loader active={loaderActive} />
