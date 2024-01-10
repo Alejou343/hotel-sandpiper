@@ -20,7 +20,7 @@ const useResidencial = () => {
         Parqueaderos: 0,
         Ciudad: "",
         Barrio: "",
-        Unidadcerrada: "",
+        Unidadcerrada: "No",                // --> Revisar esto!
         Anoconstruccion: 0,
         Enlace: "",
         Precio: 0,
