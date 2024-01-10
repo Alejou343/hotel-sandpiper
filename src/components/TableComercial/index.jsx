@@ -44,13 +44,13 @@ const Index = () => {
     }
 
   return (
-    <div className="table-responsive bg-white max-w-5xl">
+    <div className="bg-white max-w-5xl overflow-auto h-[80vh]">
         <Loader active={loaderActive} />
         <ModalGeneral state={openModal} setState={setOpenModal}>
             <ComercialContent setState={setOpenModal} />
         </ModalGeneral>
         <h1 className="text-center mb-4 text-3xl font-bold text-green-500">Mis Propiedades Comerciales</h1>
-        <table className="table table-hover border-2 overflow-auto h-4/6">
+        <table className="table table-hover border-2">
             <thead className='border'>
                 <tr>        
                     <th className='border px-2 font-bold text-green-400'> ID Inmueble </th>                    

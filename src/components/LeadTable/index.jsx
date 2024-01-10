@@ -23,7 +23,7 @@ const Index = () => {
     ]
 
   return (
-    <div className="table-responsive bg-white max-w-5xl">
+    <div className="table-responsive bg-white max-w-5xl overflow-auto h-[80vh]">
         <Loader active={loaderActive} />
         <h1 className="text-center my-4 text-3xl font-bold text-green-500">Mis Leads</h1>
         <table className="table table-hover border-2">
