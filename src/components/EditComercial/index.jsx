@@ -54,14 +54,14 @@ const Index = () => {
                 list={["Belén", "Laureles", "Poblado", "Centro"]} 
                 onChange={handleInputChange}
             />}
-            {formData.Tipocomercial !== "Lote" && <FormSection 
+            <FormSection 
                 type="text"
                 id="Areaconstruida"
                 placeholder="Ej: 40"
-                label="Area construída m²"
+                label={formData.Tipocomercial !== "Lote" ? "Area construída m²" : "Area del Lote m²"}
                 onChange={handleInputChange}
                 value={formData.Areaconstruida}
-            />}
+            />
             {formData.Tipocomercial !== "Lote" && <FormSection 
                 type="text"
                 id="Anoconstruccion"
@@ -86,14 +86,14 @@ const Index = () => {
                 onChange={handleInputChange}
                 value={formData.Precio}
             />
-            {formData.Tipocomercial == "Lote" && <FormSection 
+            {/* {formData.Tipocomercial == "Lote" && <FormSection 
                 type="text"
                 id="Arealote"
                 placeholder="Ej: 85"
                 label="Area del lote m²"
                 onChange={handleInputChange}
                 value={formData.Arealote}
-            />}
+            />} */}
             <div className="flex flex-col justify-center my-3 items-center gap-3">
                 <label className="text-sm"> Sube una imagen del inmueble </label>
                 <input type="file" id="Imagen" accept="image/*" onChange={uploadImage} />
