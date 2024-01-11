@@ -51,7 +51,7 @@ const Index = ({ setState }) => {
     }
 
     return (
-        <div className='bg-secondaryGray flex flex-col min-w-fit min-h-fit items-center p-6 pb-10'>
+        <div className='bg-auxiliar Gray flex flex-col min-w-fit min-h-fit items-center p-6 pb-10'>
             <Loader active={loaderActive} />
             <div className='items-center flex flex-col p-6 pb-0 pt-0 text-center'>
                 <p>¿Estás seguro de que deseas eliminar el inmueble: <br /> <span className="font-bold">  {name} </span> ? </p>

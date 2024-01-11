@@ -68,7 +68,7 @@ const Index = () => {
         <Button 
             onClick={() => console.log("Datos a enviar --> ", formData)} 
             type="submit" 
-            className="bg-blue-400"
+            className="bg-secondary"
         >
             Ingresar
         </Button>

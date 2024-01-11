@@ -128,8 +128,8 @@ const Index = () => {
                 <label className="text-sm"> Sube una imagen del inmueble </label>
                 <input type="file" id="Imagen" accept="image/*" onChange={uploadImage} />
             </div>
-            {alert && <p className={`${alert == "Imagen subida exitosamente." ? "text-green-500" : "text-red-500"} text-center text-xs my-4`}>{alert}</p>}
-            <Button type="submit" className="hover:bg-slate-300 my-3 bg-blue-400 flex justify-center"> Publicar </Button>
+            {alert && <p className={`${alert == "Imagen subida exitosamente." ? "text-primary" : "text-red-500"} text-center text-xs my-4`}>{alert}</p>}
+            <Button type="submit" className="hover:bg-slate-300 my-3 bg-secondary flex justify-center"> Publicar </Button>
         </form>
     )
 }

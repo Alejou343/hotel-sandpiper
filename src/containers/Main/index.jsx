@@ -6,6 +6,7 @@ import LeadTable from '@/components/LeadTable'
 import { useItem } from '@/context/ItemContext'
 import TableComercial from '@/components/TableComercial'
 import TableResidencial from '@/components/TableResidencial'
+import './index.css'
 
 const Index = () => {
 
@@ -15,7 +16,7 @@ const Index = () => {
     return (
       <div className='flex'>
           <Sidebar />
-          <div className="mx-auto my-4">
+          <div className="table-container mx-auto my-4">
               <TableResidencial /> 
           </div>
       </div>
@@ -24,7 +25,7 @@ const Index = () => {
     return (
       <div className='flex'>
           <Sidebar />
-          <div className="mx-auto my-4">
+          <div className="table-container mx-auto my-4">
               <TableComercial /> 
           </div>
       </div>
@@ -33,7 +34,7 @@ const Index = () => {
     return (
       <div className='flex'>
           <Sidebar />
-          <div className="mx-auto my-4">
+          <div className="table-container mx-auto my-4">
               <LeadTable /> 
           </div>
       </div>
@@ -42,7 +43,7 @@ const Index = () => {
     return (
       <div className='flex'>
           <Sidebar />
-          <div className="mx-auto my-4">
+          <div className="table-container mx-auto my-4">
               <Form /> 
           </div>
       </div>
