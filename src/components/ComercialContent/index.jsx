@@ -38,7 +38,6 @@ const Index = ({ setState }) => {
             }
         })
         .then((result) => {
-            console.log(result.data)
             setState(false)
             setLoaderActive(false)
             location.reload()

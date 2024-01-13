@@ -78,7 +78,6 @@ const useComercial = () => {
         }
 
         const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        console.log('Datos a enviar --> ', formDataNumerico)
 
         axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico, {
             headers: {
