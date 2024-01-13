@@ -91,7 +91,7 @@ const useResidencial = () => {
                 "Authorization": `Bearer ${sessionInfo.accesToken}`
             }
         })
-        .then((result) => router.push('/main'))
+        .then(() => router.push('/main'))
         .catch((error) => console.error(error))
     };
 
