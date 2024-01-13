@@ -51,15 +51,15 @@ const Index = () => {
         </ModalGeneral>
         <h1 className="text-center mb-4 text-3xl font-bold text-primary">Mis Propiedades Comerciales</h1>
         <table className="table table-hover border-2">
-            <thead className='border'>
+            <thead className='border bg-secondary text-white'>
                 <tr>        
-                    <th className='border px-2 font-bold text-secondary'> ID Inmueble </th>                    
-                    <th className='border px-2 font-bold text-secondary'>Nombre Inmueble</th>
-                    <th className='border px-2 font-bold text-secondary'> Tipo Negocio </th>                                              
-                    <th className='border px-2 font-bold text-secondary'>Precio Inmueble</th>                                              
-                    <th className='border px-2 font-bold text-secondary'>Estado</th>                                              
-                    <th className='border px-2 font-bold text-secondary'>Editar</th>                                              
-                    <th className='border px-2 font-bold text-secondary'>Eliminar</th>                                              
+                    <th className='border px-2 font-bold'> ID Inmueble </th>                    
+                    <th className='border px-2 font-bold'>Nombre Inmueble</th>
+                    <th className='border px-2 font-bold'> Tipo Negocio </th>                                              
+                    <th className='border px-2 font-bold'>Precio Inmueble</th>                                              
+                    <th className='border px-2 font-bold'>Estado</th>                                              
+                    <th className='border px-2 font-bold'>Editar</th>                                              
+                    <th className='border px-2 font-bold'>Eliminar</th>                                              
                 </tr>
             </thead>
             <tbody>

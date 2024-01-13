@@ -99,7 +99,7 @@ const Index = () => {
                 <input type="file" id="Imagen" accept="image/*" onChange={uploadImage} />
             </div>
             {alert && 
-                <p className={`${alert == "Imagen subida exitosamente." ? "text-primary" : "text-red-500"} text-center text-xs my-4`}>
+                <p className={`${alert == "Imagen subida exitosamente." ? "text-green-400" : "text-red-500"} text-center text-xs my-4`}>
                     {alert}
                 </p>
             }

@@ -27,14 +27,14 @@ const Index = () => {
         <Loader active={loaderActive} />
         <h1 className="text-center my-4 text-3xl font-bold text-primary">Mis Leads</h1>
         <table className="table table-hover border-2">
-            <thead className='border'>
+            <thead className='border bg-secondary text-white'>
                 <tr>        
-                    <th className='border px-2 font-bold text-secondary'> ID Lead </th>                    
-                    <th className='border px-2 font-bold text-secondary'>Nombre inmueble</th>                                                                                            
-                    <th className='border px-2 font-bold text-secondary'>Nombre Cliente </th>
-                    <th className='border px-2 font-bold text-secondary'>Teléfono Cliente</th>                                              
-                    <th className='border px-2 font-bold text-secondary'>Fecha de generación</th>                                              
-                    <th className='border px-2 font-bold text-secondary'>Detalles</th>                                              
+                    <th className='border px-2 font-bold'> ID Lead </th>                    
+                    <th className='border px-2 font-bold'>Nombre inmueble</th>                                                                                            
+                    <th className='border px-2 font-bold'>Nombre Cliente </th>
+                    <th className='border px-2 font-bold'>Teléfono Cliente</th>                                              
+                    <th className='border px-2 font-bold'>Fecha de generación</th>                                              
+                    <th className='border px-2 font-bold'>Detalles</th>                                              
                 </tr>
             </thead>
             <tbody>

@@ -1,8 +1,8 @@
 "use client"
 import React from 'react'
 import Button from '@/components/Button'
-import Image from 'next/image'
 import { useItem } from '@/context/ItemContext'
+import UserInfo from '@/components/UserInfo'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
@@ -64,10 +64,7 @@ const Index = () => {
             Añadir Propiedad 
           </Button>
         </div>
-        <div className="absolute bottom-8 w-5/6 flex justify-between left-4">
-          <p className='text-white'>{user?.Correo_Inmobiliaria}</p>
-          <Image src="/assets/logout.png" alt="logout.png" width={20} height={20} onClick={handleLogout} className='cursor-pointer' />
-        </div>
+        <UserInfo props = {{user, handleLogout}} />
     </aside>
   )
 }
