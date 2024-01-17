@@ -9,7 +9,7 @@ const Index = () => {
     const { alert, formData, uploadImage, handleInputChange, handleSubmit } = useResidencial()
 
     return (
-        <form onSubmit={handleSubmit} className="my-4">
+        <form onSubmit={handleSubmit} className="my-4 overflow-y-auto h-[70vh]">
             <FormSelect 
                 id="Tiporesidencia"
                 label="Selecciona tipo de inmueble"
