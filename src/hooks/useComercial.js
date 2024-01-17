@@ -8,6 +8,7 @@ const useComercial = () => {
 
     const router = useRouter()
     const [alert, setAlert] = React.useState(null)
+    const [loaderActive, setLoaderActive] = React.useState(false)
     const [formData, setFormData] = React.useState({
         Idinmobiliaria: 0,
         Tipocomercial: "",
@@ -42,7 +43,8 @@ const useComercial = () => {
         const apiUrl = process.env.IMGUR_LINK;
         const imageInput = document.getElementById('Imagen');
         const imageFile = imageInput.files[0];
-
+        setLoaderActive(true)
+        
         if (imageFile) {
             const imageFormData = new FormData();
             imageFormData.append('image', imageFile);
@@ -56,10 +58,12 @@ const useComercial = () => {
                 const imageUrl = response.data.data.link;
                 setFormData({...formData, ["Imagen"]: imageUrl})
                 setAlert(`Imagen subida exitosamente.`);
+                setLoaderActive(false)
             })
             .catch(error => {
                 console.error('Error --> ', error)
                 setAlert(`Error al subir la imagen`);
+                setLoaderActive(false)
             });
         } else {
             setAlert('Selecciona una imagen antes de subirla.');
@@ -90,6 +94,7 @@ const useComercial = () => {
 
     return {
         alert,
+        loaderActive,
         formData,
         setAlert,
         setFormData,

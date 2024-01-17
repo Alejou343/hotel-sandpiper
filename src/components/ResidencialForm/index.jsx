@@ -1,4 +1,5 @@
 import React from 'react'
+import Loader from '@/components/Loader'
 import Button from '@/components/Button'
 import FormSelect from '@/components/FormSelect'
 import FormSection from '@/components/FormSection'
@@ -6,10 +7,11 @@ import useResidencial from '@/hooks/useResidencial'
 
 const Index = () => {
 
-    const { alert, formData, uploadImage, handleInputChange, handleSubmit } = useResidencial()
+    const { alert, formData, uploadImage, handleInputChange, handleSubmit, loaderActive } = useResidencial()
 
     return (
         <form onSubmit={handleSubmit} className="my-4 overflow-y-auto h-[70vh]">
+            <Loader active={loaderActive} />    
             <FormSelect 
                 id="Tiporesidencia"
                 label="Selecciona tipo de inmueble"

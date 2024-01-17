@@ -1,4 +1,5 @@
 import React from 'react'
+import Loader from '@/components/Loader'
 import Button from '@/components/Button'
 import useComercial from '@/hooks/useComercial'
 import FormSelect from '@/components/FormSelect'
@@ -6,10 +7,11 @@ import FormSection from '@/components/FormSection'
 
 const Index = () => {
 
-    const { alert, formData, handleInputChange, uploadImage, handleSubmit } = useComercial()
+    const { alert, formData, handleInputChange, uploadImage, handleSubmit, loaderActive } = useComercial()
 
     return (
         <form onSubmit={handleSubmit} className='my-4'>
+            <Loader active={loaderActive} />
             <FormSelect 
                 id="Tipocomercial"
                 label="Selecciona tipo de inmueble"
@@ -85,14 +87,6 @@ const Index = () => {
                 onChange={handleInputChange}
                 value={formData.Precio}
             />
-            {/* {formData.Tipocomercial == "Lote" && <FormSection 
-                type="text"
-                id="Arealote"
-                placeholder="Ej: 85"
-                label="Area del lote m²"
-                onChange={handleInputChange}
-                value={formData.Arealote}
-            />} */}
             <div className="flex flex-col justify-center my-3 items-center gap-3">
                 <label className="text-sm"> Sube una imagen del inmueble </label>
                 <input type="file" id="Imagen" accept="image/*" onChange={uploadImage} />
