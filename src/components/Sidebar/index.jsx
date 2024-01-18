@@ -5,6 +5,7 @@ import { useItem } from '@/context/ItemContext'
 import UserInfo from '@/components/UserInfo'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import SideHeader from '@/components/SideHeader'
 
 const Index = () => {
 
@@ -33,7 +34,8 @@ const Index = () => {
     }
 
   return (
-    <aside className="bg-primary w-1/6 h-screen relative py-12">
+    <aside className="bg-primary w-1/6 h-screen relative py-12 rounded-r-[4rem]">
+        <SideHeader />
         <div className="buttons gap-8 flex flex-col">
           <Button 
             onClick={() => handleChange(1)} 
