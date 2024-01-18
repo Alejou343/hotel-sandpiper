@@ -95,7 +95,7 @@ const useResidencial = () => {
                 "Authorization": `Bearer ${sessionInfo.accesToken}`
             }
         })
-        .then(() => router.push('/main'))
+        .then(() => location.reload())
         .catch((error) => console.error(error))
     };
 
