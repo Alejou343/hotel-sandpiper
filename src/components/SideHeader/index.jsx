@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Index = () => {
   return (
-    <div className='mx-auto bg-auxiliar w-3/4 rounded-[4rem] py-2 mb-8'>
+    <div className='mx-auto bg-auxiliar w-2/3 rounded-[4rem] rounded-ee-none py-2 mb-8'>
         <Link href="/main">
             <Image src="/Pocki.svg" alt="pocki.svg" width={120} height={120} className='mx-auto' />
         </Link>

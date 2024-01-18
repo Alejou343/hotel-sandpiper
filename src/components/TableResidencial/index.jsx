@@ -43,14 +43,14 @@ const Index = () => {
     }
 
   return (
-    <div className="bg-white max-w-5xl overflow-auto h-[80vh]">
+    <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
         <Loader active={loaderActive} />
         <ModalGeneral state={openModal} setState={setOpenModal}>
             <ResidencialContent setState={setOpenModal} />
         </ModalGeneral>
-        <h1 className="text-center mb-4 text-3xl font-bold text-primary">Mis Propiedades Residenciales</h1>
-        <table className="table table-hover border-2">
-            <thead className='border bg-secondary text-white'>
+        <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis Propiedades Residenciales</h1>
+        <table className="table table-hover bg-auxiliar">
+            <thead className='bg-secondary text-white'>
                 <tr>        
                     <th className='border px-2 font-bold'> ID Inmueble </th>                    
                     <th className='border px-2 font-bold'>Nombre Inmueble</th>
