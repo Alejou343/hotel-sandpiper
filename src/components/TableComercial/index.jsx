@@ -79,6 +79,9 @@ const Index = () => {
                 </tr>)}           
             </tbody>          
         </table>
+        <div className="bg-primary text-white rounded-md text-center my-1">
+            <b>Total Propiedades Comerciales: </b> {inmuebles.length}
+        </div>
     </div>  
   )
 }
