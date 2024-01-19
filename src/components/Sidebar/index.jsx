@@ -10,6 +10,7 @@ import SideHeader from '@/components/SideHeader'
 const Index = () => {
 
     const router = useRouter()
+    const styles = ['bg-secondary hover:bg-auxiliar hover:text-secondary', 'bg-white hover:bg-auxiliar !text-black']
     const [user, setUser] = React.useState()
     const { item, setItem } = useItem() 
 
@@ -35,33 +36,33 @@ const Index = () => {
 
   return (
     <aside className="bg-primary w-1/6 h-screen relative py-12 rounded-r-[4rem]">
-        <SideHeader />
+        <SideHeader to="/main" />
         <div className="buttons gap-8 flex flex-col">
           <Button 
             onClick={() => handleChange(1)} 
             type="button" 
-            className={`text-xs ${item == 1 ? 'bg-secondary' : 'bg-auxiliar !text-black'}`} 
+            className={`text-xs ${item == 1 ? styles[0] : styles[1]}`} 
           >
             Mis Propiedades residenciales
           </Button>
           <Button 
             onClick={() => handleChange(2)} 
             type="button" 
-            className={`text-xs ${item == 2 ? 'bg-secondary' : 'bg-auxiliar !text-black'}`} 
+            className={`text-xs ${item == 2 ? styles[0] : styles[1]}`} 
             >
             Mis Propiedades comerciales 
             </Button>
           <Button 
             onClick={() => handleChange(3)} 
             type="button" 
-            className={`text-xs ${item == 3 ? 'bg-secondary' : 'bg-auxiliar !text-black'}`} 
+            className={`text-xs ${item == 3 ? styles[0] : styles[1]}`} 
           >
             Mis Leads
           </Button>
           <Button 
             onClick={() => handleChange(4)} 
             type="button" 
-            className={`text-xs ${item == 4 ? 'bg-secondary' : 'bg-auxiliar !text-black'}`} 
+            className={`text-xs ${item == 4 ? styles[0] : styles[1]}`} 
           >
             Añadir Propiedad 
           </Button>
