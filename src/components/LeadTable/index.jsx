@@ -1,31 +1,32 @@
 import React from 'react'
 import Image from 'next/image'
 import Loader from '@/components/Loader'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const Index = () => {
 
+    // Pendiente: Realizar lógica para ver leads comerciales o residenciales
+
     const [loaderActive, setLoaderActive] = React.useState(true)
+    const [leads, setLeads] = React.useState([])
 
     React.useEffect(() => {
+        const userInfo = JSON.parse(Cookies.get('SessionInfo'))
         setLoaderActive(true)
-    setTimeout(() => {
-        setLoaderActive(false)
-    }, 2000);
+        Promise.all([
+            axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
+            axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)  
+        ])
+        .then(([response1, response2]) => {
+            setLeads([...response1.data, ...response2.data])
+            setLoaderActive(false)
+        })
+        .catch(error => {
+            console.error(error)
+            setLoaderActive(false)
+        })
     }, [])
-
-    const leadsResidenciales = [
-        {id: 9901, name: "Bonita casa en Belen", client: "Alejandro Alvarez", phone: 3506217627, startDate: "2023-11-01" },
-        {id: 9902, name: "Espectacular finca en Marinilla", client: "Santiago Rivera", phone: 3113172984, startDate: "2023-11-16" },
-        {id: 9903, name: "Apartamento para estrenar en el Poblado", client: "Simon Clavijo", phone: 3045239673, startDate: "2023-11-27" },
-    ]
-
-    const leadsComerciales = [
-        {id: 9904, name: "Lote cerca al aeropuerto", client: "Walter Vanegas", phone: 3043361388, startDate: "2023-12-05" },
-        {id: 9905, name: "Bodega gigante para eventos", client: "Lina Otalvaro", phone: 3215086949, startDate: "2023-12-13" },
-        {id: 9906, name: "Consultorio en zona exclusiva de Envigado", client: "Alejandro Velasquez", phone: 3011477516, startDate: "2023-12-15" },
-    ]
-
-    const leads = [...leadsResidenciales, ...leadsComerciales]
 
   return (
     <div className="bg-primary max-w-5xl max-h-[80vh] overflow-auto py-1 rounded-md">
@@ -39,18 +40,18 @@ const Index = () => {
                     <th className='border px-2 font-bold'>Nombre Cliente </th>
                     <th className='border px-2 font-bold'>Teléfono Cliente</th>                                              
                     <th className='border px-2 font-bold'>Fecha de generación</th>                                              
-                    <th className='border px-2 font-bold'>Detalles</th>                                              
+                    <th className='border px-2 font-bold'>Detalles</th>
                 </tr>
             </thead>
             <tbody>
-                {leads.map(lead => 
-                <tr key={lead.id} className="cursor-pointer hover:bg-slate-300">
-                    <td className='border px-2 text-center'>{lead.id}</td>
-                    <td className='border px-2 text-center'>{lead.name}</td>
-                    <td className='border px-2 text-center'>{lead.client}</td>
-                    <td className='border px-2 text-center'>{lead.phone}</td>
-                    <td className='border px-2 text-center'>{lead.startDate}</td>
-                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${lead.id}`)}>
+                {leads.map((lead, id) => 
+                <tr key={id + 1} className="cursor-pointer hover:bg-slate-300">
+                    <td className='border px-2 text-center'>{id + 1}</td>
+                    <td className='border px-2 text-center'>{lead?.NombreR || lead?.NombreC}</td>
+                    <td className='border px-2 text-center'>{lead?.Nombrecliente}</td>
+                    <td className='border px-2 text-center'>{lead?.Numerocliente}</td>
+                    <td className='border px-2 text-center'>{lead?.Fechalead.substr(0,10)}</td>
+                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${id + 1}`)}>
                         <Image src="/assets/open.png" alt="view.png" width={20} height={20} className="mx-auto" />
                     </td>
                 </tr>)}           

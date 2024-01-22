@@ -12,9 +12,14 @@
 }
 
 .icon-edit {
-    top: 1rem;
-    right: 1rem;
+    top: 2rem;
+    right: 2rem;
     background-color: white;
     border-radius: 100%;
     padding: 5px;
+}
+
+.propertie-card {
+    padding: 2vh 2vh 0;
+    border: 0.5vh solid #009d71;
 }

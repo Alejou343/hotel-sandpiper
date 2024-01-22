@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import './index.css'
+import Button from '@/components/Button'
 
 
 const Index = ({ props }) => {
@@ -17,8 +18,8 @@ const Index = ({ props }) => {
     }, [])
 
     return (
-        <div className='propertie-card p-2 border-2 relative rounded-lg'>
-            <Image src={props?.ImagenC} alt="foto" width={400} height={400} className="card-image aspect-square rounded-lg mb-2" />
+        <div className='propertie-card bg-auxiliar relative rounded-lg'>
+            <Image src={props?.ImagenC || '/assets/default-house.jpg'} alt="foto" width={400} height={400} className="card-image aspect-square rounded-lg mb-2" />
             <div className="flex justify-between px-3">
                 <p className="font-bold"> {props?.NombreC} </p>
                 <Image src="/assets/edit.png" alt="edit" width={35} height={35} className="icon-edit absolute cursor-pointer" onClick={() => router.push(`/propertie/comercial/edit/${comercialId}`)} />
@@ -37,6 +38,9 @@ const Index = ({ props }) => {
                 <p className="text-sm"> | </p>
                 <p className="text-sm"> {props?.TipoC}  </p>
             </div>
+            <Button type="button" onClick={() => console.log(`Generando lead para el inmueble ${props.ID_Comercial}`)} className="bg-primary flex justify-center my-4">
+                Generar Lead
+            </Button>
         </div>
     )
 }

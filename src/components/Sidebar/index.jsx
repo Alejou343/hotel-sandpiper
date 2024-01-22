@@ -36,38 +36,38 @@ const Index = () => {
 
   return (
     <aside className="bg-primary w-1/6 h-screen relative py-12 rounded-r-[4rem]">
-        <SideHeader to="/main" />
-        <div className="buttons gap-8 flex flex-col">
-          <Button 
-            onClick={() => handleChange(1)} 
-            type="button" 
-            className={`text-xs ${item == 1 ? styles[0] : styles[1]}`} 
+      <SideHeader to="/main" />
+      <div className="buttons gap-8 flex flex-col">
+        <Button 
+          onClick={() => handleChange(1)} 
+          type="button" 
+          className={`text-xs ${item == 1 ? styles[0] : styles[1]}`} 
+        >
+          Mis Propiedades residenciales
+        </Button>
+        <Button 
+          onClick={() => handleChange(2)} 
+          type="button" 
+          className={`text-xs ${item == 2 ? styles[0] : styles[1]}`} 
           >
-            Mis Propiedades residenciales
+          Mis Propiedades comerciales 
           </Button>
-          <Button 
-            onClick={() => handleChange(2)} 
-            type="button" 
-            className={`text-xs ${item == 2 ? styles[0] : styles[1]}`} 
-            >
-            Mis Propiedades comerciales 
-            </Button>
-          <Button 
-            onClick={() => handleChange(3)} 
-            type="button" 
-            className={`text-xs ${item == 3 ? styles[0] : styles[1]}`} 
-          >
-            Mis Leads
-          </Button>
-          <Button 
-            onClick={() => handleChange(4)} 
-            type="button" 
-            className={`text-xs ${item == 4 ? styles[0] : styles[1]}`} 
-          >
-            Añadir Propiedad 
-          </Button>
-        </div>
-        <UserInfo props = {{user, handleLogout}} />
+        <Button 
+          onClick={() => handleChange(3)} 
+          type="button" 
+          className={`text-xs ${item == 3 ? styles[0] : styles[1]}`} 
+        >
+          Mis Leads
+        </Button>
+        <Button 
+          onClick={() => handleChange(4)} 
+          type="button" 
+          className={`text-xs ${item == 4 ? styles[0] : styles[1]}`} 
+        >
+          Añadir Propiedad 
+        </Button>
+      </div>
+      <UserInfo props = {{user, handleLogout}} />
     </aside>
   )
 }
