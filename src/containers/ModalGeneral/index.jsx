@@ -8,7 +8,7 @@ const Index = ({ children, state, setState}) => {
         <>
             { state &&
                 <div className='modal-general'>
-                    <main className='relative modal shadow-lg bg-auxiliar p-8'>
+                    <main className='relative modal shadow-lg bg-auxiliar p-6'>
                         <button 
                             className='close-modal-icon cursor-pointer'
                             onClick={() => setState(!state)}

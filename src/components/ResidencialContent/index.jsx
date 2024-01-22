@@ -57,7 +57,7 @@ const Index = ({ setState }) => {
             </div>
             <div className="mt-8 flex gap-6">
                 <button className="rounded-full bg-slate-400 px-4 py-2 text-white font-bold" onClick={() => setState(false)}>CANCELAR</button>
-                <button className="rounded-full bg-cyan-500 px-4 py-2 text-white font-bold" onClick={() => handleDelete(id)}>CONFIRMAR</button>
+                <button className="rounded-full bg-primary px-4 py-2 text-white font-bold" onClick={() => handleDelete(id)}>CONFIRMAR</button>
             </div>
         </div>
     )
