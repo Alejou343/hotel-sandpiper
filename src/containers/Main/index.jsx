@@ -11,44 +11,16 @@ import './index.css'
 const Index = () => {
 
   const { item } = useItem()
+  const views = [<TableResidencial />, <TableComercial />, <LeadTable />, <Form />]
 
-  if (item == 1) {
     return (
       <div className='flex'>
-          <Sidebar />
-          <div className="table-container mx-auto my-4">
-              <TableResidencial /> 
-          </div>
+        <Sidebar />
+        <div className="table-container mx-auto my-4">
+          {views[item - 1]}
+        </div>
       </div>
     )
-  } else if (item == 2) {
-    return (
-      <div className='flex'>
-          <Sidebar />
-          <div className="table-container mx-auto my-4">
-              <TableComercial /> 
-          </div>
-      </div>
-    )
-  } else if (item == 3) {
-    return (
-      <div className='flex'>
-          <Sidebar />
-          <div className="table-container mx-auto my-4">
-              <LeadTable /> 
-          </div>
-      </div>
-    )
-  } else {
-    return (
-      <div className='flex'>
-          <Sidebar />
-          <div className="table-container mx-auto my-4">
-              <Form /> 
-          </div>
-      </div>
-    )
-  }
 }
 
 export default Index

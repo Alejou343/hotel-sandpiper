@@ -13,7 +13,6 @@ const Index = ({ props }) => {
     const router = useRouter()
     const [alert, setAlert] = React.useState('')
     const [formData, setFormData] = React.useState({
-        Idinmobiliaria:501,                 // --> Necesitamos que la función de generateLead no pida este parámetro (Idcomercial está asociado)
         Idcomercial:0,
         Nombrecliente:"Alejandro Uribe",
         Numerocliente:"3506217627"
