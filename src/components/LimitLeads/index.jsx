@@ -1,8 +1,10 @@
 import React from 'react'
-import FormSection from '@/components/FormSection'
+import LoginSection from '@/components/LoginSection'
 import Button from '@/components/Button'
 
-const Index = () => {
+const Index = ({ setState }) => {
+
+    // Crear la lógica para obtener minValue y maxValue
 
     const [value, setValue] = React.useState(null)
 
@@ -10,15 +12,18 @@ const Index = () => {
         setValue(e.target.value)
     }
 
-    const handleSubmit = (value) => {
+    const handleSubmit = (e, value) => {
+        e.preventDefault()
         console.log(value)
+        setState(false)
     }
 
   return (
-    <form className="form-limits">
-        <FormSection 
+    <form className="form-limits" onSubmit={handleSubmit}>
+        <LoginSection 
             type="number"
             id="lead-limit"
+            className={{label: 'flex justify-center', input: 'w-1/3 my-2'}}
             placeholder="Ej: 10"
             label="Límite mensual de leads"
             onChange={handleChange}
@@ -26,7 +31,7 @@ const Index = () => {
             minValue={20}
             maxValue={30}
         />
-        <Button type="submit" onClick={() => handleSubmit(value)} className="bg-auxiliar text-black flex justify-center">
+        <Button type="submit" className="bg-primary text-auxiliar flex justify-center">
             Actualizar
         </Button>
     </form>

@@ -8,9 +8,9 @@ const Index = ({ children, state, setState}) => {
         <>
             { state &&
                 <div className='modal-general'>
-                    <main className='w-2/5 h-auto relative modal shadow-lg bg-white p-4'>
+                    <main className='relative modal shadow-lg bg-auxiliar p-8'>
                         <button 
-                            className='absolute top-0 pt-3 pr-3 right-0 cursor-pointer'
+                            className='close-modal-icon cursor-pointer'
                             onClick={() => setState(!state)}
                         > 
                             <Image src='/assets/close-icon.png' width={25} height={25} alt='cerrar' />

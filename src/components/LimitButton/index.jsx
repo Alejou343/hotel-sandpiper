@@ -1,8 +1,8 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import ModalGeneral from '@/containers/ModalGeneral'
 import LimitLeads from '@/components/LimitLeads'
+import ModalGeneral from '@/containers/ModalGeneral'
 
 const Index = () => {
 
@@ -10,8 +10,9 @@ const Index = () => {
 
   return (
     <>
-      {openModal && <ModalGeneral state={openModal} setState={setOpenModal}>
-        <LimitLeads />
+      {openModal && 
+      <ModalGeneral state={openModal} setState={setOpenModal} className='p-4'>
+        <LimitLeads setState={setOpenModal} />
       </ModalGeneral>}
       <Image 
         src="/assets/warning.png" 

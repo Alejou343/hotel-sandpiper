@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Index = ({type, id, placeholder, label, onChange, value, minValue, maxValue}) => {
+const Index = ({type, id, placeholder, label, onChange, value}) => {
   return (
     <div className="mb-2 flex justify-between">
       <label htmlFor={id} className="form-label text-sm">{label}</label>
@@ -11,8 +11,6 @@ const Index = ({type, id, placeholder, label, onChange, value, minValue, maxValu
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        min={minValue}
-        max={maxValue}
         required
       />
     </div>
