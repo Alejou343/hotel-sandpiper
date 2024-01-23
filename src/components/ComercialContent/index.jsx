@@ -10,43 +10,51 @@ const Index = ({ setState }) => {
     const [loaderActive, setLoaderActive] = React.useState(false)
 
     React.useEffect(() => {
-        setLoaderActive(true)
-        const id = Cookies.get('ComercialID')
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        setId(id)
-        axios.get(`${process.env.BACK_LINK}/api/comercialById/${id}`, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
-            }
-        })
-        .then((result) => {
-            setName(result.data[0]?.NombreC)
-            setLoaderActive(false)
-        })
-        .catch((error) => { 
-            console.error(error) 
-            setLoaderActive(false)
-        })
+        try {
+            setLoaderActive(true)
+            const id = Cookies.get('ComercialID')
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            setId(id)
+            axios.get(`${process.env.BACK_LINK}/api/comercialById/${id}`, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                }
+            })
+            .then((result) => {
+                setName(result.data[0]?.NombreC)
+                setLoaderActive(false)
+            })
+            .catch((error) => { 
+                console.error(error) 
+                setLoaderActive(false)
+            })
+        } catch (error) {
+            console.error(error)
+        }
     }, [])
 
     const handleDelete = (id) => {
-        setLoaderActive(true)
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        axios.delete(`${process.env.BACK_LINK}/api/deleteComercial/${id}`, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
-            }
-        })
-        .then(() => {
-            setState(false)
-            setLoaderActive(false)
-            location.reload()
-        })
-        .catch((error) => { 
-            console.error(error) 
-            setState(false)
-            setLoaderActive(false)
-        })
+        try {
+            setLoaderActive(true)
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            axios.delete(`${process.env.BACK_LINK}/api/deleteComercial/${id}`, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                }
+            })
+            .then(() => {
+                setState(false)
+                setLoaderActive(false)
+                location.reload()
+            })
+            .catch((error) => { 
+                console.error(error) 
+                setState(false)
+                setLoaderActive(false)
+            })
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (

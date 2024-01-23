@@ -16,21 +16,25 @@ const Index = () => {
     const router = useRouter()
 
     React.useEffect(() => {
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        setLoaderActive(true)
-        axios.get(`${process.env.BACK_LINK}/api/UserComercial/${sessionInfo?.answer[0]?.Correo_Inmobiliaria}`, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
-            }
-        })
-        .then((result) => {
-            setInmuebles(result.data)
-            setLoaderActive(false)
-        })
-        .catch((error) => { 
-            console.error(error) 
-            setLoaderActive(false)
-        })
+        try {
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            setLoaderActive(true)
+            axios.get(`${process.env.BACK_LINK}/api/UserComercial/${sessionInfo?.answer[0]?.Correo_Inmobiliaria}`, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                }
+            })
+            .then((result) => {
+                setInmuebles(result.data)
+                setLoaderActive(false)
+            })
+            .catch((error) => { 
+                console.error(error) 
+                setLoaderActive(false)
+            })
+        } catch (error) {
+            console.error(error)
+        }
     }, [])
 
     const handleNavigate = (url, id) => {

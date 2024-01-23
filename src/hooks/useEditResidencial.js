@@ -30,39 +30,43 @@ const useEditResidencial = () => {
     });
 
     React.useEffect(() => {
-        const residencialId = Cookies.get('ResidencialID')
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        setResidencialId(residencialId)
-
-        axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo?.accesToken}`
-            }
-        })
-        .then((result) => {
-            setFormData({
-                // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
-                Tiporesidencia: result?.data[0]?.TipoR,
-                Tiposervicio: result?.data[0]?.Tipo_ServicioR,
-                Ciudad: result?.data[0]?.CiudadR,
-                Estado: result?.data[0]?.EstadoR,
-                Nombre: result?.data[0]?.NombreR,
-                Barrio: result?.data[0]?.BarrioR,
-                Areaconstruida: result?.data[0]?.Area_ConstruidaR,
-                Anoconstruccion: result?.data[0]?.Ano_ConstruccionR,
-                Habitaciones: result?.data[0]?.HabitacionR,
-                Baños: result?.data[0]?.BanosR,
-                Parqueaderos: result?.data[0]?.ParqueaderosR,
-                Enlace: result?.data[0]?.EnlaceR,
-                Precio: result?.data[0]?.PrecioR,
-                Arealote: result?.data[0]?.Area_Lote,
-                Imagen: result?.data[0]?.ImagenR,
-                Unidadcerrada: result?.data[0]?.Unidad_CerradaR
+        try {
+            const residencialId = Cookies.get('ResidencialID')
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            setResidencialId(residencialId)
+    
+            axios.get(`${process.env.BACK_LINK}/api/residenciaById/${residencialId}`, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo?.accesToken}`
+                }
             })
-        })
-            .catch((error) => { 
-            console.error(error) 
-        })
+            .then((result) => {
+                setFormData({
+                    // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
+                    Tiporesidencia: result?.data[0]?.TipoR,
+                    Tiposervicio: result?.data[0]?.Tipo_ServicioR,
+                    Ciudad: result?.data[0]?.CiudadR,
+                    Estado: result?.data[0]?.EstadoR,
+                    Nombre: result?.data[0]?.NombreR,
+                    Barrio: result?.data[0]?.BarrioR,
+                    Areaconstruida: result?.data[0]?.Area_ConstruidaR,
+                    Anoconstruccion: result?.data[0]?.Ano_ConstruccionR,
+                    Habitaciones: result?.data[0]?.HabitacionR,
+                    Baños: result?.data[0]?.BanosR,
+                    Parqueaderos: result?.data[0]?.ParqueaderosR,
+                    Enlace: result?.data[0]?.EnlaceR,
+                    Precio: result?.data[0]?.PrecioR,
+                    Arealote: result?.data[0]?.Area_Lote,
+                    Imagen: result?.data[0]?.ImagenR,
+                    Unidadcerrada: result?.data[0]?.Unidad_CerradaR
+                })
+            })
+                .catch((error) => { 
+                console.error(error) 
+            })
+        } catch (error) {
+            console.error(error)
+        }
     }, [])
 
     const uploadImage = () => { 
@@ -103,7 +107,20 @@ const useEditResidencial = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        try {
+            axios.put(`${process.env.BACK_LINK}/api/updateResidencial/${residencialId}`, formDataNumerico, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                }
+            })
+            .then(() => router.push('/main'))
+            .catch((error) => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
         
+        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         const formDataNumerico = {
             ...formData,
             Areaconstruida: parseInt(formData.Areaconstruida),
@@ -115,15 +132,7 @@ const useEditResidencial = () => {
             Arealote: parseInt(formData.Arealote),
         };
 
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         
-        axios.put(`${process.env.BACK_LINK}/api/updateResidencial/${residencialId}`, formDataNumerico, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
-            }
-        })
-        .then(() => router.push('/main'))
-        .catch((error) => console.error(error))
     };
 
     return {

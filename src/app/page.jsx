@@ -1,19 +1,18 @@
 "use client"
-import React from 'react'
-import Main from '@/containers/Main'
+import React from "react"
+import Login from '@/containers/Login'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
-
-const Page = () => {
-
+const Home = () => {
+  
   const router = useRouter()
-
+  
   React.useEffect(() => {
     try {
       const userLogged = Cookies.get('SessionInfo')
-      if (!userLogged) {
-        router.push('/')
+      if (userLogged) {
+        router.push('/main')
       }
     } catch (error) {
         console.error(error)
@@ -21,8 +20,10 @@ const Page = () => {
   }, [])
 
   return (
-    <Main />
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <Login />
+    </main>
   )
 }
 
-export default Page
+export default Home;

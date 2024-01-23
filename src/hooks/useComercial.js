@@ -26,8 +26,12 @@ const useComercial = () => {
     });
 
     React.useEffect(() => {
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        setFormData({...formData, ["Idinmobiliaria"]: Number(sessionInfo?.answer[0]?.ID_Inmobiliaria)})
+        try {
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            setFormData({...formData, ["Idinmobiliaria"]: Number(sessionInfo?.answer[0]?.ID_Inmobiliaria)})
+        } catch (error) {
+            console.error(error)
+        }
     }, [])
     
     const handleInputChange = (e) => {
@@ -72,24 +76,26 @@ const useComercial = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        const formDataNumerico = {
-            ...formData,
-            Areaconstruida: parseInt(formData.Areaconstruida),
-            Anoconstruccion: parseInt(formData.Anoconstruccion),
-            Precio: parseInt(formData.Precio),
-            Arealote: parseInt(formData.Arealote),
-        }
-
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-
-        axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
+        try {
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            const formDataNumerico = {
+                ...formData,
+                Areaconstruida: parseInt(formData.Areaconstruida),
+                Anoconstruccion: parseInt(formData.Anoconstruccion),
+                Precio: parseInt(formData.Precio),
+                Arealote: parseInt(formData.Arealote),
             }
-        })
-        .then(() => location.reload())
-        .catch((error) => console.error(error))
+                
+            axios.post(`${process.env.BACK_LINK}/api/addComercial`, formDataNumerico, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                }
+            })
+            .then(() => location.reload())
+            .catch((error) => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     return {

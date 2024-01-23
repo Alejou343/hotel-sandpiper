@@ -15,11 +15,15 @@ const Index = () => {
     const { item, setItem } = useItem() 
 
     React.useEffect(() => {
+      try {
         const userLogged = JSON.parse(Cookies.get('SessionInfo'))
 
         if (userLogged) {
           setUser(userLogged?.answer[0])
         }
+      } catch (error) {
+        console.error(error)
+      }
     }, [])
 
     const handleLogout = () => {

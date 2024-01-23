@@ -8,17 +8,21 @@ const Index = () => {
     const [leads, setLeads] = React.useState([])
 
     React.useEffect(() => {
-        const userInfo = JSON.parse(Cookies.get('SessionInfo'))
-        Promise.all([
-            axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
-            axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)  
-        ])
-        .then(([response1, response2]) => {
-            setLeads([...response1.data, ...response2.data])
-        })
-        .catch(error => {
-            console.error(error)
-        })
+        try {
+            const userInfo = JSON.parse(Cookies.get('SessionInfo'))
+            Promise.all([
+                axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
+                axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)  
+            ])
+            .then(([response1, response2]) => {
+                setLeads([...response1.data, ...response2.data])
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        } catch (error) {
+            console.error('Error al obtener la Cookie')
+        }
     }, [])
 
   return (

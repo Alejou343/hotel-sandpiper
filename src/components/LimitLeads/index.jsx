@@ -12,20 +12,24 @@ const Index = ({ setState }) => {
     const [leads, setLeads] = React.useState([])
 
     React.useEffect(() => {
-        const userInfo = JSON.parse(Cookies.get('SessionInfo'))
-        setLoaderActive(true)
-        Promise.all([
-            axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
-            axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)  
-        ])
-        .then(([response1, response2]) => {
-            setLeads([...response1.data, ...response2.data])
-            setLoaderActive(false)
-        })
-        .catch(error => {
+        try {
+            setLoaderActive(true)
+            const userInfo = JSON.parse(Cookies.get('SessionInfo'))
+            Promise.all([
+                axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
+                axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)  
+            ])
+            .then(([response1, response2]) => {
+                setLeads([...response1.data, ...response2.data])
+                setLoaderActive(false)
+            })
+            .catch(error => {
+                console.error(error)
+                setLoaderActive(false)
+            })
+        } catch (error) {
             console.error(error)
-            setLoaderActive(false)
-        })
+        }
     }, [])
 
     const handleChange = (e) => {

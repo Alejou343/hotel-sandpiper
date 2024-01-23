@@ -30,8 +30,12 @@ const useResidencial = () => {
     });
 
     React.useEffect(() => {
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        setFormData({...formData, ["Idinmobiliaria"]: Number(sessionInfo?.answer[0]?.ID_Inmobiliaria)})
+        try {
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            setFormData({...formData, ["Idinmobiliaria"]: Number(sessionInfo?.answer[0]?.ID_Inmobiliaria)})
+        } catch (error) {
+            console.error(error)
+        }
     }, [])
 
 
@@ -76,7 +80,20 @@ const useResidencial = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        try {
+            axios.post(`${process.env.BACK_LINK}/api/addResidencia`, formDataNumerico, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                }
+            })
+            .then(() => location.reload())
+            .catch((error) => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
         
+        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
         const formDataNumerico = {
             ...formData,
             Areaconstruida: parseInt(formData.Areaconstruida),
@@ -87,16 +104,6 @@ const useResidencial = () => {
             Precio: parseInt(formData.Precio),
             Arealote: parseInt(formData.Arealote),
         };
-
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-
-        axios.post(`${process.env.BACK_LINK}/api/addResidencia`, formDataNumerico, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
-            }
-        })
-        .then(() => location.reload())
-        .catch((error) => console.error(error))
     };
 
     return {

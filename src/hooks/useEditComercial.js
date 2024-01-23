@@ -27,35 +27,39 @@ const useEditComercial = () => {
     });
 
     React.useEffect(() => {
-        const comercialId = Cookies.get('ComercialID')
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        setComercialId(comercialId)
-
-        axios.get(`${process.env.BACK_LINK}/api/comercialById/${comercialId}`, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo?.accesToken}`
-            }
-        })
-        .then((result) => {
-            setFormData({
-                // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
-                Tipocomercial: result?.data[0]?.TipoC,
-                Tiposervicio: result?.data[0]?.Tipo_ServicioC,
-                Ciudad: result?.data[0]?.CiudadC,
-                Estado: result?.data[0]?.EstadoC,
-                Nombre: result?.data[0]?.NombreC,
-                Barrio: result?.data[0]?.BarrioC,
-                Areaconstruida: result?.data[0]?.AreaC,
-                Anoconstruccion: result?.data[0]?.Ano_ConstruccionC,
-                Enlace: result?.data[0]?.EnlaceC,
-                Precio: result?.data[0]?.PrecioC,
-                Arealote: result?.data[0]?.Area_LoteC,
-                Imagen: result?.data[0]?.ImagenC
+        try {
+            const comercialId = Cookies.get('ComercialID')
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            setComercialId(comercialId)
+    
+            axios.get(`${process.env.BACK_LINK}/api/comercialById/${comercialId}`, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo?.accesToken}`
+                }
             })
-        })
-            .catch((error) => { 
-            console.error(error) 
-        })
+            .then((result) => {
+                setFormData({
+                    // Idinmobiliaria: result?.data[0]?.ID_Inmobiliaria,
+                    Tipocomercial: result?.data[0]?.TipoC,
+                    Tiposervicio: result?.data[0]?.Tipo_ServicioC,
+                    Ciudad: result?.data[0]?.CiudadC,
+                    Estado: result?.data[0]?.EstadoC,
+                    Nombre: result?.data[0]?.NombreC,
+                    Barrio: result?.data[0]?.BarrioC,
+                    Areaconstruida: result?.data[0]?.AreaC,
+                    Anoconstruccion: result?.data[0]?.Ano_ConstruccionC,
+                    Enlace: result?.data[0]?.EnlaceC,
+                    Precio: result?.data[0]?.PrecioC,
+                    Arealote: result?.data[0]?.Area_LoteC,
+                    Imagen: result?.data[0]?.ImagenC
+                })
+            })
+                .catch((error) => { 
+                console.error(error) 
+            })
+        } catch (error) {
+            console.error(error)
+        }
     }, [])
     
     const handleInputChange = (e) => {
@@ -98,23 +102,27 @@ const useEditComercial = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const formDataNumerico = {
-            ...formData,
-            Areaconstruida: parseInt(formData.Areaconstruida),
-            Anoconstruccion: parseInt(formData.Anoconstruccion),
-            Precio: parseInt(formData.Precio),
-            Arealote: parseInt(formData.Arealote),
-        }
-
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-
-        axios.put(`${process.env.BACK_LINK}/api/updateComercial/${comercialId}`, formDataNumerico, {
-            headers: {
-                "Authorization": `Bearer ${sessionInfo.accesToken}`
+        try {
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            const formDataNumerico = {
+                ...formData,
+                Areaconstruida: parseInt(formData.Areaconstruida),
+                Anoconstruccion: parseInt(formData.Anoconstruccion),
+                Precio: parseInt(formData.Precio),
+                Arealote: parseInt(formData.Arealote),
             }
-        })
-        .then(() => router.push('/main'))
-        .catch((error) => console.error(error))
+
+            axios.put(`${process.env.BACK_LINK}/api/updateComercial/${comercialId}`, formDataNumerico, {
+                headers: {
+                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                }
+            })
+            .then(() => router.push('/main'))
+            .catch((error) => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
+        
     };
 
     return {

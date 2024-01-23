@@ -12,21 +12,25 @@ const Page = ({ params }) => {
   const [loaderActive, setLoaderActive] = React.useState(false)
 
   React.useEffect(() => {
-    setLoaderActive(true)
-    const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-    axios.get(`${process.env.BACK_LINK}/api/residenciaById/${params.id}`, {
-        headers: {
-            "Authorization": `Bearer ${sessionInfo.accesToken}`
-        }
-    })
-    .then((result) => {
-      setValues(result.data[0])
-      setLoaderActive(false)
-    })
-    .catch((error) => { 
-      console.error(error) 
-      setLoaderActive(false)
-    })
+    try {
+      setLoaderActive(true)
+      const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+      axios.get(`${process.env.BACK_LINK}/api/residenciaById/${params.id}`, {
+          headers: {
+              "Authorization": `Bearer ${sessionInfo.accesToken}`
+          }
+      })
+      .then((result) => {
+        setValues(result.data[0])
+        setLoaderActive(false)
+      })
+      .catch((error) => { 
+        console.error(error) 
+        setLoaderActive(false)
+      })
+    } catch (error) {
+        console.error(error)
+    }
   }, [])
 
   return (
