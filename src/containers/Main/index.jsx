@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import Form from '@/containers/Form'
+import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import LeadTable from '@/components/LeadTable'
 import { useItem } from '@/context/ItemContext'
@@ -14,10 +15,13 @@ const Index = () => {
   const views = [<TableResidencial />, <TableComercial />, <LeadTable />, <Form />]
 
     return (
-      <div className='flex'>
-        <Sidebar />
-        <div className="table-container mx-auto my-4">
-          {views[item - 1]}
+      <div>
+        <Navbar />
+        <div className='flex'>
+          <Sidebar />
+          <div className="table-container mx-auto my-4">
+            {views[item - 1]}
+          </div>
         </div>
       </div>
     )
