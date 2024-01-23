@@ -36,10 +36,18 @@ const Index = ({ setState }) => {
         setValue(e.target.value)
     }
 
-    const handleSubmit = (e, value) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(value)
-        setState(false)
+        console.log({Numero: parseInt(value)})
+        try {
+            const userInfo = JSON.parse(Cookies.get('SessionInfo'))
+            axios.patch(`${process.env.BACK_LINK}/api/amountLead/${userInfo?.answer[0]?.Correo_Inmobiliaria}`, {
+                Numero: parseInt(value)
+            })
+            setState(false)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
   return (
