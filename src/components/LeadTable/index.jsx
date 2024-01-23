@@ -37,10 +37,10 @@ const Index = () => {
                 <tr>        
                     <th className='border px-2 font-bold'> ID Lead </th>                    
                     <th className='border px-2 font-bold'>Nombre inmueble</th>                                                                                            
-                    <th className='border px-2 font-bold'>Nombre Cliente </th>
+                    <th className='border px-2 font-bold'>Nombre Cliente</th>
                     <th className='border px-2 font-bold'>Teléfono Cliente</th>                                              
                     <th className='border px-2 font-bold'>Fecha de generación</th>                                              
-                    <th className='border px-2 font-bold'>Detalles</th>
+                    {/* <th className='border px-2 font-bold'>Detalles</th> */}
                 </tr>
             </thead>
             <tbody>
@@ -51,9 +51,9 @@ const Index = () => {
                     <td className='border px-2 text-center'>{lead?.Nombrecliente}</td>
                     <td className='border px-2 text-center'>{lead?.Numerocliente}</td>
                     <td className='border px-2 text-center'>{lead?.Fechalead.substr(0,10)}</td>
-                    <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${id + 1}`)}>
+                    {/* <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${id + 1}`)}>
                         <Image src="/assets/open.png" alt="view.png" width={20} height={20} className="mx-auto" />
-                    </td>
+                    </td> */}
                 </tr>)}           
             </tbody>          
         </table>
