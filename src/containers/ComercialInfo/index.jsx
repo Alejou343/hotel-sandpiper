@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Cookies from 'js-cookie'
 import Button from '@/components/Button'
 import { useRouter } from 'next/navigation'
+import { formatPrice } from '@/utils/formatPrice'
+import CardSection from '@/components/CardSection'
+import LinkSection from '@/components/LinkSection'
 import './index.css'
 
 
@@ -33,22 +36,21 @@ const Index = ({ props }) => {
         <div className='propertie-card bg-auxiliar relative rounded-lg'>
             <Image src={props?.ImagenC || '/assets/default-house.jpg'} alt="foto" width={400} height={400} className="card-image aspect-square rounded-lg mb-2" />
             <div className="flex justify-between px-3">
-                <p className="font-bold"> {props?.NombreC} </p>
                 <Image src="/assets/edit.png" alt="edit" width={35} height={35} className="icon-edit absolute cursor-pointer" onClick={() => router.push(`/propertie/comercial/edit/${formData.Idcomercial}`)} />
+                <p className="font-bold mx-auto"> {props?.NombreC.toUpperCase()} </p>
                 <div className="is-available">
-                {props?.EstadoC == "Disponible" ? <Image src="/assets/green-circle.png" alt="available" width={40} height={40} /> : <Image src="/assets/red-circle.png" alt="unavailable" width={40} height={40} />}
+                    {props?.EstadoC == "Disponible" 
+                    ? <Image src="/assets/green-circle.png" alt="available" width={25} height={25} /> 
+                    : <Image src="/assets/red-circle.png" alt="unavailable" width={25} height={25} />}
                 </div>      
             </div>
-            <div className="flex justify-between px-3 mx-auto w-1/2"> 
-                <p className="my-2 font-bold">{props?.Tipo_ServicioC}</p>
-                <p className="my-2">$ {props?.PrecioC}</p>
-            </div>
-            <div className="flex justify-between px-3">
-                <p className="text-sm"> {props?.AreaC || props?.Area_LoteC} m² </p>
-                <p className="text-sm"> | </p>
-                <p className="text-sm"> {props?.CiudadC} </p>
-                <p className="text-sm"> | </p>
-                <p className="text-sm"> {props?.TipoC}  </p>
+            <div className="information grid grid-cols-3">
+                <CardSection route={"/assets/cards/area.svg"} title="Area Construida" value={`${props?.AreaC}  m²`} />
+                <CardSection route={"/assets/cards/city.svg"} title="Ciudad" value={props?.CiudadC} />
+                <CardSection route={"/assets/cards/neighbor.svg"} title="Barrio" value={props?.BarrioC || 'No Aplica'} />
+                <CardSection route={"/assets/cards/age.svg"} title="Año de construcción" value={props?.Ano_ConstruccionC} />
+                <CardSection route={"/assets/cards/price.svg"} title={`${props?.Tipo_ServicioC == 'Comprar' ? 'Precio de venta' : 'Canon de arrendamiento' }`} value={formatPrice(props?.PrecioC)} />
+                <LinkSection route={"/assets/cards/link.svg"} title="Enlace del inmueble" link={props?.EnlaceC || ''} />
             </div>
             <Button type="button" onClick={generateLead} className="bg-primary flex justify-center my-4">
                 Generar Lead
