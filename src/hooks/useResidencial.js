@@ -2,11 +2,9 @@
 import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
 
 const useResidencial = () => {
 
-    const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [loaderActive, setLoaderActive] = React.useState(false)
     const [formData, setFormData] = React.useState({
