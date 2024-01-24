@@ -103,7 +103,7 @@ const Index = () => {
                     {alert}
                 </p>
             }
-            <Button type="submit" className="hover:bg-slate-300 bg-secondary my-3 flex justify-center"> Guardar cambios </Button>
+            <Button type="submit" className="hover:bg-slate-300 bg-secondary mt-8 flex justify-center"> Guardar cambios </Button>
         </form>
     )
 }

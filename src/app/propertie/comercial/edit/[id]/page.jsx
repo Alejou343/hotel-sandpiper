@@ -5,9 +5,9 @@ import Sidebar from '@/components/Sidebar'
 
 const Page = () => {
     return (
-        <div className='flex'>
+        <div className='flex items-center'>
             <Sidebar />
-            <div className="mx-auto my-4"> 
+            <div className="mx-auto my-4 form-section p-4 bg-auxiliar rounded-lg border-2 border-primary max-h-[70vh]"> 
                 <h1 className="text-primary text-center text-3xl font-bold"> Editar inmueble </h1>
                 <EditComercial />   
             </div>

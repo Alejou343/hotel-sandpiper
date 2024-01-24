@@ -96,7 +96,7 @@ const Index = () => {
                     {alert}
                 </p>
             }
-            <Button type="submit" className="hover:bg-slate-300 bg-secondary my-3 flex justify-center"> Publicar </Button>
+            <Button type="submit" className="hover:bg-slate-300 bg-secondary mt-6 flex justify-center"> Publicar </Button>
         </form>
     )
 }

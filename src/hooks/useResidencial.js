@@ -78,8 +78,19 @@ const useResidencial = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        
         try {
+            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            const formDataNumerico = {
+                ...formData,
+                Areaconstruida: parseInt(formData.Areaconstruida),
+                Habitaciones: parseInt(formData.Habitaciones),
+                Baños: parseInt(formData.Baños),
+                Parqueaderos: parseInt(formData.Parqueaderos),
+                Anoconstruccion: parseInt(formData.Anoconstruccion),
+                Precio: parseInt(formData.Precio),
+                Arealote: parseInt(formData.Arealote),
+            };
             axios.post(`${process.env.BACK_LINK}/api/addResidencia`, formDataNumerico, {
                 headers: {
                     "Authorization": `Bearer ${sessionInfo.accesToken}`
@@ -90,18 +101,6 @@ const useResidencial = () => {
         } catch (error) {
             console.error(error)
         }
-        
-        const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
-        const formDataNumerico = {
-            ...formData,
-            Areaconstruida: parseInt(formData.Areaconstruida),
-            Habitaciones: parseInt(formData.Habitaciones),
-            Baños: parseInt(formData.Baños),
-            Parqueaderos: parseInt(formData.Parqueaderos),
-            Anoconstruccion: parseInt(formData.Anoconstruccion),
-            Precio: parseInt(formData.Precio),
-            Arealote: parseInt(formData.Arealote),
-        };
     };
 
     return {

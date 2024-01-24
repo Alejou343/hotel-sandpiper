@@ -10,7 +10,7 @@ const Index = () => {
     const { alert, formData, uploadImage, handleInputChange, handleSubmit, loaderActive } = useResidencial()
 
     return (
-        <form onSubmit={handleSubmit} className="my-4 overflow-y-auto h-[70vh]">
+        <form onSubmit={handleSubmit} className="form-residencial my-4 h-[72vh]">
             <Loader active={loaderActive} />    
             <FormSelect 
                 id="Tiporesidencia"
@@ -131,7 +131,7 @@ const Index = () => {
                 <input type="file" id="Imagen" accept="image/*" onChange={uploadImage} />
             </div>
             {alert && <p className={`${alert == "Imagen subida exitosamente." ? "text-green-400" : "text-red-500"} text-center text-xs my-4`}>{alert}</p>}
-            <Button type="submit" className="hover:bg-slate-300 my-3 bg-secondary flex justify-center"> Publicar </Button>
+            <Button type="submit" className="hover:bg-slate-300 mt-8 bg-secondary flex justify-center"> Publicar </Button>
         </form>
     )
 }
