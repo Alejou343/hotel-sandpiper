@@ -12,7 +12,13 @@ import './index.css'
 const Index = () => {
 
   const { item } = useItem()
-  const views = [<TableResidencial />, <TableComercial />, <LeadTable />, <Form />]
+  const views = [
+    { key: 'Residencial', component: <TableResidencial />},
+    { key: 'Comercial', component: <TableComercial />},
+    { key: 'Lead', component: <LeadTable />},
+    { key: 'Form', component: <Form />}
+  ]
+
 
     return (
       <div>
@@ -20,7 +26,7 @@ const Index = () => {
         <div className='flex'>
           <Sidebar />
           <div className="table-container mx-auto my-4">
-            {views[item - 1]}
+            {views[item - 1]?.component}
           </div>
         </div>
       </div>
