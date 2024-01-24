@@ -74,8 +74,8 @@ const Index = () => {
                     <td className='border px-2 text-center'>$ {inmueble.PrecioR}</td>
                     <td className='border px-2'>
                         {inmueble.EstadoR == "Disponible" 
-                        ? <Image src="/assets/green-circle.png" alt="green.png" width={20} height={20} className="mx-auto" /> 
-                        : <Image src="/assets/red-circle.png" alt="red.png" width={20} height={20} className="mx-auto" />}
+                        ? <Image src="/assets/green-circle.png" alt="green.png" title={inmueble.EstadoR} width={20} height={20} className="mx-auto cursor-pointer" /> 
+                        : <Image src="/assets/red-circle.png" alt="red.png" title={inmueble.EstadoR} width={20} height={20} className="mx-auto cursor-pointer" />}
                     </td>
                     <td className='border px-2 text-center cursor-pointer' onClick={() => handleNavigate(`/propertie/residencial/edit/${inmueble.ID_Residencial}`, inmueble.ID_Residencial)}>
                         <Image src="/assets/edit.png" alt="edit.png" width={20} height={20} className="mx-auto" />
