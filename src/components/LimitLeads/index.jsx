@@ -44,7 +44,10 @@ const Index = ({ setState }) => {
             axios.patch(`${process.env.BACK_LINK}/api/amountLead/${userInfo?.answer[0]?.Correo_Inmobiliaria}`, {
                 Numero: parseInt(value)
             })
-            setState(false)
+            .then(() => {
+                location.reload()
+                setState(false)
+            })
         } catch (error) {
             console.error(error)
         }
