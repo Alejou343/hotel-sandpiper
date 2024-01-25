@@ -24,3 +24,10 @@
     border: 0.5vh solid #009d71;
 }
 
+.residencial-information {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+

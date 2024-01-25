@@ -44,7 +44,7 @@ const Index = ({ props }) => {
           : <Image src="/assets/red-circle.png" alt="unavailable" width={25} height={25} />}
         </div>      
       </div>
-      <div className="grid grid-cols-3">
+      <div className="residencial-information">
         <CardSection route={"/assets/cards/area.svg"} title="Area Construida" value={`${props?.Area_ConstruidaR}  m²`} />
         <CardSection route={"/assets/cards/city.svg"} title="Ciudad" value={props?.CiudadR} />
         <CardSection route={"/assets/cards/neighbor.svg"} title="Barrio" value={props?.BarrioR || 'No Aplica'} />
