@@ -47,28 +47,28 @@ const Index = () => {
           type="button" 
           className={`text-xs ${item == 1 ? styles[0] : styles[1]}`} 
         >
-          Mis Propiedades residenciales
+          Propiedades residenciales
         </Button>
         <Button 
           onClick={() => handleChange(2)} 
           type="button" 
           className={`text-xs ${item == 2 ? styles[0] : styles[1]}`} 
           >
-          Mis Propiedades comerciales 
+          Propiedades comerciales 
           </Button>
         <Button 
           onClick={() => handleChange(3)} 
           type="button" 
           className={`text-xs ${item == 3 ? styles[0] : styles[1]}`} 
         >
-          Mis Leads
+          Leads
         </Button>
         <Button 
           onClick={() => handleChange(4)} 
           type="button" 
           className={`text-xs ${item == 4 ? styles[0] : styles[1]}`} 
         >
-          Añadir Propiedad 
+          {user?.rol == 'admin' ? 'Inmobiliarias' : 'Añadir propiedad'} 
         </Button>
       </div>
       <UserInfo props = {{user, handleLogout}} />

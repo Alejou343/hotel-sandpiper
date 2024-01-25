@@ -6,19 +6,25 @@ import Cookies from 'js-cookie'
 
 const Index = () => {
 
-    // Pendiente: Realizar lógica para ver leads comerciales o residenciales
-
-    const [loaderActive, setLoaderActive] = React.useState(true)
     const [leads, setLeads] = React.useState([])
+    const [loaderActive, setLoaderActive] = React.useState(true)
 
     React.useEffect(() => {
         try {
             const userInfo = JSON.parse(Cookies.get('SessionInfo'))
-            setLoaderActive(true)
-            Promise.all([
+
+            const adminLeads = [
+                axios.get(`${process.env.BACK_LINK}/api/getAllLeadsR`),
+                axios.get(`${process.env.BACK_LINK}/api/getAllLeadsC`)
+            ]
+        
+            const userLeads = [
                 axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
-                axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)  
-            ])
+                axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)
+            ]
+        
+            setLoaderActive(true)
+            Promise.all(userInfo?.answer[0]?.rol == 'admin' ? adminLeads : userLeads)
             .then(([response1, response2]) => {
                 setLeads([...response1.data, ...response2.data])
                 setLoaderActive(false)
@@ -35,7 +41,7 @@ const Index = () => {
   return (
     <div className="bg-primary max-w-5xl max-h-[80vh] overflow-auto py-1 rounded-md">
         <Loader active={loaderActive} />
-        <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis Leads</h1>
+        <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Leads</h1>
         <table className="table table-hover bg-auxiliar">
             <thead className='bg-secondary text-white'>
                 <tr>        
@@ -44,7 +50,6 @@ const Index = () => {
                     <th className='border px-2 font-bold'>Nombre Cliente</th>
                     <th className='border px-2 font-bold'>Teléfono Cliente</th>                                              
                     <th className='border px-2 font-bold'>Fecha de generación</th>                                              
-                    {/* <th className='border px-2 font-bold'>Detalles</th> */}
                 </tr>
             </thead>
             <tbody>
@@ -55,9 +60,6 @@ const Index = () => {
                     <td className='border px-2 text-center'>{lead?.Nombrecliente}</td>
                     <td className='border px-2 text-center'>{lead?.Numerocliente}</td>
                     <td className='border px-2 text-center'>{lead?.Fechalead.substr(0,10)}</td>
-                    {/* <td className='border px-2 text-center' onClick={() => console.log(`Viendo el inmueble ${id + 1}`)}>
-                        <Image src="/assets/open.png" alt="view.png" width={20} height={20} className="mx-auto" />
-                    </td> */}
                 </tr>)}           
             </tbody>          
         </table>

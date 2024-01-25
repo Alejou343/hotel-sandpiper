@@ -17,11 +17,15 @@ const Index = () => {
 
     React.useEffect(() => {
         try {
-            const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            const userInfo = JSON.parse(Cookies.get('SessionInfo'))
             setLoaderActive(true)
-            axios.get(`${process.env.BACK_LINK}/api/UserComercial/${sessionInfo?.answer[0]?.Correo_Inmobiliaria}`, {
+
+            const userComercials = `${process.env.BACK_LINK}/api/UserComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`
+            const adminComercials = `${process.env.BACK_LINK}/api/getAllC`
+
+            axios.get(userInfo?.answer[0]?.rol == 'admin' ? adminComercials : userComercials ,  {
                 headers: {
-                    "Authorization": `Bearer ${sessionInfo.accesToken}`
+                    "Authorization": `Bearer ${userInfo?.accesToken}`
                 }
             })
             .then((result) => {
