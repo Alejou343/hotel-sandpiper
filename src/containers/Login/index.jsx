@@ -30,9 +30,9 @@ const Index = () => {
     };
 
     const eventLogin = (response) => {
+        router.push('/main')
         Cookies.set('SessionInfo', JSON.stringify(response.data))
         setLoaderActive(false)
-        router.push('/main')
     }
 
     const eventLoginFailed = (error) => {
@@ -71,7 +71,6 @@ const Index = () => {
         />
         <p className='text-xs text-red-500 text-center'> {alert} </p>
         <Button 
-            onClick={() => console.log("Datos a enviar --> ", formData)} 
             type="submit" 
             className="bg-secondary"
         >

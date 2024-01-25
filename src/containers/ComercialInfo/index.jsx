@@ -44,7 +44,7 @@ const Index = ({ props }) => {
                     : <Image src="/assets/red-circle.png" alt="unavailable" width={25} height={25} />}
                 </div>      
             </div>
-            <div className="information grid grid-cols-3">
+            <div className="grid grid-cols-3">
                 <CardSection route={"/assets/cards/area.svg"} title="Area Construida" value={`${props?.AreaC}  m²`} />
                 <CardSection route={"/assets/cards/city.svg"} title="Ciudad" value={props?.CiudadC} />
                 <CardSection route={"/assets/cards/neighbor.svg"} title="Barrio" value={props?.BarrioC || 'No Aplica'} />
@@ -52,9 +52,7 @@ const Index = ({ props }) => {
                 <CardSection route={"/assets/cards/price.svg"} title={`${props?.Tipo_ServicioC == 'Comprar' ? 'Precio de venta' : 'Canon de arrendamiento' }`} value={formatPrice(props?.PrecioC)} />
                 <LinkSection route={"/assets/cards/link.svg"} title="Enlace del inmueble" link={props?.EnlaceC || ''} />
             </div>
-            <Button type="button" onClick={generateLead} className="bg-primary flex justify-center my-4">
-                Generar Lead
-            </Button>
+            <Button type="button" onClick={generateLead} className="bg-primary flex justify-center my-4"> Generar Lead </Button>
             {alert.includes('Hubo') 
             ? <p className='text-xs text-red-500 text-center my-4'> {alert} </p>
             : <p className='text-xs text-primary text-center my-4'> {alert} </p>}

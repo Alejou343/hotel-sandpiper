@@ -44,7 +44,7 @@ const Index = ({ props }) => {
           : <Image src="/assets/red-circle.png" alt="unavailable" width={25} height={25} />}
         </div>      
       </div>
-      <div className="information grid grid-cols-3">
+      <div className="grid grid-cols-3">
         <CardSection route={"/assets/cards/area.svg"} title="Area Construida" value={`${props?.Area_ConstruidaR}  m²`} />
         <CardSection route={"/assets/cards/city.svg"} title="Ciudad" value={props?.CiudadR} />
         <CardSection route={"/assets/cards/neighbor.svg"} title="Barrio" value={props?.BarrioR || 'No Aplica'} />
@@ -66,12 +66,3 @@ const Index = ({ props }) => {
 }
 
 export default Index
-
-
-{/* <div className="flex justify-between px-3">
-  <p className="text-sm"> {props?.Area_ConstruidaR} m² </p>
-  <p className="text-sm"> | </p>
-  <p className="text-sm"> {props?.HabitacionR} Habitaciones </p>
-  <p className="text-sm"> | </p>
-  <p className="text-sm"> {props?.BanosR} Baños </p>
-</div> */}
