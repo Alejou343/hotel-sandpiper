@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import axios from 'axios'
+import Image from 'next/image'
 import Cookies from 'js-cookie'
 import Loader from '@/components/Loader'
 
@@ -31,6 +32,28 @@ const Index = () => {
         }
     }, [])
 
+    const handleSendEmail = (nombre, inmobiliaria, correo, cantidadLeads) => {
+        
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        const actualDate = new Date()
+        const actualMonth = actualDate.getMonth()
+
+        return console.log(`
+        Mail to: ${correo}
+        
+        Asunto: Facturación del mes de ${months[actualMonth]} para ${inmobiliaria}
+        
+        Buenos días ${nombre}, esperamos que te encuentres muy bien
+        Envío factura de cobro por ${cantidadLeads} LEADS que fueron enviados en el mes de ${months[actualMonth]}
+        Quedo pendiente ante cualquier novedad, ¡Muchas gracias y feliz día!
+
+        Adjunto: facturación_${months[actualMonth]}_${inmobiliaria}.pdf
+
+        Atentamente: Lina Otalvaro
+        Representante de Capital Pocket
+        `)
+    }
+
   return (
     <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
         <Loader active={loaderActive} />
@@ -52,7 +75,17 @@ const Index = () => {
                     <td className='border px-2 text-center cursor-pointer'>{inmobiliaria.Nombre_Inmobiliaria}</td>
                     <td className='border px-2 text-center'>{inmobiliaria.Celular}</td>
                     <td className='border px-2 text-center'>{inmobiliaria.Personaencargada}</td>
-                    <td className='border px-2 text-center cursor-pointer'> Enviar email </td>
+                    <td className='border px-2 text-center cursor-pointer'>
+                        <Image 
+                        src="/assets/send.png" 
+                        alt="send-icon" 
+                        width={20} 
+                        height={20} 
+                        className='mx-auto' 
+                        title='Enviar facturación'
+                        onClick={() => handleSendEmail(inmobiliaria.Personaencargada, inmobiliaria.Nombre_Inmobiliaria, inmobiliaria.Correofacturacion, inmobiliaria.cantidadLeads)} 
+                        /> 
+                    </td>
                 </tr>)}           
             </tbody>          
         </table>

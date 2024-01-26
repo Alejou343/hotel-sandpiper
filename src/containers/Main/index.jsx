@@ -7,7 +7,7 @@ import Sidebar from '@/components/Sidebar'
 import LeadTable from '@/components/LeadTable'
 import { useItem } from '@/context/ItemContext'
 import TableComercial from '@/components/TableComercial'
-import TableInmobiliary from '@/components/TableInmobiary'
+import TableInmobiliary from '@/components/TableInmobiliary'
 import TableResidencial from '@/components/TableResidencial'
 import './index.css'
 
