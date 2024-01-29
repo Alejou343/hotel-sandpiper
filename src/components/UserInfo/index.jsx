@@ -10,8 +10,8 @@ const Index = ({ props }) => {
                     <Image src="/assets/logout.png" alt="logout.png" width={30} height={30} className='my-4 mx-auto w-auto' />
                 </div>
                 <p className='text-white text-xl font-bold'>{props?.user?.Nombre_Inmobiliaria}</p>
-                <p>{props?.user?.Correo_Inmobiliaria}</p>
-                <p>{props?.user?.Celular}</p>
+                <p className='text-sm'>{props?.user?.Correo_Inmobiliaria}</p>
+                <p className='text-sm'>{props?.user?.Celular}</p>
             </div>
         </div>
     )

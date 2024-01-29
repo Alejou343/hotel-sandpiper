@@ -9,10 +9,12 @@ const Index = () => {
 
     const [inmobiliarias, setInmobiliarias] = React.useState([])
     const [loaderActive, setLoaderActive] = React.useState(false)
+    const [mail, setMail] = React.useState('')
 
     React.useEffect(() => {
         try {
             const sessionInfo = JSON.parse(Cookies.get('SessionInfo'))
+            setMail(sessionInfo.answer[0].Correo_Inmobiliaria)
             setLoaderActive(true)
             axios.get(`${process.env.BACK_LINK}/api/getI`, {
                 headers: {
@@ -32,22 +34,23 @@ const Index = () => {
         }
     }, [])
 
-    const handleSendEmail = (nombre, inmobiliaria, correo, cantidadLeads) => {
+    const handleSendEmail = (from, name, inmobiliary, to, leadsQuantity) => {
         
         const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
         const actualDate = new Date()
         const actualMonth = actualDate.getMonth()
 
         return console.log(`
-        Mail to: ${correo}
+        Mail from: ${from}
+        Mail to: ${to}
         
-        Asunto: Facturación del mes de ${months[actualMonth]} para ${inmobiliaria}
+        Asunto: Facturación del mes de ${months[actualMonth]} para ${inmobiliary}
         
-        Buenos días ${nombre}, esperamos que te encuentres muy bien
-        Envío factura de cobro por ${cantidadLeads} LEADS que fueron enviados en el mes de ${months[actualMonth]}
+        Buenos días ${name}, esperamos que te encuentres muy bien
+        Envío factura de cobro por ${leadsQuantity} LEADS que fueron enviados en el mes de ${months[actualMonth]}
         Quedo pendiente ante cualquier novedad, ¡Muchas gracias y feliz día!
 
-        Adjunto: facturación_${months[actualMonth]}_${inmobiliaria}.pdf
+        Adjunto: Facturación_${months[actualMonth]}_${inmobiliary.replaceAll(' ', '_')}.pdf
 
         Atentamente: Lina Otalvaro
         Representante de Capital Pocket
@@ -69,7 +72,9 @@ const Index = () => {
                 </tr>
             </thead>
             <tbody>
-                {inmobiliarias.map(inmobiliaria => 
+                {inmobiliarias
+                .filter(inmobiliaria => inmobiliaria.rol !== 'admin')
+                .map(inmobiliaria => 
                 <tr key={inmobiliaria.ID_Inmobiliaria} className="hover:bg-slate-300">
                     <td className='border px-2 text-center'>{inmobiliaria.ID_Inmobiliaria}</td>
                     <td className='border px-2 text-center cursor-pointer'>{inmobiliaria.Nombre_Inmobiliaria}</td>
@@ -83,7 +88,7 @@ const Index = () => {
                         height={20} 
                         className='mx-auto' 
                         title='Enviar facturación'
-                        onClick={() => handleSendEmail(inmobiliaria.Personaencargada, inmobiliaria.Nombre_Inmobiliaria, inmobiliaria.Correofacturacion, inmobiliaria.cantidadLeads)} 
+                        onClick={() => handleSendEmail(mail, inmobiliaria.Personaencargada, inmobiliaria.Nombre_Inmobiliaria, inmobiliaria.Correofacturacion, inmobiliaria.cantidadLeads)} 
                         /> 
                     </td>
                 </tr>)}           
