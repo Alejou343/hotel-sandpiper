@@ -38,7 +38,6 @@ const Index = ({ setState }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log({Numero: parseInt(value)})
         try {
             const userInfo = JSON.parse(Cookies.get('SessionInfo'))
             axios.patch(`${process.env.BACK_LINK}/api/amountLead/${userInfo?.answer[0]?.Correo_Inmobiliaria}`, {

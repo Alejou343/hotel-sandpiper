@@ -14,7 +14,6 @@ const Index = () => {
         try {
             const userInfo = JSON.parse(Cookies.get('SessionInfo'))
             setRol(userInfo?.answer[0]?.rol)
-            console.log(userInfo?.answer[0]?.rol)
 
             Promise.all([
                 axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
