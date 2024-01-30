@@ -82,7 +82,7 @@ const Index = () => {
                     <td className='border px-2 text-center'>{inmobiliaria.Personaencargada}</td>
                     <td className='border px-2 text-center cursor-pointer'>
                         <Image 
-                        src="/assets/send.png" 
+                        src="/assets/send.svg" 
                         alt="send-icon" 
                         width={20} 
                         height={20} 

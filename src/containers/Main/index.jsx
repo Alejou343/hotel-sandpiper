@@ -9,19 +9,22 @@ import { useItem } from '@/context/ItemContext'
 import TableComercial from '@/components/TableComercial'
 import TableInmobiliary from '@/components/TableInmobiliary'
 import TableResidencial from '@/components/TableResidencial'
+import LimitButton from '@/components/LimitButton'
 import './index.css'
 
 const Index = () => {
 
   const { item } = useItem()
   const [user, setUser] = React.useState()
-
+  const [rol, setRol] = React.useState()
+  
   React.useEffect(() => {
     try {
       const userLogged = JSON.parse(Cookies.get('SessionInfo'))
 
       if (userLogged) {
         setUser(userLogged?.answer[0])
+        setRol(userLogged?.answer[0]?.rol)
       }
     } catch (error) {
       console.error(error)
@@ -44,6 +47,7 @@ const Index = () => {
             {views[item - 1]?.component}
           </div>
         </div>
+        {rol == 'admin' ? null : <LimitButton />}
       </div>
     )
 }

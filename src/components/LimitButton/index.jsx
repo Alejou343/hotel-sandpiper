@@ -18,8 +18,8 @@ const Index = () => {
       <div className='flex'>
         {isHover && <p className='border text-sm border-primary absolute right-[5%] bottom-9 p-2 rounded-lg bg-auxiliar'> Definir límite mensual de Leads </p>}
       <Image 
-        src="/assets/warning.png" 
-        alt="limit-modal.png" 
+        src="/assets/warning.svg" 
+        alt="limit-modal.svg" 
         width={50} 
         height={50} 
         className="absolute bottom-8 right-8 cursor-pointer" 

@@ -37,11 +37,11 @@ const Index = ({ props }) => {
       <Image src={props?.ImagenR || '/assets/default-house.jpg'} alt="foto" width={400} height={400} className="card-image aspect-square rounded-lg mb-2" />
       <div className="flex justify-between px-3">
         <p className="font-bold mx-auto"> {props?.NombreR.toUpperCase()} </p>
-        <Image src="/assets/edit.png" alt="edit" width={35} height={35} className="icon-edit absolute cursor-pointer" onClick={() => router.push(`/propertie/residencial/edit/${formData.Idresidencia}`)} />
+        <Image src="/assets/edit.svg" alt="edit" width={30} height={35} title="Editar" className="icon-edit absolute cursor-pointer" onClick={() => router.push(`/propertie/residencial/edit/${formData.Idresidencia}`)} />
         <div className="is-available">
           {props?.EstadoR == "Disponible" 
-          ? <Image src="/assets/green-circle.png" alt="available" width={25} height={25} /> 
-          : <Image src="/assets/red-circle.png" alt="unavailable" width={25} height={25} />}
+          ? <Image src="/assets/green-circle.svg" alt="available" width={25} height={25} /> 
+          : <Image src="/assets/red-circle.svg" alt="unavailable" width={25} height={25} />}
         </div>      
       </div>
       <div className="residencial-information">
