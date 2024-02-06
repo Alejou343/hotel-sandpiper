@@ -8,27 +8,14 @@ import LoginSection from '@/components/LoginSection'
 const Index = ({ setState }) => {
 
     const [value, setValue] = React.useState(null)
-    const [loaderActive, setLoaderActive] = React.useState(true)
+    const [loaderActive, setLoaderActive] = React.useState(false)
     const [leads, setLeads] = React.useState([])
 
     React.useEffect(() => {
         try {
-            setLoaderActive(true)
-            const userInfo = JSON.parse(Cookies.get('SessionInfo'))
-            Promise.all([
-                axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
-                axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`)  
-            ])
-            .then(([response1, response2]) => {
-                setLeads([...response1.data, ...response2.data])
-                setLoaderActive(false)
-            })
-            .catch(error => {
-                console.error(error)
-                setLoaderActive(false)
-            })
+            // Lógica para cuando el componente se monta exitosamente
         } catch (error) {
-            console.error(error)
+            // Logica para cuando el componente se monta y no sucede nada
         }
     }, [])
 
@@ -39,16 +26,9 @@ const Index = ({ setState }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         try {
-            const userInfo = JSON.parse(Cookies.get('SessionInfo'))
-            axios.patch(`${process.env.BACK_LINK}/api/amountLead/${userInfo?.answer[0]?.Correo_Inmobiliaria}`, {
-                Numero: parseInt(value)
-            })
-            .then(() => {
-                location.reload()
-                setState(false)
-            })
+            // Cuando se envía el formulario
         } catch (error) {
-            console.error(error)
+            // Cuando sucede un error al enviar el formulario
         }
     }
 

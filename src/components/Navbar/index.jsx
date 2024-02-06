@@ -12,26 +12,9 @@ const Index = () => {
 
     React.useEffect(() => {
         try {
-            const userInfo = JSON.parse(Cookies.get('SessionInfo'))
-            setRol(userInfo?.answer[0]?.rol)
-
-            Promise.all([
-                axios.get(`${process.env.BACK_LINK}/api/UserLeadResidencia/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
-                axios.get(`${process.env.BACK_LINK}/api/UserLeadComercial/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
-                axios.get(`${process.env.BACK_LINK}/api/getAmountLeads/${userInfo?.answer[0]?.Correo_Inmobiliaria}`),
-                axios.get(`${process.env.BACK_LINK}/api/allLeads`)
-            ])
-            .then(([response1, response2, response3, response4]) => {
-                setLeads([...response1.data, ...response2.data])
-                setTotal(response3.data)
-                setNumber(response4.data)
-            })
-            .catch(error => {
-                console.error(error)
-            })
-
+            // --> Evento cuando se monte el componente con éxito
         } catch (error) {
-            console.error('Error al obtener la Cookie', error)
+            // --> Evento cuando ocurra un error al montar el componente
         }
     }, [])
 

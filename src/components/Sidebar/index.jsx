@@ -19,10 +19,10 @@ const Index = () => {
         const userLogged = JSON.parse(Cookies.get('SessionInfo'))
 
         if (userLogged) {
-          setUser(userLogged?.answer[0])
+          setUser(userLogged?.data?.user_name)
         }
       } catch (error) {
-        console.error(error)
+        console.error('Error al renderizar --> ', error)
       }
     }, [])
 

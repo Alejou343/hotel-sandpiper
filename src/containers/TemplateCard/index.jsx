@@ -26,10 +26,8 @@ const Index = ({ props }) => {
         setFormData({...formData, Idcomercial: parseInt(response)})
     }, [])
 
-    const generateLead = async () => {
-        return await axios.post(`${process.env.BACK_LINK}/api/addLeadComercial`, formData)
-        .then(() => setAlert('¡Lead enviado con éxito!'))
-        .catch(() => setAlert('¡Hubo un problema al enviar el Lead!'))
+    const generateLead = () => {
+        return console.log('Lead generado con éxito')
     }
 
     return (
