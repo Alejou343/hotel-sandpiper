@@ -1,24 +1,20 @@
 "use client"
 import axios from 'axios';
 import React from 'react';
-import Link from 'next/link';
-import Cookies from 'js-cookie';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import SideHeader from '@/components/SideHeader';
 import LoginSection from '@/components/LoginSection';
-import PasswordSection from '@/components/PasswordSection';
 
 const Index = () => {
 
     const router = useRouter()
     const [alert, setAlert] = React.useState('')
+    const [warning, setWarning] = React.useState('')
     const [loaderActive, setLoaderActive] = React.useState(false)
-    
     const [formData, setFormData] = React.useState({
         user_name: '',
-        user_password: '',
     });     
 
     const handleInputChange = (e) => {
@@ -29,28 +25,31 @@ const Index = () => {
         });
     };
 
-    const eventLogin = (response) => {
-        router.push('/main')
-        Cookies.set('SessionInfo', JSON.stringify(response.data))
+    const eventForgot = (response) => {
         setLoaderActive(false)
+        setAlert(response?.data?.data?.message)
+        setTimeout(() => {
+            router.push('/')
+        }, 3000);
+    }
+    
+    const eventForgotFailed = (error) => {
+        setLoaderActive(false)
+        setWarning(error?.response?.data?.error)
     }
 
-    const eventLoginFailed = (error) => {
-        setLoaderActive(false)
-        setAlert(error?.response?.data?.message)
-    }
-
-    const onLoginSubmit = (e) => {
-        setAlert('')
+    const onForgotSubmit = (e) => {
         e.preventDefault()
+        setAlert('')
+        setWarning('')
         setLoaderActive(true)
-        axios.post(`${process.env.BACK_LINK}/api/login`, formData)
-        .then((response) => eventLogin(response))
-        .catch((error) => eventLoginFailed(error))
+        axios.post(`${process.env.BACK_LINK}/api/forgotpassword`, formData)
+        .then((response) => eventForgot(response))
+        .catch((error) => eventForgotFailed(error))
     }
 
   return (
-    <form className="flex flex-col gap-4 bg-auxiliar p-6 rounded-lg" onSubmit={onLoginSubmit}>
+    <form className="flex flex-col bg-auxiliar p-6 rounded-lg" onSubmit={onForgotSubmit}>
         <Loader active={loaderActive} />
         <SideHeader to="/" />
         <LoginSection  
@@ -62,23 +61,14 @@ const Index = () => {
             onChange={handleInputChange}
             value={formData.user_name}
         />
-        <PasswordSection  
-            id="user_password"
-            label="Contraseña"
-            placeholder="**********"
-            onChange={handleInputChange}
-            value={formData.user_password}
-        />
-        <p className='text-xs my-2 text-red-500 text-center'> {alert} </p>
+        <p className='text-xs my-2 text-primary text-center'> {alert} </p>
+        <p className='text-xs my-2 text-red-500 text-center'> {warning} </p>
         <Button 
             type="submit" 
             className="bg-secondary"
         >
-            Ingresar
+            Recuperar
         </Button>
-        <Link href="/forgot" className='text-sm text-center my-3'>
-            <p><u>Olvidé mi contraseña</u></p>
-        </Link>
     </form>
   )
 }

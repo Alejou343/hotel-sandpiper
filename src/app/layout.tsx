@@ -6,8 +6,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Pocki inmobiliario',
-  description: 'Pocki ahora te ayuda a encontrar la vivienda de tus sueños',
+  title: 'Hotel Sandpiper',
+  description: 'Pocki ahora te ayuda a administrar tu hotel',
 }
 
 export default function RootLayout({
