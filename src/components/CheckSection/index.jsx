@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Index = ({ name, checked, handleChecked }) => {
+
   return (
     <div className='flex justify-between w-1/2 mx-auto'>
         <input type='checkbox' checked={checked} onChange={handleChecked} />

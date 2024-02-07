@@ -8,12 +8,14 @@ import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import SideHeader from '@/components/SideHeader';
 import LoginSection from '@/components/LoginSection';
+import CheckSection from '@/components/CheckSection';
 import PasswordSection from '@/components/PasswordSection';
 
 const Index = () => {
 
     const router = useRouter()
     const [alert, setAlert] = React.useState('')
+    const [state, setState] = React.useState(false)
     const [loaderActive, setLoaderActive] = React.useState(false)
     
     const [formData, setFormData] = React.useState({
@@ -29,7 +31,25 @@ const Index = () => {
         });
     };
 
+    React.useEffect(() => {
+
+        if (localStorage.getItem('USERNAME') && localStorage.getItem('USERPASSWORD')) {
+            
+            setState(true)
+            setFormData({
+                user_name: localStorage.getItem('USERNAME') || '',
+                user_password: localStorage.getItem('USERPASSWORD') || ''
+            })
+        }
+    }, [])
+
     const eventLogin = (response) => {
+        if (state) {
+            localStorage.setItem('USERNAME', formData.user_name)
+            localStorage.setItem('USERPASSWORD', formData.user_password)
+        } else {
+            localStorage.clear()
+        }
         router.push('/main')
         Cookies.set('SessionInfo', JSON.stringify(response.data))
         setLoaderActive(false)
@@ -61,14 +81,17 @@ const Index = () => {
             placeholder="Nombre de usuario"
             onChange={handleInputChange}
             value={formData.user_name}
-        />
+            defaultValue={formData.user_name}
+            />
         <PasswordSection  
             id="user_password"
             label="Contraseña"
             placeholder="**********"
             onChange={handleInputChange}
             value={formData.user_password}
+            defaultValue={formData.user_password}
         />
+        <CheckSection name="Recuérdame" checked={state} handleChecked={() => setState(!state)} />
         <p className='text-xs my-2 text-red-500 text-center'> {alert} </p>
         <Button 
             type="submit" 

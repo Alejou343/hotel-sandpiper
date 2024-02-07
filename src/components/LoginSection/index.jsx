@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-const Index = ({id, placeholder, label, onChange, type, className, minValue, maxValue}) => {
+const Index = ({id, placeholder, label, onChange, type, className, minValue, maxValue, defaultValue}) => {
 
     return (
         <div className="mb-2">
@@ -16,6 +16,7 @@ const Index = ({id, placeholder, label, onChange, type, className, minValue, max
                     onChange={onChange}
                     min={minValue}
                     max={maxValue}
+                    defaultValue={defaultValue}
                     required
                 />
             </div>

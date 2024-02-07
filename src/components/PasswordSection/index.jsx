@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-const Index = ({id, placeholder, label, onChange}) => {
+const Index = ({id, placeholder, label, onChange, defaultValue}) => {
 
     const [state, setState] = React.useState(false)
 
@@ -17,6 +17,7 @@ const Index = ({id, placeholder, label, onChange}) => {
                     id={id} 
                     placeholder={placeholder}
                     onChange={onChange}
+                    defaultValue={defaultValue}
                     required
                 />
                 <Image 
