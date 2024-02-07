@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
 import Cookies from 'js-cookie'
-import Navbar from '@/components/Navbar'
+// import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import { useItem } from '@/context/ItemContext'
-import LimitButton from '@/components/LimitButton'
+// import LimitButton from '@/components/LimitButton'
 import './index.css'
 
 const Index = () => {
@@ -33,14 +33,14 @@ const Index = () => {
 
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className='flex'>
           <Sidebar />
           <div className="table-container mx-auto my-4">
             {views[item - 1]?.component}
           </div>
         </div>
-        {user?.user_roles == 'admin' ? null : <LimitButton />}
+        {/* {user?.user_roles == 'admin' ? null : <LimitButton />} */}
       </div>
     )
 }
