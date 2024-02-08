@@ -3,6 +3,7 @@ import React from 'react'
 import Cookies from 'js-cookie'
 // import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
+import MainMenu from '@/components/MainMenu'
 import { useItem } from '@/context/ItemContext'
 // import LimitButton from '@/components/LimitButton'
 import './index.css'
@@ -25,10 +26,10 @@ const Index = () => {
   }, [])
   
   const views = [
-    { key: 'Residencial', component: <p>Item 1</p>},
-    { key: 'Comercial', component: <p> Item 2 </p>},
-    { key: 'Lead', component: <p> Item 3 </p>},
-    { key: 'Form', component: user?.rol == 'admin' ?  <p> Item 4 </p> : <p> Item 5 </p>}
+    { key: 'Crear', component: <MainMenu id={1} title={"Crear"} />},
+    { key: 'Administrar', component: <MainMenu id={2} title={"Administrar"} />},
+    // { key: 'Actualizar', component: <MainMenu id={3} title={"Actualizar"} />},
+    // { key: 'Eliminar', component: <MainMenu id={4} title={"Eliminar"} />}
   ]
 
     return (
@@ -37,7 +38,7 @@ const Index = () => {
         <div className='flex'>
           <Sidebar />
           <div className="table-container mx-auto my-4">
-            {views[item - 1]?.component}
+            {views[item]?.component}
           </div>
         </div>
         {/* {user?.user_roles == 'admin' ? null : <LimitButton />} */}

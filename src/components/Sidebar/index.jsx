@@ -41,35 +41,35 @@ const Index = () => {
   return (
     <aside className="bg-primary w-1/6 h-screen relative py-12 rounded-r-[4rem]">
       <SideHeader to="/main" />
-      <div className="buttons gap-8 flex flex-col">
+      <div className="buttons flex flex-col gap-4">
+        <Button 
+          onClick={() => handleChange(0)} 
+          type="button" 
+          className={`text-xs ${item == 0 ? styles[0] : styles[1]}`} 
+        >
+          Crear
+        </Button>
         <Button 
           onClick={() => handleChange(1)} 
           type="button" 
           className={`text-xs ${item == 1 ? styles[0] : styles[1]}`} 
         >
-          Propiedades residenciales
+          Administrar
         </Button>
-        <Button 
+        {/* <Button 
           onClick={() => handleChange(2)} 
           type="button" 
           className={`text-xs ${item == 2 ? styles[0] : styles[1]}`} 
-          >
-          Propiedades comerciales 
-          </Button>
+        >
+          Actualizar
+        </Button>
         <Button 
           onClick={() => handleChange(3)} 
           type="button" 
           className={`text-xs ${item == 3 ? styles[0] : styles[1]}`} 
         >
-          Leads
-        </Button>
-        <Button 
-          onClick={() => handleChange(4)} 
-          type="button" 
-          className={`text-xs ${item == 4 ? styles[0] : styles[1]}`} 
-        >
-          {user?.rol == 'admin' ? 'Inmobiliarias' : 'Añadir propiedad'} 
-        </Button>
+          Eliminar
+        </Button> */}
       </div>
       <UserInfo props = {{user, handleLogout}} />
     </aside>
