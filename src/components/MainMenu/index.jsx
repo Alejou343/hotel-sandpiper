@@ -14,10 +14,9 @@ const Index = ({ id, title }) => {
         <section className="grid grid-cols-3 gap-4">
             {views?.map( view => 
             <Link key={view.id} href={`${actions[item?.item]?.name}/${view.name.toLowerCase()}`}>
-                <div 
-                className={`${(view.id + id) % 2 
-                ? "bg-primary text-secondary" 
-                : "bg-secondary text-primary"} 
+                <div className={`${(view.id + id) % 2 
+                ? "bg-primary text-secondary hover:opacity-60 hover:text-black" 
+                : "bg-secondary text-primary hover:opacity-60 hover:text-black"} 
                 aspect-square section w-[10rem] font-bold flex justify-center items-center rounded-lg cursor-pointer`}> 
                     {view.name} 
                 </div>

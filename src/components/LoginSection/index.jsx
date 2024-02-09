@@ -1,21 +1,21 @@
 "use client"
 import React from 'react'
 
-const Index = ({id, placeholder, label, onChange, type, className, minValue, maxValue, defaultValue}) => {
+const Index = ({id, placeholder, label, onChange, type, className, defaultValue}) => {
 
     return (
-        <div className="mb-2">
-            <label htmlFor={id} className={`form-label text-secondary font-semibold ${className.label}`}>{label}</label>
-            <div className="relative items-center flex justify-center">
+        <div className={`mb-2 ${className?.div}`}>
+            <label htmlFor={id} className={`form-label text-secondary font-semibold ${className?.label}`}>{label}</label>
+            <div className="relative">
                 <input 
                     type={type}
-                    className={`${className.input} h-10 px-3 rounded-lg placeholder:text-sm`}
+                    className={`${className?.input} h-9 px-3 rounded-lg placeholder:text-sm`}
                     aria-describedby="inputGroupPrepend"
                     id={id} 
                     placeholder={placeholder}
                     onChange={onChange}
-                    min={minValue}
-                    max={maxValue}
+                    min={100}
+                    max={800}
                     defaultValue={defaultValue}
                     required
                 />

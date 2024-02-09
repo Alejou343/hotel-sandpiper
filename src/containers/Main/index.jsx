@@ -28,8 +28,6 @@ const Index = () => {
   const views = [
     { key: 'Crear', component: <MainMenu id={1} title={"Crear"} />},
     { key: 'Administrar', component: <MainMenu id={2} title={"Administrar"} />},
-    // { key: 'Actualizar', component: <MainMenu id={3} title={"Actualizar"} />},
-    // { key: 'Eliminar', component: <MainMenu id={4} title={"Eliminar"} />}
   ]
 
     return (

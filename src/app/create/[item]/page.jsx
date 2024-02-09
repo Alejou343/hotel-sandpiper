@@ -2,6 +2,7 @@
 import React from 'react'
 import Sidebar from '@/components/Sidebar'
 import { usePathname } from 'next/navigation'
+import RoomCreateForm from '@/containers/RoomCreateForm'
 
 const page = () => {
 
@@ -13,7 +14,7 @@ const page = () => {
       <div className='flex'>
         <Sidebar />
         <div className="table-container mx-auto my-4 flex justify-center items-center">
-          Create {pathname}
+          <RoomCreateForm />
         </div>
       </div>
       {/* {user?.user_roles == 'admin' ? null : <LimitButton />} */}
