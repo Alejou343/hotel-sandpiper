@@ -1,11 +1,6 @@
 export const views = [
-    {id: 1, name: "Rooms"},
-    {id: 2, name: "Guests"},
-    {id: 3, name: "Housekeepers"},
-    {id: 4, name: "Drivers"},
-    {id: 5, name: "Cars"},
-    {id: 6, name: "Employments"},
-    {id: 7, name: "Supervisors"},
-    {id: 8, name: "Reservations"}, 
-    {id: 9, name: "Admins"},
+    {id: 1, name: "Ver"},
+    {id: 2, name: "Crear"},
+    {id: 3, name: "Actualizar"},
+    {id: 4, name: "Eliminar"},
 ]

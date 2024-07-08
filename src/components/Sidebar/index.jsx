@@ -14,17 +14,17 @@ const Index = () => {
     const [user, setUser] = React.useState()
     const { item, setItem } = useItem() 
 
-    React.useEffect(() => {
-      try {
-        const userLogged = JSON.parse(Cookies.get('SessionInfo'))
+    // React.useEffect(() => {
+    //   try {
+    //     const userLogged = JSON.parse(Cookies.get('SessionInfo'))
 
-        if (userLogged) {
-          setUser(userLogged?.data?.user_name)
-        }
-      } catch (error) {
-        console.error('Error al renderizar --> ', error)
-      }
-    }, [])
+    //     if (userLogged) {
+    //       setUser(userLogged?.data?.user_name)
+    //     }
+    //   } catch (error) {
+    //     console.error('Error al renderizar --> ', error)
+    //   }
+    // }, [])
 
     const handleLogout = () => {
       Cookies.remove('SessionInfo')
@@ -47,29 +47,36 @@ const Index = () => {
           type="button" 
           className={`text-xs ${item == 0 ? styles[0] : styles[1]}`} 
         >
-          Crear
+          Operational Role
         </Button>
         <Button 
           onClick={() => handleChange(1)} 
           type="button" 
           className={`text-xs ${item == 1 ? styles[0] : styles[1]}`} 
         >
-          Administrar
+          Maintenance Inventory
         </Button>
-        {/* <Button 
+        <Button 
           onClick={() => handleChange(2)} 
           type="button" 
           className={`text-xs ${item == 2 ? styles[0] : styles[1]}`} 
         >
-          Actualizar
+          Cleanning Staff
         </Button>
         <Button 
           onClick={() => handleChange(3)} 
           type="button" 
           className={`text-xs ${item == 3 ? styles[0] : styles[1]}`} 
         >
-          Eliminar
-        </Button> */}
+          Room
+        </Button>
+        <Button 
+          onClick={() => handleChange(4)} 
+          type="button" 
+          className={`text-xs ${item == 4 ? styles[0] : styles[1]}`} 
+        >
+          Category Room
+        </Button>
       </div>
       <UserInfo props = {{user, handleLogout}} />
     </aside>

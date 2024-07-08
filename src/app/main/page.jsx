@@ -9,16 +9,17 @@ const Page = () => {
 
   const router = useRouter()
 
-  React.useEffect(() => {
-    try {
-      const userLogged = Cookies.get('SessionInfo')
-      if (!userLogged) {
-        router.push('/')
-      }
-    } catch (error) {
-        console.error(error)
-    }
-  }, [])
+  // React.useEffect(() => {
+  //   try {
+  //     const userLogged = Cookies.get('SessionInfo')
+  //     if (!userLogged) {
+  //       // router.push('/')
+  //       console.error('Usuario no logeado')
+  //     }
+  //   } catch (error) {
+  //       console.error(error)
+  //   }
+  // }, [])
 
   return (
     <Main />

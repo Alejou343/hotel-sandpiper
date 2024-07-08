@@ -13,21 +13,24 @@ const Index = () => {
   const { item } = useItem()
   const [user, setUser] = React.useState()
   
-  React.useEffect(() => {
-    try {
-      const userLogged = JSON.parse(Cookies.get('SessionInfo'))
+  // React.useEffect(() => {
+  //   try {
+  //     const userLogged = JSON.parse(Cookies.get('SessionInfo'))
 
-      if (userLogged) {
-        setUser(userLogged?.data?.user_name)
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }, [])
+  //     if (userLogged) {
+  //       setUser(userLogged?.data?.user_name)
+  //     }
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }, [])
   
   const views = [
-    { key: 'Crear', component: <MainMenu id={1} title={"Crear"} />},
-    { key: 'Administrar', component: <MainMenu id={2} title={"Administrar"} />},
+    { key: 'Operation Role', component: <MainMenu id={1} title={"Operation Role"} />},
+    { key: 'Maintenance Inventory', component: <MainMenu id={2} title={"Maintenance Inventory"} />},
+    { key: 'Cleanning Staff', component: <MainMenu id={3} title={"Cleanning Staff"} />},
+    { key: 'Room', component: <MainMenu id={4} title={"Room"} />},
+    { key: 'Category Room', component: <MainMenu id={5} title={"Category Room"} />},
   ]
 
     return (

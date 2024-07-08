@@ -61,12 +61,13 @@ const Index = () => {
     }
 
     const onLoginSubmit = (e) => {
-        setAlert('')
         e.preventDefault()
+        return router.push('/main')
+        setAlert('')
         setLoaderActive(true)
-        axios.post(`${process.env.BACK_LINK}/api/login`, formData)
-        .then((response) => eventLogin(response))
-        .catch((error) => eventLoginFailed(error))
+        // axios.post(`${process.env.BACK_LINK}/api/login`, formData)
+        // .then((response) => eventLogin(response))
+        // .catch((error) => eventLoginFailed(error))
     }
 
   return (

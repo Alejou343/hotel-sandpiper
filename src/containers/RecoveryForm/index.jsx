@@ -47,9 +47,9 @@ const Index = () => {
         setAlert('')
         setWarning('')
         setLoaderActive(true)
-        axios.post(`${process.env.BACK_LINK}/api/auth/resetpassword`, formData)
-        .then((response) => eventRecovery(response))
-        .catch((error) => eventRecoveryFailed(error))
+        // axios.post(`${process.env.BACK_LINK}/api/auth/resetpassword`, formData)
+        // .then((response) => eventRecovery(response))
+        // .catch((error) => eventRecoveryFailed(error))
     }
 
   return (

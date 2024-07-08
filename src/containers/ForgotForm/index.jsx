@@ -43,9 +43,9 @@ const Index = () => {
         setAlert('')
         setWarning('')
         setLoaderActive(true)
-        axios.post(`${process.env.BACK_LINK}/api/forgotpassword`, formData)
-        .then((response) => eventForgot(response))
-        .catch((error) => eventForgotFailed(error))
+        // axios.post(`${process.env.BACK_LINK}/api/forgotpassword`, formData)
+        // .then((response) => eventForgot(response))
+        // .catch((error) => eventForgotFailed(error))
     }
 
   return (
