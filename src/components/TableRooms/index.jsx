@@ -1,42 +1,49 @@
 import React from 'react'
+import axios from 'axios';
 
-const Index = () => {
+const Index = ({ endpoint }) => {
 
-    const inmuebles = [
-        {id: 1001, name: "Alexander", floor: 1, status: "Occuped"},
-        {id: 1006, name: "Santiago", floor: 1, status: "Clean"},
-        {id: 2008, name: "Lina", floor: 2, status: "Occuped"},
-        {id: 3005, name: "Simon", floor: 3, status: "Occuped"},
-        {id: 4001, name: "Alexandra", floor: 4, status: "Clean"},
-    ]
+    const [rows, setRows] = React.useState([])
+    const [keys, setKeys] = React.useState([]);
 
-  return (
-    <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
-        <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis Propiedades Residenciales</h1>
-        <table className="table table-hover bg-auxiliar">
-            <thead className='bg-secondary text-white'>
-                <tr>        
-                    <th className='border px-2 font-bold'> ID Inmueble </th>                    
-                    <th className='border px-2 font-bold'>Nombre Inmueble</th>
-                    <th className='border px-2 font-bold'>Tipo Negocio</th>                                              
-                    <th className='border px-2 font-bold'>Precio Inmueble</th>                                               
-                </tr>
-            </thead>
-            <tbody>
-                {inmuebles.map(inmueble => 
-                <tr key={inmueble.id} className="hover:bg-slate-300">
-                    <td className='border px-2 text-center'>{inmueble.status}</td>
-                    <td className='border px-2 text-center cursor-pointer'>{inmueble.id}</td>
-                    <td className='border px-2 text-center'>{inmueble.name}</td>
-                    <td className='border px-2 text-center'>$ {inmueble.type}</td>
-                </tr>)}           
-            </tbody>          
-        </table>
-        <div className="bg-primary text-white rounded-md text-center my-1">
-            <b>Total Habitaciones: </b> {inmuebles.length}
+    React.useEffect(() => {
+        try {
+            axios.get(`${process.env.BACK_LINK}/api/${endpoint}`)
+            .then((response) => setRows(response.data.data))
+            setKeys([...new Set(rows.flatMap(row => Object.keys(row)))])
+        } catch (err){
+            setError(err)
+        }
+    }, [rows])
+
+    // console.log(rows)
+
+    return (
+        <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
+            <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis Rooms</h1>
+            <table className="table table-hover bg-auxiliar">
+                <thead className='bg-secondary text-white'>
+                    <tr>
+                        {keys?.map(key => 
+                        <th className='border px-2 font-bold w-full' key={key}> {key} </th>)}
+                        <th className='border px-2 font-bold w-full'> Editar </th>
+                        <th className='border px-2 font-bold w-full'> Eliminar </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows?.map(row =>
+                        <tr key={row.id_room} className="hover:bg-slate-300 cursor-pointer">
+                            {keys.map(key => <td className='border px-2 text-center' key={key}> {row[key] || ''} </td>)}
+                            <td className='border px-2 text-center'> Editar </td>
+                            <td className='border px-2 text-center'> Eliminar </td>
+                        </tr>)}
+                </tbody>
+            </table>
+            <div className="bg-primary text-white rounded-md text-center my-1">
+                <b>Total Rooms: </b> {rows.length}
+            </div>
         </div>
-    </div>  
-  )
+    )
 }
 
 export default Index
