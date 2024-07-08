@@ -2,9 +2,8 @@
 import React from 'react'
 import Sidebar from '@/components/Sidebar'
 import { usePathname } from 'next/navigation'
-import RoomCreateForm from '@/containers/RoomCreateForm'
 
-const page = () => {
+const index = () => {
 
   const pathname = usePathname()
 
@@ -13,8 +12,8 @@ const page = () => {
       {/* <Navbar /> */}
       <div className='flex'>
         <Sidebar />
-        <div className="table-container mx-auto my-4 flex justify-center items-center">
-          <RoomCreateForm />
+        <div className="table-container mx-auto my-4">
+          Create {pathname}
         </div>
       </div>
       {/* {user?.user_roles == 'admin' ? null : <LimitButton />} */}
@@ -22,4 +21,4 @@ const page = () => {
   )
 }
 
-export default page
+export default index

@@ -7,7 +7,7 @@ const page = () => {
     const pathname = usePathname()
 
   return (
-    <div>Visualización del employment {pathname}</div>
+    <div>Visualización de la ruta {pathname}</div>
   )
 }
 
