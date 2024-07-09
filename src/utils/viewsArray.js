@@ -1,5 +1,3 @@
-export const views = [
-    {id: 1, name: "Crear"},
-    {id: 2, name: "Actualizar"},
-    {id: 3, name: "Eliminar"},
+export const buttons = [
+    {id: 1, name: "Crear"}
 ]

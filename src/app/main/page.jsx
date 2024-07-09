@@ -1,28 +1,28 @@
 "use client"
 import React from 'react'
-import Main from '@/containers/Main'
-import { useRouter } from 'next/navigation'
+import Layout from '@/containers/Layout'
+import MainMenu from '@/components/MainMenu'
+import { useItem } from '@/context/ItemContext'
+import TableRooms from '@/components/TableRooms'
 import Cookies from 'js-cookie'
 
 
 const Page = () => {
 
-  const router = useRouter()
+  const { item } = useItem()
 
-  // React.useEffect(() => {
-  //   try {
-  //     const userLogged = Cookies.get('SessionInfo')
-  //     if (!userLogged) {
-  //       // router.push('/')
-  //       console.error('Usuario no logeado')
-  //     }
-  //   } catch (error) {
-  //       console.error(error)
-  //   }
-  // }, [])
+  const views = [
+    { key: 'Operation Role', component: <MainMenu />, endpoint: 'operationalRoles'},
+    { key: 'Maintenance Inventory', component: <MainMenu />, endpoint: 'maintenanceInventories'},
+    { key: 'Cleanning Staff', component: <MainMenu />, endpoint: 'cleaningStaffs'},
+    { key: 'Room', component: <MainMenu />, endpoint: 'rooms'},
+    { key: 'Category Room', component: <MainMenu />, endpoint: 'CategoryRooms'},
+  ]
 
   return (
-    <Main />
+    <Layout>
+      <TableRooms endpoint={views[item]?.endpoint} title={views[item]?.key} />  
+    </Layout>
   )
 }
 

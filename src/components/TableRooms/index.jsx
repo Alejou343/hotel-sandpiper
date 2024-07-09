@@ -1,49 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useItem } from '@/context/ItemContext';
 
-const Index = ({ endpoint }) => {
+const Index = ({ endpoint, title }) => {
+    const { item } = useItem();
+    const [rows, setRows] = useState([]);
+    const [keys, setKeys] = useState([]);
+    const [error, setError] = useState(null);
 
-    const [rows, setRows] = React.useState([])
-    const [keys, setKeys] = React.useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${process.env.BACK_LINK}/api/${endpoint}`);
+                setRows(response.data.data);
+                // Calculate keys after data is fetched
+                const allKeys = response.data.data.flatMap(row => Object.keys(row));
+                const uniqueKeys = [...new Set(allKeys)];
+                setKeys(uniqueKeys);
+            } catch (err) {
+                setError(err);
+            }
+        };
 
-    React.useEffect(() => {
-        try {
-            axios.get(`${process.env.BACK_LINK}/api/${endpoint}`)
-            .then((response) => setRows(response.data.data))
-            setKeys([...new Set(rows.flatMap(row => Object.keys(row)))])
-        } catch (err){
-            setError(err)
-        }
-    }, [rows])
-
-    // console.log(rows)
+        fetchData();
+    }, [endpoint]); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
 
     return (
         <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
-            <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis Rooms</h1>
+            <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis {title}s</h1>
             <table className="table table-hover bg-auxiliar">
                 <thead className='bg-secondary text-white'>
                     <tr>
-                        {keys?.map(key => 
-                        <th className='border px-2 font-bold w-full' key={key}> {key} </th>)}
-                        <th className='border px-2 font-bold w-full'> Editar </th>
-                        <th className='border px-2 font-bold w-full'> Eliminar </th>
+                        {keys.map(key => (
+                            <th className='border px-2 font-bold' key={key}>{key}</th>
+                        ))}
+                        <th className='border px-2 font-bold'>Editar</th>
+                        <th className='border px-2 font-bold'>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {rows?.map(row =>
-                        <tr key={row.id_room} className="hover:bg-slate-300 cursor-pointer">
-                            {keys.map(key => <td className='border px-2 text-center' key={key}> {row[key] || ''} </td>)}
-                            <td className='border px-2 text-center'> Editar </td>
-                            <td className='border px-2 text-center'> Eliminar </td>
-                        </tr>)}
+                    {rows.map((row, id) => (
+                        <tr key={id} className="hover:bg-slate-300 cursor-pointer">
+                            {keys.map(key => (
+                                <td className='border px-2 text-center text-sm' key={`${key}-${id}`}>
+                                    {row[key] || ''}
+                                </td>
+                            ))}
+                            <td className='border px-2 text-center text-sm'>Editar</td>
+                            <td className='border px-2 text-center text-sm'>Eliminar</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             <div className="bg-primary text-white rounded-md text-center my-1">
-                <b>Total Rooms: </b> {rows.length}
+                <b>Total {title}s:</b> {rows.length}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Index
+export default Index;
