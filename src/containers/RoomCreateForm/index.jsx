@@ -6,7 +6,7 @@ import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import FormSelect from '@/components/FormSelect';
 import SideHeader from '@/components/SideHeader';
-import LoginSection from '@/components/LoginSection';
+import FormSection from '@/components/FormSection';
 
 const Index = () => {
 
@@ -40,7 +40,7 @@ const Index = () => {
     //     setWarning(error?.response?.data?.error)
     // }
 
-    const onForgotSubmit = (e) => {
+    const onFormatSubmit = (e) => {
         e.preventDefault()
         setAlert('')
         setWarning('')
@@ -52,15 +52,14 @@ const Index = () => {
     }
 
   return (
-    <form className="flex flex-col bg-auxiliar p-4 rounded-lg w-[18rem]" onSubmit={onForgotSubmit}>
+    <form className="flex flex-col bg-auxiliar p-4 rounded-lg w-[18rem]" onSubmit={onFormatSubmit}>
         <Loader active={loaderActive} />
         <SideHeader to="/" />
-        <LoginSection  
-            label="Código"
-            className={{div: "flex items-center justify-between"}}
+        <FormSection  
             type="number"
             id="number_room"
             placeholder="# ID"
+            label="Código"
             onChange={handleInputChange}
             value={formData.number_room}
         />
@@ -78,7 +77,7 @@ const Index = () => {
             type="submit" 
             className="bg-secondary"
         >
-            Recuperar
+            Crear
         </Button>
     </form>
   )

@@ -16,7 +16,6 @@ const Page = () => {
     { key: 'Maintenance Inventory', component: <MainMenu />, endpoint: 'maintenanceInventories'},
     { key: 'Cleanning Staff', component: <MainMenu />, endpoint: 'cleaningStaffs'},
     { key: 'Room', component: <MainMenu />, endpoint: 'rooms'},
-    { key: 'Category Room', component: <MainMenu />, endpoint: 'CategoryRooms'},
   ]
 
   return (

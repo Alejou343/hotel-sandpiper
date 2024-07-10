@@ -17,13 +17,12 @@ const Index = ({ children }) => {
         { key: 'Operation Role', component: <MainMenu />, endpoint: 'operationalRoles'},
         { key: 'Maintenance Inventory', component: <MainMenu />, endpoint: 'maintenanceInventories'},
         { key: 'Cleanning Staff', component: <MainMenu />, endpoint: 'cleaningStaffs'},
-        { key: 'Room', component: <MainMenu />, endpoint: 'rooms'},
-        { key: 'Category Room', component: <MainMenu />, endpoint: 'CategoryRooms'},
+        { key: 'Room', component: <MainMenu />, endpoint: 'rooms'}
     ]
 
     React.useEffect(() => {
         try {
-            const userLogged = JSON.parse(Cookies.get('SessionInfo'))
+            const userLogged = JSON.parse(Cookies.get('SessionInfo') || '{}')
             if (userLogged) {
                 setUser(userLogged?.data?.user_name)
             }

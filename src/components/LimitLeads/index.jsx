@@ -3,7 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import Loader from '@/components/Loader'
 import Button from '@/components/Button'
-import LoginSection from '@/components/LoginSection'
+import FormSection from '@/components/FormSection'
 
 const Index = ({ setState }) => {
 
@@ -35,7 +35,7 @@ const Index = ({ setState }) => {
   return (
     <form className="form-limits" onSubmit={handleSubmit}>
         <Loader active={loaderActive} />
-        <LoginSection 
+        <FormSection 
             type="number"
             id="lead-limit"
             className={{label: 'flex justify-center', input: 'w-1/3 my-2'}}

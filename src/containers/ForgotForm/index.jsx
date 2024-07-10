@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import SideHeader from '@/components/SideHeader';
-import LoginSection from '@/components/LoginSection';
+import FormSection from '@/components/FormSection';
 
 const Index = () => {
 
@@ -52,7 +52,7 @@ const Index = () => {
     <form className="flex flex-col bg-auxiliar p-6 rounded-lg" onSubmit={onForgotSubmit}>
         <Loader active={loaderActive} />
         <SideHeader to="/" />
-        <LoginSection  
+        <FormSection  
             label="Nombre de usuario"
             className={"w-full"}
             type="text"
