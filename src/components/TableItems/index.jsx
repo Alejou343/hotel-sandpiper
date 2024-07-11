@@ -9,8 +9,6 @@ const Index = ({ endpoint, title }) => {
     const { item } = useItem();
     const [rows, setRows] = useState([]);
     const [keys, setKeys] = useState([]);
-
-    console.log(item)
     const [error, setError] = useState(null);
 
     useEffect(() => {
