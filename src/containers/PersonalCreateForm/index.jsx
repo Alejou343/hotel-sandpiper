@@ -3,21 +3,30 @@ import axios from 'axios';
 import React from 'react';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import FormSelect from '@/components/FormSelect';
 import SideHeader from '@/components/SideHeader';
 import FormSection from '@/components/FormSection';
 
 const Index = () => {
 
+    const roles = {
+        cleanning_staff: ['Hk Supervisor', 'HouseKeeper', 'HM Supervisor', 'HouseMan'],
+        maintenance_inventory: ['building manager', 'quality control', 'lost y found', 'inventory', 'mt supervisor', 'maintenace tech', 'painter'],
+        operational_role: ['resort manager', 'general manager', 'remo supervisor', 'room control', 'front desk', 'assistan manager', 'remodeling official']
+    }
+
     const router = useRouter()
+    const pathName = usePathname()
     const [alert, setAlert] = React.useState('')
     const [warning, setWarning] = React.useState('')
     const [loaderActive, setLoaderActive] = React.useState(false)
     const [formData, setFormData] = React.useState({
-        number_room: '',
-        name_category_room: 'v/c',
-    });     
+        fullName: '',
+        phone: '',
+        email: '',
+        role: ''
+    });   
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -55,30 +64,13 @@ const Index = () => {
     <form className="flex flex-col bg-auxiliar p-4 rounded-lg w-[18rem]" onSubmit={onFormatSubmit}>
         <Loader active={loaderActive} />
         <SideHeader to="/" />
-        <FormSection  
-            type="number"
-            id="number_room"
-            placeholder="# ID"
-            label="Código"
-            onChange={handleInputChange}
-            value={formData.number_room}
-        />
-        {/* <FormSelect  
-            label="Estado"
-            id="name_category_room"
-            list={['v/c', 'o', 'v/d', 'ooo', 'clean/in', 'clean/out', 'p/s']}
-            onChange={handleInputChange}
-            className={{select: "cursor-pointer"}}
-            value={formData.name_category_room}
-        /> */}
+        <FormSection type="text" id="fullName" placeholder="John Doe" label="Nombre completo" onChange={handleInputChange} value={formData.fullName} />
+        <FormSection type="text" id="phone" placeholder="3001234567" label="Número de celular" onChange={handleInputChange} value={formData.phone} />
+        <FormSection type="text" id="email" placeholder="johndoe@mail.com" label="Correo electrónico" onChange={handleInputChange} value={formData.email} />
+        <FormSelect list={roles[`${pathName?.split('/')[1]}`]} id="role" label="Rol de usuario" onChange={handleInputChange} value={formData.role} className={{select: 'w-1/2'}} />
         <p className='text-xs my-2 text-primary text-center'> {alert} </p>
         <p className='text-xs my-2 text-red-500 text-center'> {warning} </p>
-        <Button 
-            type="submit" 
-            className="bg-secondary"
-        >
-            Crear
-        </Button>
+        <Button type="submit" className="bg-secondary"> Crear </Button>
     </form>
   )
 }

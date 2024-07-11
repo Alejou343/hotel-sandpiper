@@ -7,7 +7,7 @@ import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import SideHeader from '@/components/SideHeader';
-import FormSection from '@/components/FormSection';
+import LoginSection from '@/components/LoginSection';
 import CheckSection from '@/components/CheckSection';
 import PasswordSection from '@/components/PasswordSection';
 
@@ -74,7 +74,7 @@ const Index = () => {
     <form className="flex flex-col gap-4 bg-auxiliar p-4 rounded-lg" onSubmit={onLoginSubmit}>
         <Loader active={loaderActive} />
         <SideHeader to="/" />
-        <FormSection  
+        <LoginSection  
             label="Nombre de usuario"
             className={"w-full"}
             type="text"

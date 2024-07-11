@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useItem } from '@/context/ItemContext';
+import Image from 'next/image';
 
 const Index = ({ endpoint, title }) => {
     const { item } = useItem();
@@ -46,8 +47,12 @@ const Index = ({ endpoint, title }) => {
                                     {row[key] || ''}
                                 </td>
                             ))}
-                            <td className='border px-2 text-center text-sm'>Editar</td>
-                            <td className='border px-2 text-center text-sm'>Eliminar</td>
+                            <td className='border px-2 text-center text-sm'>
+                                <Image src='/assets/edit.svg' width={15} height={15} className='mx-auto'/>
+                            </td>
+                            <td className='border px-2 text-center text-sm'>
+                                <Image src='/assets/delete.svg' width={15} height={15} className='mx-auto'/>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

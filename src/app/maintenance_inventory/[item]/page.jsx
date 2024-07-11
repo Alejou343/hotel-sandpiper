@@ -1,15 +1,13 @@
 "use client"
 import React from 'react'
-import { usePathname } from 'next/navigation'
 import Layout from '@/containers/Layout'
+import PersonalCreateForm from '@/containers/PersonalCreateForm'
 
 const page = () => {
 
-    const pathname = usePathname()
-
   return (
     <Layout>
-      <div>Visualización de la ruta {pathname}</div>
+      <PersonalCreateForm />
     </Layout>
   )
 }
