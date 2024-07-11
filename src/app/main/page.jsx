@@ -3,7 +3,7 @@ import React from 'react'
 import Layout from '@/containers/Layout'
 import MainMenu from '@/components/MainMenu'
 import { useItem } from '@/context/ItemContext'
-import TableRooms from '@/components/TableRooms'
+import TableItems from '@/components/TableItems'
 import Cookies from 'js-cookie'
 
 
@@ -20,7 +20,7 @@ const Page = () => {
 
   return (
     <Layout>
-      <TableRooms endpoint={views[item]?.endpoint} title={views[item]?.key} />  
+      <TableItems endpoint={views[item]?.endpoint} title={views[item]?.key} />  
     </Layout>
   )
 }

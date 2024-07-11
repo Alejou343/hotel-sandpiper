@@ -48,10 +48,10 @@ const Index = ({ endpoint, title }) => {
                                 </td>
                             ))}
                             <td className='border px-2 text-center text-sm'>
-                                <Image src='/assets/edit.svg' width={15} height={15} className='mx-auto'/>
+                                <Image src='/assets/edit.svg' alt={'/edit.svg'} width={15} height={15} className='mx-auto'/>
                             </td>
                             <td className='border px-2 text-center text-sm'>
-                                <Image src='/assets/delete.svg' width={15} height={15} className='mx-auto'/>
+                                <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'/>
                             </td>
                         </tr>
                     ))}

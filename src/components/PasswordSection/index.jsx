@@ -21,7 +21,8 @@ const Index = ({id, placeholder, label, onChange, defaultValue}) => {
                     required
                 />
                 <Image 
-                    src={`/assets/${state ? 'open' : 'close'}.svg`} alt="check" 
+                    src={`/assets/${state ? 'open' : 'close'}.svg`} 
+                    alt="check" 
                     className="absolute right-3 cursor-pointer"
                     onClick={() => setState(!state)}
                     width={20}

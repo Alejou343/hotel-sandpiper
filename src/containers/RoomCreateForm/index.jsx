@@ -4,10 +4,10 @@ import React from 'react';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import { useRouter, usePathname } from 'next/navigation';
-import { roles } from '@/utils/rolesObj';
 import FormSelect from '@/components/FormSelect';
 import SideHeader from '@/components/SideHeader';
 import FormSection from '@/components/FormSection';
+import { roles } from '@/utils/rolesObj';
 
 const Index = () => {
 
@@ -17,10 +17,9 @@ const Index = () => {
     const [warning, setWarning] = React.useState('')
     const [loaderActive, setLoaderActive] = React.useState(false)
     const [formData, setFormData] = React.useState({
-        fullName: '',
-        phone: '',
-        email: '',
-        role: ''
+        hotelName: '',
+        number: '',
+        name_category_room: ''
     });   
 
     const handleInputChange = (e) => {
@@ -59,10 +58,9 @@ const Index = () => {
     <form className="flex flex-col bg-auxiliar p-4 rounded-lg w-[18rem]" onSubmit={onFormatSubmit}>
         <Loader active={loaderActive} />
         <SideHeader to="/" />
-        <FormSection type="text" id="fullName" placeholder="John Doe" label="Nombre completo" onChange={handleInputChange} value={formData.fullName} />
-        <FormSection type="text" id="phone" placeholder="3001234567" label="Número de celular" onChange={handleInputChange} value={formData.phone} />
-        <FormSection type="text" id="email" placeholder="johndoe@mail.com" label="Correo electrónico" onChange={handleInputChange} value={formData.email} />
-        <FormSelect list={roles[`${pathName?.split('/')[1]}`]} id="role" label="Rol de usuario" onChange={handleInputChange} value={formData.role} className={{select: 'w-1/2'}} />
+        <FormSection type="text" id="hotelName" placeholder="Hotel Sandpiper" label="Nombre Hotel" onChange={handleInputChange} value={formData.hotelName} />
+        <FormSection type="text" id="number" placeholder="1001" label="Número habitación" onChange={handleInputChange} value={formData.number} />
+        <FormSelect list={roles[`${pathName?.split('/')[1]}`]} id="name_category_room" label="Categoría" onChange={handleInputChange} value={formData.name_category_room} className={{select: 'w-1/2'}} />
         <p className='text-xs my-2 text-primary text-center'> {alert} </p>
         <p className='text-xs my-2 text-red-500 text-center'> {warning} </p>
         <Button type="submit" className="bg-secondary"> Crear </Button>
