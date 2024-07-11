@@ -16,11 +16,13 @@ const Index = () => {
     const [alert, setAlert] = React.useState('')
     const [warning, setWarning] = React.useState('')
     const [loaderActive, setLoaderActive] = React.useState(false)
+    const { options, endpoint } = roles[`${pathName?.split('/')[1]}`]
     const [formData, setFormData] = React.useState({
         hotelName: '',
         number: '',
         name_category_room: ''
-    });   
+    });
+    
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -30,28 +32,27 @@ const Index = () => {
         });
     };
 
-    // const eventForgot = (response) => {
-    //     setLoaderActive(false)
-    //     setAlert(response?.data?.data?.message)
-    //     setTimeout(() => {
-    //         router.push('/')
-    //     }, 3000);
-    // }
+    const eventSubmit = (response) => {
+        setLoaderActive(false)
+        setAlert(response?.data?.message)
+        setTimeout(() => {
+            router.push('/main')
+        }, 3000);
+    }
     
-    // const eventForgotFailed = (error) => {
-    //     setLoaderActive(false)
-    //     setWarning(error?.response?.data?.error)
-    // }
+    const eventSubmitFailed = (error) => {
+        setLoaderActive(false)
+        setWarning(error?.response?.data?.message)
+    }
 
     const onFormatSubmit = (e) => {
         e.preventDefault()
         setAlert('')
         setWarning('')
         // setLoaderActive(true)
-        console.log('DATOS A ENVIAR --> ', formData)
-        // axios.post(`${process.env.BACK_LINK}/api/forgotpassword`, formData)
-        // .then((response) => eventForgot(response))
-        // .catch((error) => eventForgotFailed(error))
+        axios.post(`${process.env.BACK_LINK}/api/${endpoint}`, formData)
+        .then((response) => eventSubmit(response))
+        .catch((error) => eventSubmitFailed(error))
     }
 
   return (
@@ -60,7 +61,7 @@ const Index = () => {
         <SideHeader to="/" />
         <FormSection type="text" id="hotelName" placeholder="Hotel Sandpiper" label="Nombre Hotel" onChange={handleInputChange} value={formData.hotelName} />
         <FormSection type="text" id="number" placeholder="1001" label="Número habitación" onChange={handleInputChange} value={formData.number} />
-        <FormSelect list={roles[`${pathName?.split('/')[1]}`]} id="name_category_room" label="Categoría" onChange={handleInputChange} value={formData.name_category_room} className={{select: 'w-1/2'}} />
+        <FormSelect list={options} id="name_category_room" label="Categoría" onChange={handleInputChange} value={formData.name_category_room} className={{select: 'w-1/2'}} />
         <p className='text-xs my-2 text-primary text-center'> {alert} </p>
         <p className='text-xs my-2 text-red-500 text-center'> {warning} </p>
         <Button type="submit" className="bg-secondary"> Crear </Button>

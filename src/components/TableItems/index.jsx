@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useItem } from '@/context/ItemContext';
+import Link from 'next/link';
+import { actions } from '@/utils/actionsArray';
 import Image from 'next/image';
 
 const Index = ({ endpoint, title }) => {
     const { item } = useItem();
     const [rows, setRows] = useState([]);
     const [keys, setKeys] = useState([]);
+
+    console.log(item)
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -48,10 +52,14 @@ const Index = ({ endpoint, title }) => {
                                 </td>
                             ))}
                             <td className='border px-2 text-center text-sm'>
-                                <Image src='/assets/edit.svg' alt={'/edit.svg'} width={15} height={15} className='mx-auto'/>
+                                <Link key={id} href={`${actions[item]?.name}/editar/${id}`}>
+                                    <Image src='/assets/edit.svg' alt={'/edit.svg'} width={15} height={15} className='mx-auto'/>            
+                                </Link>
                             </td>
                             <td className='border px-2 text-center text-sm'>
-                                <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'/>
+                                <Link key={id} href={`${actions[item]?.name}/editar/${id}`}>
+                                    <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'/>
+                                </Link>
                             </td>
                         </tr>
                     ))}
