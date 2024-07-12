@@ -1,7 +1,7 @@
 export const roles = {
     cleanning_staff: { 
         endpoint: 'cleaningStaff',
-        options: ['Hk Supervisor', 'HouseKeeper', 'HM Supervisor', 'HouseMan']
+        options: ['hk supervisor', 'housekeeper', 'hm supervisor', 'houseman']
     },
     maintenance_inventory: { 
         endpoint: 'maintenanceInventory',

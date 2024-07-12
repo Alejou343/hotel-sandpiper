@@ -4,10 +4,16 @@ import { useItem } from '@/context/ItemContext';
 import Link from 'next/link';
 import { actions } from '@/utils/actionsArray';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const Index = ({ endpoint, title }) => {
+
+    const router = useRouter()
     const { item } = useItem();
     const [rows, setRows] = useState([]);
+    const [alert, setAlert] = useState('');
+    const [warning, setWarning] = useState('');
+    const [loaderActive, setLoaderActive  ] = useState(false);
     const [keys, setKeys] = useState([]);
     const [error, setError] = useState(null);
 
@@ -27,6 +33,28 @@ const Index = ({ endpoint, title }) => {
 
         fetchData();
     }, [endpoint]); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
+
+    const eventSubmit = (response) => {
+        setLoaderActive(false)
+        setAlert(response?.data?.message)
+        setTimeout(() => {
+            router.push('/main')
+        }, 300);
+    }
+    
+    const eventSubmitFailed = (error) => {
+        setLoaderActive(false)
+        setWarning(error?.response?.data?.message)
+    }
+
+    const onFormatSubmit = (id) => {
+        setAlert('')
+        setWarning('')
+        setLoaderActive(true)
+        axios.delete(`${process.env.BACK_LINK}/api/${endpoint}/${id}`)
+        .then((response) => eventSubmit(response))
+        .catch((error) => eventSubmitFailed(error))
+    }
 
     return (
         <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
@@ -55,9 +83,7 @@ const Index = ({ endpoint, title }) => {
                                 </Link>
                             </td>
                             <td className='border px-2 text-center text-sm'>
-                                <Link key={id} href={`${actions[item]?.name}/editar/${id}`}>
-                                    <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'/>
-                                </Link>
+                                <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'  onClick={() => onFormatSubmit(row[`${keys[0]}`])} />
                             </td>
                         </tr>
                     ))}

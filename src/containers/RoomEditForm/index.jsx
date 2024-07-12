@@ -51,7 +51,7 @@ const Index = () => {
         setAlert(response?.data?.message)
         setTimeout(() => {
             router.push('/main')
-        }, 3000);
+        }, 300);
     }
     
     const eventSubmitFailed = (error) => {
@@ -64,7 +64,7 @@ const Index = () => {
         setAlert('')
         setWarning('')
         // setLoaderActive(true)
-        axios.post(`${process.env.BACK_LINK}/api/${endpoint}`, formData)
+        axios.put(`${process.env.BACK_LINK}/api/${endpoint}/${actualItem + 1}`, formData)
         .then((response) => eventSubmit(response))
         .catch((error) => eventSubmitFailed(error))
     }
