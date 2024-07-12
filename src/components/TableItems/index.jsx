@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { actions } from '@/utils/actionsArray';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import ModalGeneral from '@/containers/ModalGeneral';
+import DeleteContent from '@/components/DeleteContent';
 
 const Index = ({ endpoint, title }) => {
 
@@ -16,6 +18,7 @@ const Index = ({ endpoint, title }) => {
     const [loaderActive, setLoaderActive  ] = useState(false);
     const [keys, setKeys] = useState([]);
     const [error, setError] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -56,8 +59,15 @@ const Index = ({ endpoint, title }) => {
         .catch((error) => eventSubmitFailed(error))
     }
 
+    const openDeleteModal = () => {
+        setOpenModal(!openModal)
+    }
+
     return (
         <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
+            <ModalGeneral state={openModal} setState={setOpenModal}>
+                <DeleteContent submitAction={onFormatSubmit} state = {openModal} setState = {setOpenModal} />
+            </ModalGeneral>
             <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis {title}s</h1>
             <table className="table table-hover bg-auxiliar">
                 <thead className='bg-secondary text-white'>
@@ -78,12 +88,13 @@ const Index = ({ endpoint, title }) => {
                                 </td>
                             ))}
                             <td className='border px-2 text-center text-sm'>
-                                <Link key={id} href={`${actions[item]?.name}/editar/${id}`}>
+                                <Link key={row[keys[0]]} href={`${actions[item]?.name}/editar/${row[keys[0]]}`}>
                                     <Image src='/assets/edit.svg' alt={'/edit.svg'} width={15} height={15} className='mx-auto'/>            
                                 </Link>
                             </td>
                             <td className='border px-2 text-center text-sm'>
-                                <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'  onClick={() => onFormatSubmit(row[`${keys[0]}`])} />
+                                {/* <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'  onClick={() => onFormatSubmit(row[keys[0]])} /> */}
+                                <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'  onClick={openDeleteModal} />
                             </td>
                         </tr>
                     ))}

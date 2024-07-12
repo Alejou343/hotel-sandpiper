@@ -28,7 +28,7 @@ const Index = () => {
     React.useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.BACK_LINK}/api/${endpoint}/${actualItem + 1}`);
+                const response = await axios.get(`${process.env.BACK_LINK}/api/${endpoint}/${actualItem}`);
                 setFormData(response.data.data);
             } catch (err) {
                 setError(err);
