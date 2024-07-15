@@ -4,18 +4,14 @@ import { useItem } from '@/context/ItemContext';
 import Link from 'next/link';
 import { actions } from '@/utils/actionsArray';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import ModalGeneral from '@/containers/ModalGeneral';
 import DeleteContent from '@/components/DeleteContent';
 
 const Index = ({ endpoint, title }) => {
 
-    const router = useRouter()
     const { item } = useItem();
+    const [deleteId, setDeleteId] = useState();
     const [rows, setRows] = useState([]);
-    const [alert, setAlert] = useState('');
-    const [warning, setWarning] = useState('');
-    const [loaderActive, setLoaderActive  ] = useState(false);
     const [keys, setKeys] = useState([]);
     const [error, setError] = useState(null);
     const [openModal, setOpenModal] = useState(false);
@@ -24,9 +20,8 @@ const Index = ({ endpoint, title }) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${process.env.BACK_LINK}/api/${endpoint}`);
-                setRows(response.data.data);
-                // Calculate keys after data is fetched
-                const allKeys = response.data.data.flatMap(row => Object.keys(row));
+                setRows(response?.data?.data);
+                const allKeys = response?.data?.data?.flatMap(row => Object.keys(row));
                 const uniqueKeys = [...new Set(allKeys)];
                 setKeys(uniqueKeys);
             } catch (err) {
@@ -35,38 +30,17 @@ const Index = ({ endpoint, title }) => {
         };
 
         fetchData();
-    }, [endpoint]); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
+    }, [endpoint, openModal]); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
 
-    const eventSubmit = (response) => {
-        setLoaderActive(false)
-        setAlert(response?.data?.message)
-        setTimeout(() => {
-            router.push('/main')
-        }, 300);
-    }
-    
-    const eventSubmitFailed = (error) => {
-        setLoaderActive(false)
-        setWarning(error?.response?.data?.message)
-    }
-
-    const onFormatSubmit = (id) => {
-        setAlert('')
-        setWarning('')
-        setLoaderActive(true)
-        axios.delete(`${process.env.BACK_LINK}/api/${endpoint}/${id}`)
-        .then((response) => eventSubmit(response))
-        .catch((error) => eventSubmitFailed(error))
-    }
-
-    const openDeleteModal = () => {
+    const openDeleteModal = (id) => {
         setOpenModal(!openModal)
+        setDeleteId(id)
     }
 
     return (
         <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
             <ModalGeneral state={openModal} setState={setOpenModal}>
-                <DeleteContent submitAction={onFormatSubmit} state = {openModal} setState = {setOpenModal} />
+                <DeleteContent endpoint={endpoint} id={deleteId} state={openModal} setState={setOpenModal} />
             </ModalGeneral>
             <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis {title}s</h1>
             <table className="table table-hover bg-auxiliar">
@@ -94,12 +68,13 @@ const Index = ({ endpoint, title }) => {
                             </td>
                             <td className='border px-2 text-center text-sm'>
                                 {/* <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'  onClick={() => onFormatSubmit(row[keys[0]])} /> */}
-                                <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'  onClick={openDeleteModal} />
+                                <Image src='/assets/delete.svg' alt={'/delete.svg'} width={15} height={15} className='mx-auto'  onClick={() => openDeleteModal(row[keys[0]])} />
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            { error && <p> Hubo un error mostrando la información </p>}
             <div className="bg-primary text-white rounded-md text-center my-1">
                 <b>Total {title}s:</b> {rows.length}
             </div>

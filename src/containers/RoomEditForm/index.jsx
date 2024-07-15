@@ -1,6 +1,6 @@
 "use client"
 import axios from 'axios';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import { useRouter, usePathname } from 'next/navigation';
@@ -13,12 +13,13 @@ const Index = () => {
 
     const router = useRouter()
     const pathName = usePathname()
-    const [alert, setAlert] = React.useState('')
-    const [warning, setWarning] = React.useState('')
-    const [loaderActive, setLoaderActive] = React.useState(false)
+    const [alert, setAlert] = useState('')
+    const [warning, setWarning] = useState('')
+    const [loaderActive, setLoaderActive] = useState(false)
     const { options, endpoint } = roles[`${pathName?.split('/')[1]}`]
+    const [error, setError] = useState(null)
     const actualItem = Number(pathName?.split('/')[3])
-    const [formData, setFormData] = React.useState({
+    const [formData, setFormData] = useState({
         hotelName: '',
         number: '',
         name_category_room: ''
@@ -33,10 +34,10 @@ const Index = () => {
         });
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.BACK_LINK}/api/room/${actualItem + 1}`);
+                const response = await axios.get(`${process.env.BACK_LINK}/api/rooms/${actualItem}`);
                 setFormData(response.data.data);
             } catch (err) {
                 setError(err);
@@ -64,7 +65,7 @@ const Index = () => {
         setAlert('')
         setWarning('')
         // setLoaderActive(true)
-        axios.put(`${process.env.BACK_LINK}/api/${endpoint}/${actualItem + 1}`, formData)
+        axios.put(`${process.env.BACK_LINK}/api/${endpoint}/${actualItem}`, formData)
         .then((response) => eventSubmit(response))
         .catch((error) => eventSubmitFailed(error))
     }

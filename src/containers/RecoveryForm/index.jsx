@@ -34,7 +34,7 @@ const Index = () => {
         setAlert(response?.data?.data?.message)
         setTimeout(() => {
             router.push('/')
-        }, 3000);
+        }, 300);
     }
     
     const eventRecoveryFailed = (error) => {

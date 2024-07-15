@@ -37,7 +37,7 @@ const Index = () => {
         setAlert(response?.data?.message)
         setTimeout(() => {
             router.push('/main')
-        }, 3000);
+        }, 300);
     }
     
     const eventSubmitFailed = (error) => {
