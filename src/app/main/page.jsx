@@ -4,6 +4,7 @@ import Layout from '@/containers/Layout'
 import MainMenu from '@/components/MainMenu'
 import { useItem } from '@/context/ItemContext'
 import TableItems from '@/components/TableItems'
+import ManageOptions from '@/components/ManageOptions'
 import Cookies from 'js-cookie'
 
 
@@ -16,11 +17,15 @@ const Page = () => {
     { key: 'Maintenance Inventory', component: <MainMenu />, endpoint: 'maintenanceInventories'},
     { key: 'Cleanning Staff', component: <MainMenu />, endpoint: 'cleaningStaffs'},
     { key: 'Room', component: <MainMenu />, endpoint: 'rooms'},
+    { key: 'Manage', component: null, endpoint: null}
   ]
 
   return (
     <Layout>
-      <TableItems endpoint={views[item]?.endpoint} title={views[item]?.key} />  
+      {item !== 4 
+        ? <TableItems endpoint={views[item]?.endpoint} title={views[item]?.key} />
+        : <ManageOptions />
+      }
     </Layout>
   )
 }

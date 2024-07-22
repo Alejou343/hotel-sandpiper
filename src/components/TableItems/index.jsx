@@ -38,7 +38,7 @@ const Index = ({ endpoint, title }) => {
     }
 
     return (
-        <div className="bg-primary max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
+        <div className="bg-primary min-w-[40rem] max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
             <ModalGeneral state={openModal} setState={setOpenModal}>
                 <DeleteContent endpoint={endpoint} id={deleteId} state={openModal} setState={setOpenModal} />
             </ModalGeneral>

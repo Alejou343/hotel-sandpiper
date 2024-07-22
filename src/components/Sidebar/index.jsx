@@ -70,6 +70,13 @@ const Index = () => {
         >
           Room
         </Button>
+        <Button 
+          onClick={() => handleChange(4)} 
+          type="button" 
+          className={`text-xs ${item == 4 ? styles[0] : styles[1]}`} 
+        >
+          Manage
+        </Button>
       </div>
       <UserInfo props = {{user, handleLogout}} />
     </aside>

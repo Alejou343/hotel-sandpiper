@@ -17,7 +17,8 @@ const Index = ({ children }) => {
         { key: 'Operation Role', component: <MainMenu />, endpoint: 'operationalRoles'},
         { key: 'Maintenance Inventory', component: <MainMenu />, endpoint: 'maintenanceInventories'},
         { key: 'Cleanning Staff', component: <MainMenu />, endpoint: 'cleaningStaffs'},
-        { key: 'Room', component: <MainMenu />, endpoint: 'rooms'}
+        { key: 'Room', component: <MainMenu />, endpoint: 'rooms'},
+        { key: 'Manage', component: null, endpoint: null}
     ]
 
     React.useEffect(() => {
