@@ -7,6 +7,7 @@ import AssignmentsTable from '@/components/AssignmentsTable'
 const index = () => {
 
   const [alert, setAlert] = React.useState(null)
+  const [items, setItems] = React.useState([])
   const [openModal, setOpenModal] = React.useState(false)
   const [warning, setWarning] = React.useState(null)
   const [formData, setFormData] = React.useState({ workerCode: '' })
@@ -33,9 +34,9 @@ const index = () => {
 
   React.useEffect(() => {
     try {
-      // const response = axios.get(`${process.env.BACK_LINK}/pocki`)
-      // .then((res) => setAlgo(res.data.data))
-      // .catch((err) => console.error(err))
+      axios.get(`${process.env.BACK_LINK}/pocki/getWorkerAssignments?workerCode=${formData.workerCode}`)
+      .then((res) => setItems(res.data.data.assignments))
+      .catch((err) => console.error(err))
     } catch (err) {
       setAlert(`Error al consultar las asignaciones del HouseKeeper ${formData.workerCode}`)
     }
@@ -44,7 +45,7 @@ const index = () => {
   return (
     <div className="bg-auxiliar overflow-auto w-2/3 mx-auto max-h-[80vh] py-1 rounded-md px-4">
             <ModalGeneral state={openModal} setState={setOpenModal}>
-              <AssignmentsTable hk={formData} />
+              <AssignmentsTable hk={formData} list={items} />
             </ModalGeneral>
             <div>
               <h1 className="text-center text-3xl font-bold text-primary my-4">Buscar por HouseKeeper</h1>

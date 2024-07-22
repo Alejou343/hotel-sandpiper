@@ -1,6 +1,9 @@
 import React from "react";
 
-const index = ({ hk }) => {
+const index = ({ hk, list }) => {
+
+    console.log(list)
+
     return (
         <div className="">
             <h1 className="text-center text-3xl font-bold text-auxiliar bg-primary">
@@ -17,13 +20,14 @@ const index = ({ hk }) => {
                 </tr>
                 </thead>
                 <tbody>
-                <tr className="hover:bg-slate-300 cursor-pointer">
-                    <td className="border px-2 text-center text-sm">101</td>
-                    <td className="border px-2 text-center text-sm">Hotel Sandpiper</td>
-                    <td className="border px-2 text-center text-sm">Activo</td>
-                    <td className="border px-2 text-center text-sm">11/07/2024 20:30</td>
-                    <td className="border px-2 text-center text-sm">11/07/2024 20:45</td>
-                </tr>
+                {list.map(item => 
+                    <tr className="hover:bg-slate-300 cursor-pointer">
+                        <td className="border px-2 text-center text-sm">101</td>
+                        <td className="border px-2 text-center text-sm">Hotel Sandpiper</td>
+                        <td className="border px-2 text-center text-sm">Activo</td>
+                        <td className="border px-2 text-center text-sm">11/07/2024 20:30</td>
+                        <td className="border px-2 text-center text-sm">11/07/2024 20:45</td>
+                    </tr>)}
                 </tbody>
             </table>
             {/* { error && <p> Hubo un error mostrando la información </p>} */}

@@ -31,9 +31,7 @@ const Index = () => {
         setAlert('')
         setWarning('')
         // setLoaderActive(true)
-        // axios.put(`${process.env.BACK_LINK}/api/${endpoint}/${actualItem}`, formData)
-        // .then((response) => eventSubmit(response))
-        // .catch((error) => eventSubmitFailed(error))
+        axios.post(`${process.env.BACK_LINK}/api/pocki`, formData)
     }
 
     return (
