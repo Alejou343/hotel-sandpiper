@@ -47,7 +47,11 @@ const Index = ({ endpoint, title }) => {
                 <thead className='bg-secondary text-white'>
                     <tr>
                         {keys.map(key => (
-                            <th className='border px-2 font-bold' key={key}>{key}</th>
+                            <th className='border px-2 font-bold' key={key}>{key
+                                .split("_")
+                                .map(x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())
+                                .join(' ')}
+                            </th>
                         ))}
                         <th className='border px-2 font-bold'>Editar</th>
                         <th className='border px-2 font-bold'>Eliminar</th>
