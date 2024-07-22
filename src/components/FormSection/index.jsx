@@ -2,7 +2,7 @@ import React from 'react'
 
 const Index = ({type, id, placeholder, label, onChange, value}) => {
   return (
-    <div className="mb-2 flex justify-between">
+    <div className="my-2 flex justify-between">
       <label htmlFor={id} className="form-label text-sm">{label}</label>
       <input 
         type={type} 
