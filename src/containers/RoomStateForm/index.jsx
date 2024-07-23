@@ -1,15 +1,15 @@
 "use client"
-// import axios from 'axios';
+import axios from 'axios';
 import React from 'react';
 import Button from '@/components/Button';
-// import Loader from '@/components/Loader';
 import FormSection from '@/components/FormSection';
 import FormSelect from '@/components/FormSelect';
 
 const Index = () => {
 
-    const [alert, setAlert] = React.useState('')
     const options = ['v/c', 'o', 'v/d', 'ooo', 'clean/in', 'clean/out', 'p/s', 'RM', 'S/O', 'E/CH', 'MT/IN', 'MT/OUT', 'M/P', 'REMO PROJECT']
+    
+    const [alert, setAlert] = React.useState('')
     const [warning, setWarning] = React.useState('')
     const [formData, setFormData] = React.useState({
         roomNumber: '',
@@ -32,6 +32,8 @@ const Index = () => {
         setWarning('')
         // setLoaderActive(true)
         axios.post(`${process.env.BACK_LINK}/api/pocki`, formData)
+        .then((response) => setAlert(response?.data?.message))
+        .catch((err) => setWarning(err?.response?.data?.message))
     }
 
     return (
@@ -42,7 +44,7 @@ const Index = () => {
             <FormSelect list={options} id="message" label="Categoría" onChange={handleInputChange} value={formData.message} className={{select: 'w-1/2'}} />
             <p className='text-xs my-2 text-primary text-center'> {alert} </p>
             <p className='text-xs my-2 text-red-500 text-center'> {warning} </p>
-            <Button type="submit" className="bg-secondary" onClick={() => {}}> Actualizar estado </Button>
+            <Button type="submit" className="bg-secondary"> Actualizar estado </Button>
         </form>
     )
 }

@@ -5,7 +5,7 @@ import AssignmentsTable from '@/components/AssignmentsTable'
 const index = () => {
 
   const [items, setItems] = React.useState([])
-  const [alert, setAlert] = React.useState('')
+  const [alert, setAlert] = React.useState('No se encontraron asignaciones')
 
   React.useEffect(() => {
     try {
@@ -19,8 +19,10 @@ const index = () => {
 
   return (
     <>
-      <AssignmentsTable hk='' list={items} />
-      <p className='text-xs my-2 text-primary text-center'> {alert} </p>
+      {items.length > 0 
+        ? <AssignmentsTable hk={formData} list={items} />
+        : <p className='text-xs my-2 text-primary text-center'> {alert} </p>
+      }
     </>
   );
 };

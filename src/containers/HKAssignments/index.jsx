@@ -45,7 +45,10 @@ const index = () => {
   return (
     <div className="bg-auxiliar overflow-auto w-2/3 mx-auto max-h-[80vh] py-1 rounded-md px-4">
             <ModalGeneral state={openModal} setState={setOpenModal}>
-              <AssignmentsTable hk={formData} list={items} />
+              {items.length > 0 
+              ? <AssignmentsTable hk={formData} list={items} />
+              : <p className='text-xs my-2 text-primary text-center'> {alert} </p>
+            }
             </ModalGeneral>
             <div>
               <h1 className="text-center text-3xl font-bold text-primary my-4">Buscar por HouseKeeper</h1>
