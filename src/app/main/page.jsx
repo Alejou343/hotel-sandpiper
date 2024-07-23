@@ -13,11 +13,11 @@ const Page = () => {
   const { item } = useItem()
 
   const views = [
-    { key: 'Operation Role', component: <MainMenu />, endpoint: 'operationalRoles'},
-    { key: 'Maintenance Inventory', component: <MainMenu />, endpoint: 'maintenanceInventories'},
-    { key: 'Cleanning Staff', component: <MainMenu />, endpoint: 'cleaningStaffs'},
-    { key: 'Room', component: <MainMenu />, endpoint: 'rooms'},
-    { key: 'Manage', component: null, endpoint: null}
+    { key: 'Personal operacional', component: <MainMenu />, endpoint: 'operationalRoles'},
+    { key: 'Personal de mantenimiento', component: <MainMenu />, endpoint: 'maintenanceInventories'},
+    { key: 'Personal de limpieza', component: <MainMenu />, endpoint: 'cleaningStaffs'},
+    { key: 'Habitaciones', component: <MainMenu />, endpoint: 'rooms'},
+    { key: 'Administración', component: null, endpoint: null}
   ]
 
   return (

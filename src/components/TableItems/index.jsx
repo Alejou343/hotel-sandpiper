@@ -42,7 +42,7 @@ const Index = ({ endpoint, title }) => {
             <ModalGeneral state={openModal} setState={setOpenModal}>
                 <DeleteContent endpoint={endpoint} id={deleteId} state={openModal} setState={setOpenModal} />
             </ModalGeneral>
-            <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">Mis {title}s</h1>
+            <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">{title}</h1>
             <table className="table table-hover bg-auxiliar">
                 <thead className='bg-secondary text-white'>
                     <tr>
@@ -80,7 +80,7 @@ const Index = ({ endpoint, title }) => {
             </table>
             { error && <p> Hubo un error mostrando la información </p>}
             <div className="bg-primary text-white rounded-md text-center my-1">
-                <b>Total {title}s:</b> {rows.length}
+                <b>Total {title}:</b> {rows.length}
             </div>
         </div>
     );

@@ -11,10 +11,10 @@ const index = () => {
     const notSelectedStyle = 'bg-primary rounded-md px-4 min-w-[15rem] text-center p-4 text-white font-semibold cursor-pointer'
     
     const buttons = [
-        { id: 0, name: 'Room State', component: <RoomStateForm /> }, 
-        { id: 1, name: 'HouseKeeper Assign', component: <HKAssignForm /> }, 
-        { id: 2, name: 'Show Assignments', component: <ShowAssignTable /> }, 
-        { id: 3, name: 'HouseKeppers Assignments', component: <HKAssignments /> } 
+        { id: 0, name: 'Estado Habitaciones', component: <RoomStateForm /> }, 
+        { id: 1, name: 'Asignación HouseKeeper', component: <HKAssignForm /> }, 
+        { id: 2, name: 'Mostrar asignaciones', component: <ShowAssignTable /> }, 
+        { id: 3, name: 'Asignaciones de HouseKeepers', component: <HKAssignments /> } 
     ]
 
     return (
