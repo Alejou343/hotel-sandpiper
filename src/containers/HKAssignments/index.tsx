@@ -23,7 +23,6 @@ const index = () => {
 
   const handleSubmitForm = (e: any) => {
     e.preventDefault()
-    console.log(formData)
     setOpenModal(true)
     setAlert('')
     setWarning('')
@@ -33,15 +32,23 @@ const index = () => {
     // .catch((error) => eventSubmitFailed(error))
   }
 
+  const handleSuccess = (res: any) => {
+    setItems(res?.data?.data?.assignments)
+
+    if (!items.length) {
+      setAlert(`El HouseKeeper ${formData.workerCode} no tiene asignaciones actualmente`)
+    }
+  }
+
   React.useEffect(() => {
     try {
-      axios.get(`${process.env.BACK_LINK}/pocki/getWorkerAssignments?workerCode=${formData.workerCode}`)
-      .then((res: any) => setItems(res.data.data.assignments))
-      .catch((err: any) => console.error(err))
+      axios.get(`${process.env.BACK_LINK}/api/pocki/getWorkerAssignments?workerCode=${formData.workerCode}`)
+      .then((res: any) => handleSuccess(res))
+      .catch((err: any) => setAlert(`No se encontraron las asignaciones del HouseKeeper ${formData.workerCode}`))
     } catch (err) {
       setAlert(`Error al consultar las asignaciones del HouseKeeper ${formData.workerCode}`)
     }
-  }, [handleSubmitForm])
+  }, [openModal])
 
   return (
     <div className="bg-auxiliar overflow-auto w-2/3 mx-auto max-h-[80vh] py-1 rounded-md px-4">

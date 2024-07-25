@@ -9,7 +9,7 @@ const index: React.FC = () => {
 
   React.useEffect(() => {
     try {
-      axios.get(`${process.env.BACK_LINK}/pocki/showAssignments`)
+      axios.get(`${process.env.BACK_LINK}/api/pocki/showAssignments`)
       .then((res) => setItems(res.data.data))
       .catch((err) => console.error(err))
     } catch (err) {
