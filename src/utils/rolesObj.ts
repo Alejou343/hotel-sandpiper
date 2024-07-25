@@ -5,6 +5,7 @@ interface TypeRoles {
 interface RoleOptions { 
     endpoint: string 
     options: string[] 
+    colors?: string[]
 }
 
 export const roles: TypeRoles = {
@@ -22,6 +23,6 @@ export const roles: TypeRoles = {
     },
     room: { 
         endpoint: 'rooms',
-        options: ['v/c', 'o', 'v/d', 'ooo', 'clean/in', 'clean/out', 'p/s', 'RM', 'S/O', 'E/CH', 'MT/IN', 'MT/OUT', 'M/P', 'REMO PROJECT']
+        options: ['v/c', 'o', 'v/d', 'ooo', 'clean/in', 'clean/out', 'p/s', 'RM', 'S/O', 'E/CH', 'MT/IN', 'MT/OUT', 'M/P', 'REMO PROJECT'],
     }
 }

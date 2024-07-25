@@ -4,6 +4,7 @@ import Layout from '@/containers/Layout'
 import MainMenu from '@/components/MainMenu'
 import { useItem } from '@/context/ItemContext'
 import TableItems from '@/components/TableItems'
+import RoomItems from '@/components/RoomItems'
 import ManageOptions from '@/components/ManageOptions'
 // import Cookies from 'js-cookie'
 
@@ -27,9 +28,11 @@ const Page: React.FC = () => {
 
   return (
     <Layout>
-      {item !== 4 
-        ? <TableItems endpoint={views[item]?.endpoint} title={views[item]?.key} />
-        : <ManageOptions />
+      {item == 4 
+        ? <ManageOptions />
+        : item == 3 
+          ? <RoomItems endpoint={views[item]?.endpoint} title={views[item]?.key} />
+          : <TableItems endpoint={views[item]?.endpoint} title={views[item]?.key} />
       }
     </Layout>
   )
