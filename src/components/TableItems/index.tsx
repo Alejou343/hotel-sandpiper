@@ -6,6 +6,7 @@ import { actions } from '@/utils/actionsArray';
 import Image from 'next/image';
 import ModalGeneral from '@/containers/ModalGeneral';
 import DeleteContent from '@/components/DeleteContent';
+import TableFooter from '@/components/TableFooter';
 
 interface ComponentProps {
     endpoint: string
@@ -16,6 +17,7 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
 
     const { item } = useItem();
     const [deleteId, setDeleteId] = React.useState<number>(0);
+    const [page, setPage] = React.useState<number>(0)
     const [rows, setRows] = React.useState<any[]>([]);
     const [keys, setKeys] = React.useState<any[]>([]);
     const [error, setError] = React.useState<any>(null);
@@ -43,11 +45,11 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
     }
 
     return (
-        <div className="bg-primary min-w-[40rem] max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
+        <div className="bg-auxiliar min-w-[40rem] max-w-5xl overflow-auto max-h-[80vh] py-1 rounded-md">
             <ModalGeneral state={openModal} setState={setOpenModal}>
                 <DeleteContent endpoint={endpoint} id={deleteId} state={openModal} setState={setOpenModal} />
             </ModalGeneral>
-            <h1 className="text-center mb-4 text-3xl font-bold text-auxiliar">{title}</h1>
+            <h1 className="text-center mb-4 text-3xl font-bold text-secondary">{title}</h1>
             <table className="table table-hover bg-auxiliar">
                 <thead className='bg-secondary text-white'>
                     <tr>
@@ -63,8 +65,8 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((row, id) => (
-                        <tr key={id} className="hover:bg-slate-300 cursor-pointer">
+                    {rows.slice(page * 20, page * 20 + 20).map((row, id) => (
+                        <tr key={id} className="hover:bg-slate-300 bg-slate-100 cursor-pointer">
                             {keys.map((key: any) => (
                                 <td className='border px-2 text-center text-sm' key={`${key}-${id}`}>
                                     {row[key] || ''}
@@ -84,9 +86,13 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
                 </tbody>
             </table>
             { error && <p> Hubo un error mostrando la información </p>}
-            <div className="bg-primary text-white rounded-md text-center my-1">
-                <b>Total {title}:</b> {rows.length}
-            </div>
+            <TableFooter 
+            param={rows} 
+            text="Total Propiedades Residenciales:" 
+            page={page} 
+            setPage={setPage} 
+            number={20}
+            />
         </div>
     );
 };

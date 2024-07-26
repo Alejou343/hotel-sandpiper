@@ -20,7 +20,7 @@ const index: React.FC<TableFooterProps> = ({ param, text, page, setPage, number 
     }
 
     return (
-        <div className="bg-secondary flex justify-between px-4 py-2 text-white rounded-md text-center my-1">
+        <div className="bg-auxiliar flex justify-between px-4 py-2 text-secondary rounded-md text-center my-1">
             <Image 
             src="/assets/arrow.svg" 
             alt="left-arrow.svg" 
