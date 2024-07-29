@@ -3,7 +3,7 @@ import React from 'react'
 import Sidebar from '@/components/Sidebar'
 import { usePathname } from 'next/navigation'
 
-const index: React.FC = () => {
+const Index: React.FC = () => {
 
   const pathname: string = usePathname()
 
@@ -21,4 +21,4 @@ const index: React.FC = () => {
   )
 }
 
-export default index
+export default Index

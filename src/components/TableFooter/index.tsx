@@ -9,7 +9,7 @@ interface TableFooterProps {
     number: number
 }
 
-const index: React.FC<TableFooterProps> = ({ param, text, page, setPage, number }) => {
+const Index: React.FC<TableFooterProps> = ({ param, text, page, setPage, number }) => {
 
     const handlePreview = () => {
         return page > 0 ? setPage(page - 1) : null
@@ -42,4 +42,4 @@ const index: React.FC<TableFooterProps> = ({ param, text, page, setPage, number 
     )
 }
 
-export default index
+export default Index

@@ -16,10 +16,9 @@ interface ComponentProps {
 
 
 
-const index: React.FC<ComponentProps> = ({ row, endpoint, keys }) => {
+const Index: React.FC<ComponentProps> = ({ row, endpoint, keys }) => {
 
     const { options } = roles?.room;
-    const colors: string[] = ['bg-red-200', 'bg-blue-200', 'bg-green-200', 'bg-yellow-200', 'bg-cyan-200', 'bg-gray-200', 'bg-lime-200', 'bg-emerald-200', 'bg-teal-200', 'bg-sky-200', 'bg-purple-200', 'bg-fuchsia-200', 'bg-pink-200', 'bg-rose-200']
     const { item } = useItem();
     const [deleteId, setDeleteId] = React.useState<number>(0);
     const [openModal, setOpenModal] = React.useState<boolean>(false);
@@ -30,7 +29,7 @@ const index: React.FC<ComponentProps> = ({ row, endpoint, keys }) => {
     }
 
     return (
-        <div className={`${colors[options.indexOf(row?.name_category_room)]} w-2/3 aspect-square mx-auto rounded-md p-1`}>
+        <div className={`${row?.name_category_room !== 'v/c' ? 'bg-red-200' : 'bg-green-200'} w-2/3 aspect-square mx-auto rounded-md p-1`}>
             <ModalGeneral state={openModal} setState={setOpenModal}>
                 <DeleteContent endpoint={endpoint} id={deleteId} state={openModal} setState={setOpenModal} />
             </ModalGeneral>
@@ -54,4 +53,4 @@ const index: React.FC<ComponentProps> = ({ row, endpoint, keys }) => {
     )
 }
 
-export default index
+export default Index

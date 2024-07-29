@@ -10,7 +10,7 @@ interface buttonsTypes {
     component: React.JSX.Element;
 }
 
-const index: React.FC = () => {
+const Index: React.FC = () => {
 
     const [itemSelected, setItemSelected] = React.useState<number>(0)
     const selectedStyle: string = 'bg-secondary rounded-md px-4 min-w-[15rem] text-center p-4 text-white font-semibold cursor-pointer'
@@ -44,4 +44,4 @@ const index: React.FC = () => {
     )
 }
 
-export default index
+export default Index

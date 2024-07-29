@@ -5,7 +5,7 @@ import ModalGeneral from '@/containers/ModalGeneral'
 import Button from "@/components/Button";
 import AssignmentsTable from '@/components/AssignmentsTable'
 
-const index = () => {
+const Index = () => {
 
   const [alert, setAlert] = React.useState<string>('')
   const [items, setItems] = React.useState<any[]>([])
@@ -69,4 +69,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

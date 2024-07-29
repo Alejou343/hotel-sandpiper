@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import AssignmentsTable from '@/components/AssignmentsTable'
 
-const index: React.FC = () => {
+const Index: React.FC = () => {
 
   const [items, setItems] = React.useState<any[]>([])
   const [alert, setAlert] = React.useState<string>('No se encontraron asignaciones')
@@ -27,4 +27,4 @@ const index: React.FC = () => {
   );
 };
 
-export default index;
+export default Index;

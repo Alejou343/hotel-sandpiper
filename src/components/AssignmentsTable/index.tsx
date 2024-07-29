@@ -5,7 +5,7 @@ interface ComponentProps {
     list: string[]
 }
 
-const index: React.FC<ComponentProps> = ({ hk, list }) => {
+const Index: React.FC<ComponentProps> = ({ hk, list }) => {
 
     return (
         <div className="">
@@ -23,8 +23,8 @@ const index: React.FC<ComponentProps> = ({ hk, list }) => {
                 </tr>
                 </thead>
                 <tbody>
-                {list.map(item => 
-                    <tr className="hover:bg-slate-300 cursor-pointer">
+                {list.map((item, i) => 
+                    <tr className="hover:bg-slate-300 cursor-pointer" key={i}>
                         <td className="border px-2 text-center text-sm">101</td>
                         <td className="border px-2 text-center text-sm">Hotel Sandpiper</td>
                         <td className="border px-2 text-center text-sm">Activo</td>
@@ -41,4 +41,4 @@ const index: React.FC<ComponentProps> = ({ hk, list }) => {
     );
 };
 
-export default index;
+export default Index;
