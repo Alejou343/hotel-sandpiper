@@ -25,6 +25,7 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
     const [openModal, setOpenModal] = React.useState<boolean>(false);
 
     React.useEffect(() => {
+        setError('')
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${process.env.BACK_LINK}/api/${endpoint}`);
@@ -41,9 +42,9 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
     }, [endpoint, openModal]); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
 
     return (
-        <div className="bg-auxiliar w-[45rem] overflow-auto h-[75vh] p-3 rounded-md flex flex-col justify-between">
+        <div className="bg-auxiliar w-[60rem] overflow-auto h-[65vh] p-3 rounded-md flex flex-col justify-between">
             <h1 className="text-center mb-4 text-3xl font-bold text-secondary">{title}</h1>
-            <div className="grid grid-cols-5 gap-[1rem]">
+            <div className="grid grid-cols-6 gap-[1rem]">
                 {rows
                 .slice(page * 18, page * 18 + 18)
                 .map(row => <RoomCard row={row} endpoint={endpoint} keys={keys} key={row} />)}
