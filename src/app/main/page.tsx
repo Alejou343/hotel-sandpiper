@@ -5,6 +5,7 @@ import MainMenu from '@/components/MainMenu'
 import { useItem } from '@/context/ItemContext'
 import TableItems from '@/components/TableItems'
 import RoomItems from '@/components/RoomItems'
+import SelectTower from '@/components/SelectTower'
 import ManageOptions from '@/components/ManageOptions'
 // import Cookies from 'js-cookie'
 
@@ -31,7 +32,7 @@ const Page: React.FC = () => {
       {item == 4 
         ? <ManageOptions />
         : item == 3 
-          ? <RoomItems endpoint={views[item]?.endpoint} title={views[item]?.key} />
+          ? <SelectTower />
           : <TableItems endpoint={views[item]?.endpoint} title={views[item]?.key} />
       }
     </Layout>
