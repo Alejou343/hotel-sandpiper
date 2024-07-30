@@ -41,21 +41,20 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
     }, [endpoint, openModal]); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
 
     return (
-        <div className="bg-auxiliar min-w-[40rem] max-w-5xl overflow-auto max-h-[60vh] py-1 rounded-md">
+        <div className="bg-auxiliar w-[45rem] overflow-auto h-[75vh] p-3 rounded-md flex flex-col justify-between">
             <h1 className="text-center mb-4 text-3xl font-bold text-secondary">{title}</h1>
-            <div className="grid grid-cols-3 gap-[2rem]">
-                {rows.slice(page * 9, page * 9 + 9).map(row => <RoomCard row={row} endpoint={endpoint} keys={keys} />)}
+            <div className="grid grid-cols-5 gap-[1rem]">
+                {rows
+                .slice(page * 18, page * 18 + 18)
+                .map(row => <RoomCard row={row} endpoint={endpoint} keys={keys} key={row} />)}
             </div>
             { error && <p> Hubo un error mostrando la información </p>}
-            {/* <div className="bg-primary text-white rounded-md text-center my-1 flex justify-between">
-                <b>Total {title}:</b> {rows.length}
-            </div> */}
             <TableFooter 
             param={rows} 
             text="Total Propiedades Residenciales:" 
             page={page} 
             setPage={setPage} 
-            number={9}
+            number={18}
             />
         </div>
     );

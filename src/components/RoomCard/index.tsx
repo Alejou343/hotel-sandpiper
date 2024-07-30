@@ -29,7 +29,7 @@ const Index: React.FC<ComponentProps> = ({ row, endpoint, keys }) => {
     }
 
     return (
-        <div className={`${row?.name_category_room !== 'v/c' ? 'bg-red-200' : 'bg-green-200'} w-2/3 aspect-square mx-auto rounded-md p-1`}>
+        <div className={`${row?.name_category_room !== 'v/c' ? 'bg-red-200' : 'bg-green-200'} w-full aspect-square mx-auto rounded-md p-1`}>
             <ModalGeneral state={openModal} setState={setOpenModal}>
                 <DeleteContent endpoint={endpoint} id={deleteId} state={openModal} setState={setOpenModal} />
             </ModalGeneral>
