@@ -15,7 +15,6 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
     const [rows, setRows] = React.useState<any[]>([]);
     const [keys, setKeys] = React.useState<any[]>([]);
     const [error, setError] = React.useState<any>(null);
-    const [openModal, setOpenModal] = React.useState<boolean>(false);
     const pathname  = usePathname()
 
     React.useEffect(() => {
@@ -33,7 +32,7 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
         };
 
         fetchData();
-    }, [endpoint, openModal]); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
+    }, []); // Dependencia modificada para que el efecto se dispare solo cuando cambie `endpoint`
 
     return (
         <div className="bg-auxiliar w-[60rem] overflow-auto h-[65vh] p-3 rounded-md flex flex-col justify-between">
@@ -41,7 +40,7 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
             <div className="grid grid-cols-6 gap-[1rem]">
                 {rows
                 .slice(page * 18, page * 18 + 18)
-                .map(row => <RoomCard row={row} endpoint={endpoint} keys={keys} key={row} />)}
+                .map(row => <RoomCard row={row} endpoint={endpoint} keys={keys} key={row?.id_room} />)}
             </div>
             { error && <p> Hubo un error mostrando la información </p>}
             <TableFooter 
