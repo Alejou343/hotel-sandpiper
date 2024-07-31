@@ -22,7 +22,7 @@ const Index: React.FC<ComponentProps> = ({ endpoint, title }) => {
         setError('')
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.BACK_LINK}/api/${endpoint}`);
+                const response = await axios.get(`${process.env.BACK_LINK}/api/${endpoint}/hotelName/${pathname.split('/').at(-1)}`);
                 setRows(response?.data?.data);
                 const allKeys = response?.data?.data?.flatMap((row: any) => Object.keys(row));
                 const uniqueKeys = Array.from(new Set(allKeys));
